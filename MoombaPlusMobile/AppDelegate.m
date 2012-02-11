@@ -11,10 +11,13 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize controller = _controller;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
     return YES;
 }
 							

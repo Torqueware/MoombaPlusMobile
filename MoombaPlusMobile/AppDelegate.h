@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MoombaPlusController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MoombaPlusController *controller;
 
 @end

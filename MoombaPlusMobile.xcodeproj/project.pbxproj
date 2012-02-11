@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C26B62BF14E721B200DA49CF /* MoombaPlusController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B62BE14E721B200DA49CF /* MoombaPlusController.m */; };
+		C2C3F6FF14E7230600922D72 /* RadioController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F6FE14E7230600922D72 /* RadioController.m */; };
+		C2C3F70514E723F300922D72 /* RSSController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70414E723F300922D72 /* RSSController.m */; };
+		C2C3F70814E7240A00922D72 /* IRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70714E7240A00922D72 /* IRCController.m */; };
 		DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412514E1BB1300B12A5E /* UIKit.framework */; };
 		DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412714E1BB1300B12A5E /* Foundation.framework */; };
 		DE3F412A14E1BB1300B12A5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */; };
@@ -14,15 +18,21 @@
 		DE3F413214E1BB1300B12A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F413114E1BB1300B12A5E /* main.m */; };
 		DE3F413614E1BB1400B12A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F413514E1BB1400B12A5E /* AppDelegate.m */; };
 		DE3F413914E1BB1400B12A5E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3F413714E1BB1400B12A5E /* MainStoryboard.storyboard */; };
-		DE3F413C14E1BB1400B12A5E /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F413B14E1BB1400B12A5E /* FirstViewController.m */; };
 		DE3F413E14E1BB1400B12A5E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3F413D14E1BB1400B12A5E /* first.png */; };
 		DE3F414014E1BB1400B12A5E /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3F413F14E1BB1400B12A5E /* first@2x.png */; };
-		DE3F414314E1BB1400B12A5E /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F414214E1BB1400B12A5E /* SecondViewController.m */; };
 		DE3F414514E1BB1400B12A5E /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3F414414E1BB1400B12A5E /* second.png */; };
 		DE3F414714E1BB1400B12A5E /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3F414614E1BB1400B12A5E /* second@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C26B62BD14E721B200DA49CF /* MoombaPlusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoombaPlusController.h; sourceTree = "<group>"; };
+		C26B62BE14E721B200DA49CF /* MoombaPlusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoombaPlusController.m; sourceTree = "<group>"; };
+		C2C3F6FD14E7230600922D72 /* RadioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioController.h; sourceTree = "<group>"; };
+		C2C3F6FE14E7230600922D72 /* RadioController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioController.m; sourceTree = "<group>"; };
+		C2C3F70314E723F300922D72 /* RSSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSController.h; sourceTree = "<group>"; };
+		C2C3F70414E723F300922D72 /* RSSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSController.m; sourceTree = "<group>"; };
+		C2C3F70614E7240A00922D72 /* IRCController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRCController.h; sourceTree = "<group>"; };
+		C2C3F70714E7240A00922D72 /* IRCController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRCController.m; sourceTree = "<group>"; };
 		DE3F412114E1BB1300B12A5E /* Moomba+ Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moomba+ Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3F412514E1BB1300B12A5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE3F412714E1BB1300B12A5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -34,12 +44,8 @@
 		DE3F413414E1BB1400B12A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE3F413514E1BB1400B12A5E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DE3F413814E1BB1400B12A5E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		DE3F413A14E1BB1400B12A5E /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		DE3F413B14E1BB1400B12A5E /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		DE3F413D14E1BB1400B12A5E /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		DE3F413F14E1BB1400B12A5E /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		DE3F414114E1BB1400B12A5E /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		DE3F414214E1BB1400B12A5E /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		DE3F414414E1BB1400B12A5E /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		DE3F414614E1BB1400B12A5E /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,15 +94,19 @@
 		DE3F412B14E1BB1300B12A5E /* MoombaPlusMobile */ = {
 			isa = PBXGroup;
 			children = (
+				DE3F413714E1BB1400B12A5E /* MainStoryboard.storyboard */,
 				DE3F413414E1BB1400B12A5E /* AppDelegate.h */,
 				DE3F413514E1BB1400B12A5E /* AppDelegate.m */,
-				DE3F413714E1BB1400B12A5E /* MainStoryboard.storyboard */,
-				DE3F413A14E1BB1400B12A5E /* FirstViewController.h */,
-				DE3F413B14E1BB1400B12A5E /* FirstViewController.m */,
+				C26B62BD14E721B200DA49CF /* MoombaPlusController.h */,
+				C26B62BE14E721B200DA49CF /* MoombaPlusController.m */,
+				C2C3F6FD14E7230600922D72 /* RadioController.h */,
+				C2C3F6FE14E7230600922D72 /* RadioController.m */,
+				C2C3F70314E723F300922D72 /* RSSController.h */,
+				C2C3F70414E723F300922D72 /* RSSController.m */,
+				C2C3F70614E7240A00922D72 /* IRCController.h */,
+				C2C3F70714E7240A00922D72 /* IRCController.m */,
 				DE3F413D14E1BB1400B12A5E /* first.png */,
 				DE3F413F14E1BB1400B12A5E /* first@2x.png */,
-				DE3F414114E1BB1400B12A5E /* SecondViewController.h */,
-				DE3F414214E1BB1400B12A5E /* SecondViewController.m */,
 				DE3F414414E1BB1400B12A5E /* second.png */,
 				DE3F414614E1BB1400B12A5E /* second@2x.png */,
 				DE3F412C14E1BB1300B12A5E /* Supporting Files */,
@@ -183,8 +193,10 @@
 			files = (
 				DE3F413214E1BB1300B12A5E /* main.m in Sources */,
 				DE3F413614E1BB1400B12A5E /* AppDelegate.m in Sources */,
-				DE3F413C14E1BB1400B12A5E /* FirstViewController.m in Sources */,
-				DE3F414314E1BB1400B12A5E /* SecondViewController.m in Sources */,
+				C26B62BF14E721B200DA49CF /* MoombaPlusController.m in Sources */,
+				C2C3F6FF14E7230600922D72 /* RadioController.m in Sources */,
+				C2C3F70514E723F300922D72 /* RSSController.m in Sources */,
+				C2C3F70814E7240A00922D72 /* IRCController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
