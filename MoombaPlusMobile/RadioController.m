@@ -10,4 +10,13 @@
 
 @implementation RadioController
 
+@synthesize player = _player;
+
+- (id) init {
+    self = [super init];
+    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:@"s6.voscast.com:7662/listen.pls"]];
+    return self;
+}
+
 @end
+

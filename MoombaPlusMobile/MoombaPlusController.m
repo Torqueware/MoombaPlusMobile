@@ -10,4 +10,7 @@
 
 @implementation MoombaPlusController
 
+@synthesize chatController = _chatController;
+@synthesize blogController = _blogController;
+
 @end

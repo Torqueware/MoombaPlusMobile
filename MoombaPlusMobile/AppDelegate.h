@@ -12,6 +12,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) MoombaPlusController *controller;
+@property (weak, nonatomic) MoombaPlusController *controller;  // IS THIS A GOOD LINK TO HAVE WEAK?
+
 
 @end

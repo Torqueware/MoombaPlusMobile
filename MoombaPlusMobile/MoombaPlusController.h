@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "IRCController.h"
+#import "RSSController.h"
 
 @interface MoombaPlusController : NSObject
+
+@property (strong, nonatomic) IRCController *chatController;
+@property (strong, nonatomic) RSSController *blogController;
 
 @end
