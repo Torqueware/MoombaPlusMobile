@@ -13,4 +13,11 @@
 @synthesize chatController = _chatController;
 @synthesize blogController = _blogController;
 
+- (id) init {
+    self = [super init];
+    self.chatController = [[IRCController alloc] init];
+    self.blogController = [[RSSController alloc] init];
+    return self;
+}
+
 @end

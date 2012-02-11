@@ -17,6 +17,7 @@
 {
     // Override point for customization after application launch.
     
+    self.controller = [[MoombaPlusController alloc] init];
     
     return YES;
 }
