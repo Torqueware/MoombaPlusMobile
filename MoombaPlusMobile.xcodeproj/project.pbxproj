@@ -37,7 +37,7 @@
 		C2C3F70D14E726E300922D72 /* RSSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSController.m; sourceTree = "<group>"; };
 		C2C3F71214E7389E00922D72 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		DE3F412114E1BB1300B12A5E /* Moomba+ Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moomba+ Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE3F412114E1BB1300B12A5E /* Moomba+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moomba+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3F412514E1BB1300B12A5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE3F412714E1BB1300B12A5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,7 +82,7 @@
 		DE3F412214E1BB1300B12A5E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DE3F412114E1BB1300B12A5E /* Moomba+ Mobile.app */,
+				DE3F412114E1BB1300B12A5E /* Moomba+.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,7 +150,7 @@
 			);
 			name = "Moomba+";
 			productName = MoombaPlusMobile;
-			productReference = DE3F412114E1BB1300B12A5E /* Moomba+ Mobile.app */;
+			productReference = DE3F412114E1BB1300B12A5E /* Moomba+.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
