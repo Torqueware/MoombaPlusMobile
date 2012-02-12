@@ -16,8 +16,6 @@
 
 - (id) init {
     self = [super init];
-    self.player = [self startPlayer];
-    [self.player play];
     return self;
 }
 

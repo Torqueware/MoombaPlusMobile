@@ -14,5 +14,8 @@
 @interface IRCController : UIViewController{
 }
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
+@property (strong, nonatomic) AVPlayer *player;
+@property (strong, nonatomic) NSString *str;
+@property (strong, nonatomic) NSURL *url;
 
 @end

@@ -10,17 +10,30 @@
 
 @implementation IRCController
 
-
+@synthesize player = _player;
 @synthesize volumeParentView = _volumeParentView;
+@synthesize  str = _str;
+@synthesize url = _url;
+
+- (AVPlayer *) startPlayer {
+    self.str = @"s6.voscast.com:7662/listen.pls";
+    self.url = [NSURL URLWithString:self.str];
+    
+    return [AVPlayer playerWithURL:self.url];
+}
+
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nibs
     
     self.volumeParentView.backgroundColor = [UIColor clearColor];
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds];
     [self.volumeParentView addSubview:volumeView];
+    
+    self.player = [self startPlayer];
+    [self.player play];
 }
 
 - (void) viewDidUnload
