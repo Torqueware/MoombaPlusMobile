@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface RadioController : UIViewController
 
 @property (strong, nonatomic) AVPlayer *player;
+@property float val;
+@property (strong, nonatomic) UIView *volumeParentView;
 
 - (AVPlayer *) startPlayer;
 
