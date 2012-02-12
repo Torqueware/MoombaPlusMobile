@@ -12,6 +12,7 @@
 		C2C3F70B14E726CF00922D72 /* IRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70A14E726CF00922D72 /* IRCController.m */; };
 		C2C3F70E14E726E300922D72 /* RSSController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70D14E726E300922D72 /* RSSController.m */; };
 		C2C3F71314E7389E00922D72 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C3F71214E7389E00922D72 /* AVFoundation.framework */; };
+		C2C3F71D14E7456B00922D72 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */; };
 		DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412514E1BB1300B12A5E /* UIKit.framework */; };
 		DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412714E1BB1300B12A5E /* Foundation.framework */; };
 		DE3F412A14E1BB1300B12A5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */; };
@@ -35,6 +36,7 @@
 		C2C3F70C14E726E300922D72 /* RSSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSController.h; sourceTree = "<group>"; };
 		C2C3F70D14E726E300922D72 /* RSSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSController.m; sourceTree = "<group>"; };
 		C2C3F71214E7389E00922D72 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		DE3F412114E1BB1300B12A5E /* Moomba+ Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moomba+ Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3F412514E1BB1300B12A5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE3F412714E1BB1300B12A5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2C3F71D14E7456B00922D72 /* MediaPlayer.framework in Frameworks */,
 				C2C3F71314E7389E00922D72 /* AVFoundation.framework in Frameworks */,
 				DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */,
 				DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */,
@@ -87,6 +90,7 @@
 		DE3F412414E1BB1300B12A5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */,
 				C2C3F71214E7389E00922D72 /* AVFoundation.framework */,
 				DE3F412514E1BB1300B12A5E /* UIKit.framework */,
 				DE3F412714E1BB1300B12A5E /* Foundation.framework */,
