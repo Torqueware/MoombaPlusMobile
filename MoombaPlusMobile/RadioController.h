@@ -18,6 +18,7 @@
 @property float val;
 @property (strong, nonatomic) UIView *volumeParentView;
 
-- (AVPlayer *) startPlayer;
+- (void) createPlayer;
+- (void) play;
 
 @end

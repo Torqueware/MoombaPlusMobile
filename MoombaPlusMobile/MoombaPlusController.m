@@ -19,6 +19,8 @@
     self.chatController = [[IRCController alloc] init];
     self.blogController = [[RSSController alloc] init];
     self.radioController = [[RadioController alloc] init];
+    [self.radioController createPlayer];
+    [self.radioController play];
     return self;
 }
 

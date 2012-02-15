@@ -19,8 +19,29 @@
     return self;
 }
 
-- (AVPlayer *) startPlayer {
-    return [AVPlayer playerWithURL:[NSURL URLWithString:@"s6.voscast.com:7662/listen.pls"]];
+- (void) createPlayer {
+    NSString *encodedString = (__bridge_transfer NSString *)
+        CFURLCreateStringByAddingPercentEscapes(nil,
+                                               (CFStringRef)@"http://s6.voscast.com:7662/",
+                                               NULL,
+                                               NULL,
+                                               kCFStringEncodingUTF8);
+    NSURL *url = [NSURL URLWithString:encodedString];
+
+    if (url == nil)
+        NSLog(@"FUUUUU");
+    self.player = [AVPlayer playerWithURL:url];
+}
+
+- (void) play {
+    [self.player play];
+    AVPlayerStatus test = self.player.status;
+        if (test == AVPlayerStatusFailed) 
+                    NSLog(@"FAIL");
+            else if (test == AVPlayerStatusReadyToPlay)
+                        NSLog(@"YEEE");
+                else NSLog(@"WUT");
+
 }
 
 - (void) viewDidLoad
