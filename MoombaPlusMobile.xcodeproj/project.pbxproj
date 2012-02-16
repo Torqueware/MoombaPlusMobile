@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C23AD0C214ECD053000E132F /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = C23AD0BB14ECD053000E132F /* AudioStreamer.m */; };
+		C23AD0C314ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C23AD0BD14ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.m */; };
+		C23AD0C414ECD053000E132F /* iPhoneStreamingPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23AD0BF14ECD053000E132F /* iPhoneStreamingPlayerViewController.m */; };
+		C23AD0C514ECD053000E132F /* MacStreamingPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C23AD0C114ECD053000E132F /* MacStreamingPlayerController.m */; };
+		C23AD0C914ECD062000E132F /* iPhoneStreamingPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23AD0C714ECD062000E132F /* iPhoneStreamingPlayerViewController.xib */; };
+		C23AD0CA14ECD062000E132F /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C23AD0C814ECD062000E132F /* MainWindow.xib */; };
+		C23AD0CF14ECD070000E132F /* loadingbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C23AD0CB14ECD070000E132F /* loadingbutton.png */; };
+		C23AD0D014ECD070000E132F /* pausebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C23AD0CC14ECD070000E132F /* pausebutton.png */; };
+		C23AD0D114ECD070000E132F /* playbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C23AD0CD14ECD070000E132F /* playbutton.png */; };
+		C23AD0D214ECD070000E132F /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = C23AD0CE14ECD070000E132F /* stopbutton.png */; };
 		C26B62BF14E721B200DA49CF /* MoombaPlusController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B62BE14E721B200DA49CF /* MoombaPlusController.m */; };
 		C2C3F6FF14E7230600922D72 /* RadioController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F6FE14E7230600922D72 /* RadioController.m */; };
 		C2C3F70B14E726CF00922D72 /* IRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70A14E726CF00922D72 /* IRCController.m */; };
@@ -27,6 +37,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C23AD0BA14ECD053000E132F /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AudioStreamer.h; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/AudioStreamer.h"; sourceTree = "<group>"; };
+		C23AD0BB14ECD053000E132F /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioStreamer.m; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/AudioStreamer.m"; sourceTree = "<group>"; };
+		C23AD0BC14ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iPhoneStreamingPlayerAppDelegate.h; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/iPhoneStreamingPlayerAppDelegate.h"; sourceTree = "<group>"; };
+		C23AD0BD14ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iPhoneStreamingPlayerAppDelegate.m; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/iPhoneStreamingPlayerAppDelegate.m"; sourceTree = "<group>"; };
+		C23AD0BE14ECD053000E132F /* iPhoneStreamingPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iPhoneStreamingPlayerViewController.h; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/iPhoneStreamingPlayerViewController.h"; sourceTree = "<group>"; };
+		C23AD0BF14ECD053000E132F /* iPhoneStreamingPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iPhoneStreamingPlayerViewController.m; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/iPhoneStreamingPlayerViewController.m"; sourceTree = "<group>"; };
+		C23AD0C014ECD053000E132F /* MacStreamingPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacStreamingPlayerController.h; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/MacStreamingPlayerController.h"; sourceTree = "<group>"; };
+		C23AD0C114ECD053000E132F /* MacStreamingPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacStreamingPlayerController.m; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Classes/MacStreamingPlayerController.m"; sourceTree = "<group>"; };
+		C23AD0C714ECD062000E132F /* iPhoneStreamingPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = iPhoneStreamingPlayerViewController.xib; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/iPhone Resources/iPhoneStreamingPlayerViewController.xib"; sourceTree = "<group>"; };
+		C23AD0C814ECD062000E132F /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/iPhone Resources/MainWindow.xib"; sourceTree = "<group>"; };
+		C23AD0CB14ECD070000E132F /* loadingbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = loadingbutton.png; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Shared Resources/loadingbutton.png"; sourceTree = "<group>"; };
+		C23AD0CC14ECD070000E132F /* pausebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pausebutton.png; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Shared Resources/pausebutton.png"; sourceTree = "<group>"; };
+		C23AD0CD14ECD070000E132F /* playbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playbutton.png; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Shared Resources/playbutton.png"; sourceTree = "<group>"; };
+		C23AD0CE14ECD070000E132F /* stopbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stopbutton.png; path = "../../../../Downloads/mattgallagher-AudioStreamer-bf263da/Shared Resources/stopbutton.png"; sourceTree = "<group>"; };
 		C26B62BD14E721B200DA49CF /* MoombaPlusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoombaPlusController.h; sourceTree = "<group>"; };
 		C26B62BE14E721B200DA49CF /* MoombaPlusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoombaPlusController.m; sourceTree = "<group>"; };
 		C2C3F6FD14E7230600922D72 /* RadioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioController.h; sourceTree = "<group>"; };
@@ -113,6 +137,20 @@
 				C2C3F70A14E726CF00922D72 /* IRCController.m */,
 				C2C3F70C14E726E300922D72 /* RSSController.h */,
 				C2C3F70D14E726E300922D72 /* RSSController.m */,
+				C23AD0BA14ECD053000E132F /* AudioStreamer.h */,
+				C23AD0BB14ECD053000E132F /* AudioStreamer.m */,
+				C23AD0BC14ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.h */,
+				C23AD0BD14ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.m */,
+				C23AD0BE14ECD053000E132F /* iPhoneStreamingPlayerViewController.h */,
+				C23AD0BF14ECD053000E132F /* iPhoneStreamingPlayerViewController.m */,
+				C23AD0C014ECD053000E132F /* MacStreamingPlayerController.h */,
+				C23AD0C114ECD053000E132F /* MacStreamingPlayerController.m */,
+				C23AD0C714ECD062000E132F /* iPhoneStreamingPlayerViewController.xib */,
+				C23AD0C814ECD062000E132F /* MainWindow.xib */,
+				C23AD0CB14ECD070000E132F /* loadingbutton.png */,
+				C23AD0CC14ECD070000E132F /* pausebutton.png */,
+				C23AD0CD14ECD070000E132F /* playbutton.png */,
+				C23AD0CE14ECD070000E132F /* stopbutton.png */,
 				DE3F413D14E1BB1400B12A5E /* first.png */,
 				DE3F413F14E1BB1400B12A5E /* first@2x.png */,
 				DE3F414414E1BB1400B12A5E /* second.png */,
@@ -189,6 +227,12 @@
 				DE3F414014E1BB1400B12A5E /* first@2x.png in Resources */,
 				DE3F414514E1BB1400B12A5E /* second.png in Resources */,
 				DE3F414714E1BB1400B12A5E /* second@2x.png in Resources */,
+				C23AD0C914ECD062000E132F /* iPhoneStreamingPlayerViewController.xib in Resources */,
+				C23AD0CA14ECD062000E132F /* MainWindow.xib in Resources */,
+				C23AD0CF14ECD070000E132F /* loadingbutton.png in Resources */,
+				C23AD0D014ECD070000E132F /* pausebutton.png in Resources */,
+				C23AD0D114ECD070000E132F /* playbutton.png in Resources */,
+				C23AD0D214ECD070000E132F /* stopbutton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +249,10 @@
 				C2C3F6FF14E7230600922D72 /* RadioController.m in Sources */,
 				C2C3F70B14E726CF00922D72 /* IRCController.m in Sources */,
 				C2C3F70E14E726E300922D72 /* RSSController.m in Sources */,
+				C23AD0C214ECD053000E132F /* AudioStreamer.m in Sources */,
+				C23AD0C314ECD053000E132F /* iPhoneStreamingPlayerAppDelegate.m in Sources */,
+				C23AD0C414ECD053000E132F /* iPhoneStreamingPlayerViewController.m in Sources */,
+				C23AD0C514ECD053000E132F /* MacStreamingPlayerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
