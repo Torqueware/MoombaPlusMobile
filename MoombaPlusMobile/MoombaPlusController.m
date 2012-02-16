@@ -19,8 +19,9 @@
     self.chatController = [[IRCController alloc] init];
     self.blogController = [[RSSController alloc] init];
     self.radioController = [[RadioController alloc] init];
-    [self.radioController createPlayer];
-    [self.radioController play];
+    [self.radioController setURL:[NSURL URLWithString:@"http://s6.voscast.com:7662/"]];
+    
+    
     return self;
 }
 
