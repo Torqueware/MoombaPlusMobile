@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "RSSEngine.h"
 
-@interface RSSController : UIViewController {
-}
+@interface RSSController : UIViewController {}
+
+@property (strong, nonatomic) RSSEngine *engine;
 
 @end
