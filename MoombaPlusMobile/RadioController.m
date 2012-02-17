@@ -22,6 +22,8 @@
 - (void) showPauseButton;
 */
 
+@property (strong, nonatomic) AVURLAsset *asset;
+
 @end
 
 static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewControllerStatusObservationContext;
@@ -29,11 +31,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 
 @implementation RadioController
 
+@synthesize asset = _asset;
 @synthesize player = _player;
 @synthesize playerItem = _playerItem;
 @synthesize val = _val;
 @synthesize volumeParentView = _volumeParentView;
 @synthesize mURL = _mURL;
+@synthesize isPlaying = _isPlaying;
 
 
 - (id) init {
@@ -46,13 +50,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     
         _mURL = [url copy];
         
-        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
-        NSArray *requestedKeys = [NSArray arrayWithObject:@"playable"];
+        self.asset = [AVURLAsset URLAssetWithURL:url options:nil];
+        NSArray *requestedKeys = [NSArray arrayWithObjects:@"playable", @"tracks", nil];
         
-        [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:^{
+        [self.asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:^{
             dispatch_async(dispatch_get_main_queue(),
                            ^{
-                               [self prepareToPlayAsset:asset withKeys:requestedKeys];
+                               [self prepareToPlayAsset:self.asset withKeys:requestedKeys];
                            });
         }];
         
@@ -61,8 +65,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 
 - (void) prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys {
     for (NSString *thisKey in requestedKeys) {
-        NSError *err = nil;
-        AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&err];
+        AVKeyValueStatus keyStatus = [self.asset statusOfValueForKey:thisKey error:nil];
         NSLog(@"%@", thisKey);
         if (keyStatus == AVKeyValueStatusFailed) {
             NSLog(@"This stream failed to load.  The key is: %@", thisKey);
@@ -70,14 +73,19 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         
     }
 
-    if (!asset.playable) {
+    if (!self.asset.playable) {
         NSLog(@"This asset is not playable");
     }
     
-    if (self.playerItem) 
+    /*if (self.playerItem) 
         [self.playerItem removeObserver:self forKeyPath:@"status"];
+    */
     
-    self.playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset];
+    
+    if (![self player]) {
+        self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    }
     
     // Observer "status" to determine when player is ready to play
     [self.playerItem addObserver:self
@@ -86,9 +94,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                          context:PlaybackViewControllerStatusObservationContext];
     
 
-    if (![self player]) {
-        self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    }
+    
 
 }
 
@@ -98,7 +104,6 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                         context:(void *)context {
     
     if (context == PlaybackViewControllerStatusObservationContext) {
-       // [self syncPlayPauseButtons];
         
         AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
         switch (status) {
@@ -116,7 +121,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                 break;
             case AVPlayerStatusFailed:
             {
-                NSLog(@"The status of the object failed.  In observeValueForKeyPath:");
+                NSLog(@"The status of the object failed.  In observeValueForKeyPath: %@", keyPath);
             }
         }
     }
@@ -131,11 +136,24 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 - (void) enablePlayerButtons {
     
 }
+*/
+
+- (IBAction)togglePlayPause:(id)sender {
+    if (self.isPlaying) {
+        [self pause];
+    }
+    
+    else {
+        [self play];
+    }
+}
+
 
 - (void) play {
-
+    [self.player play];
+    
 }
-*/
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
