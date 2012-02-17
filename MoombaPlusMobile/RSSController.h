@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RadioController.h"
 
-@interface RSSController : UIViewController {
+@interface RSSController : RadioController {
 }
 
 @end

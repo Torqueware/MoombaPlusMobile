@@ -51,8 +51,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         _mURL = [url copy];
         
         self.asset = [AVURLAsset URLAssetWithURL:url options:nil];
-        NSArray *requestedKeys = [NSArray arrayWithObjects:@"playable", @"tracks", nil];
-        
+        NSArray *requestedKeys = [NSArray arrayWithObjects:@"tracks", @"playable", nil];
         [self.asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:^{
             dispatch_async(dispatch_get_main_queue(),
                            ^{
@@ -70,7 +69,19 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         if (keyStatus == AVKeyValueStatusFailed) {
             NSLog(@"This stream failed to load.  The key is: %@", thisKey);
         }
-        
+        if (keyStatus == AVKeyValueStatusUnknown) {
+            NSLog(@"This stream unknown.  The key is: %@", thisKey);
+        }
+        if (keyStatus == AVKeyValueStatusLoading) {
+            NSLog(@"This stream is loading.  The key is: %@", thisKey);
+        }
+        if (keyStatus == AVKeyValueStatusLoaded) {
+            NSLog(@"This stream is loaded.  The key is: %@", thisKey);
+        }
+        if (keyStatus == AVKeyValueStatusCancelled) {
+            NSLog(@"This stream is cancelled.  The key is: %@", thisKey);
+        }
+               
     }
 
     if (!self.asset.playable) {
@@ -83,9 +94,8 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset];
     
-    if (![self player]) {
-        self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    }
+    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+
     
     // Observer "status" to determine when player is ready to play
     [self.playerItem addObserver:self
@@ -107,22 +117,17 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         
         AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
         switch (status) {
-            case AVPlayerStatusUnknown:
-            {
-                NSLog(@"The status of the object is unknown.  In observeValueForKeyPath:");
-            }
-                break;
-                
             case AVPlayerStatusReadyToPlay:
-            {
                 NSLog(@"Object played.  In observeValueForKeyPath:");
                 [self.player play];
-            }
                 break;
+            case AVPlayerStatusUnknown:
+                NSLog(@"The status of the object is unknown.  In observeValueForKeyPath:");
+                break;
+                
             case AVPlayerStatusFailed:
-            {
                 NSLog(@"The status of the object failed.  In observeValueForKeyPath: %@", keyPath);
-            }
+                break;
         }
     }
     

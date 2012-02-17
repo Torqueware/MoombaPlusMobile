@@ -22,9 +22,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Blog" image="first" id="7"/>
+                    <connections>
+                        <outlet property="volumeParentView" destination="CfE-ei-lg4" id="MdS-F4-yrU"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="559" y="-257"/>
+            <point key="canvasLocation" x="565" y="-241"/>
         </scene>
         <scene sceneID="13">
             <objects>
@@ -80,12 +83,13 @@
                 <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
             </relationships>
         </class>
-        <class className="RSSController" superclassName="UIViewController">
+        <class className="RSSController" superclassName="RadioController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RSSController.h"/>
         </class>
         <class className="RadioController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RadioController.h"/>
             <relationships>
+                <relationship kind="action" name="togglePlayPause:"/>
                 <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
             </relationships>
         </class>
