@@ -101,10 +101,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     [self.playerItem addObserver:self
                       forKeyPath:@"status"
                          options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
-                         context:PlaybackViewControllerStatusObservationContext];
-    
-
-    
+                         context:PlaybackViewControllerStatusObservationContext];  
 
 }
 
@@ -126,12 +123,10 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                 break;
                 
             case AVPlayerStatusFailed:
-                NSLog(@"The status of the object failed.  In observeValueForKeyPath: %@", keyPath);
+                NSLog(@"The status of the object failed.  In observeValueForKeyPath:");
                 break;
         }
-    }
-    
-    
+    }   
 }
 /*
 - (void) syncPlayPauseButtons {
