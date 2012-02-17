@@ -18,7 +18,7 @@
 @property (strong, nonatomic) AVPlayer *player;
 @property float val;
 @property (strong, nonatomic) UIView *volumeParentView;
-@property (weak, nonatomic) NSURL *mURL;
+@property (strong, nonatomic) NSURL *mURL;
 
 - (void) setURL:(NSURL *)url;
 //- (void) play;

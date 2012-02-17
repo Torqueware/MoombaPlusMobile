@@ -79,9 +79,6 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     
     self.playerItem = [AVPlayerItem playerItemWithAsset:asset];
     
-    if (self.playerItem.status == AVPlayerItemStatusUnknown)
-        NSLog(@"item status unknown");
-    
     // Observer "status" to determine when player is ready to play
     [self.playerItem addObserver:self
                       forKeyPath:@"status"
@@ -104,7 +101,6 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
        // [self syncPlayPauseButtons];
         
         AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
-        
         switch (status) {
             case AVPlayerStatusUnknown:
             {
@@ -114,6 +110,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                 
             case AVPlayerStatusReadyToPlay:
             {
+                NSLog(@"Object played.  In observeValueForKeyPath:");
                 [self.player play];
             }
                 break;
