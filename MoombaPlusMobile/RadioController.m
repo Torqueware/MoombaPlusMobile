@@ -93,15 +93,20 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     */
     
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset];
-    
-    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-
-    
-    // Observer "status" to determine when player is ready to play
     [self.playerItem addObserver:self
                       forKeyPath:@"status"
                          options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
-                         context:PlaybackViewControllerStatusObservationContext];  
+                         context:PlaybackViewControllerStatusObservationContext];
+    
+    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    
+    if (self.player.currentItem != self.playerItem) 
+        NSLog(@"playeritems arent correct.");
+    
+
+    
+    // Observer "status" to determine when player is ready to play
+  
 
 }
 
