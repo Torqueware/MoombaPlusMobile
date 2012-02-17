@@ -34,6 +34,8 @@
       
       self.url       = url;
    }
+   
+   return self;
 }
 
 @end

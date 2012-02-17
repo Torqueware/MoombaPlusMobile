@@ -11,9 +11,15 @@
 
 @interface RSSEngine : NSObject
 
-@property (strong, nonatomic) NSMutableArray *
-
-
-
+@property (readonly, nonatomic) RSSEngine *singleton;
+@property (readonly, nonatomic) int size;
+//(void) init;
+//
+//(NSArray *) retrieveArticleNames();
+//(NSArray *) r
+//
+//
+//
+//
 @end
 

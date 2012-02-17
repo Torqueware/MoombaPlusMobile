@@ -17,7 +17,7 @@
                     <tabBarItem key="tabBarItem" title="Blog" image="first" id="7"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="559" y="-257"/>
+            <point key="canvasLocation" x="919" y="-246"/>
         </scene>
         <scene sceneID="13">
             <objects>
@@ -41,7 +41,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="559" y="366"/>
+            <point key="canvasLocation" x="919" y="328"/>
         </scene>
         <scene sceneID="15">
             <objects>
@@ -66,17 +66,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="IRCController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IRCController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="RSSController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RSSController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
