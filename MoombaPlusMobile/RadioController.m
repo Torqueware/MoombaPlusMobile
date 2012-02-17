@@ -8,42 +8,134 @@
 
 #import "RadioController.h"
 
+@interface RadioController()
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context;
+- (void) prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys;
+/*
+- (void) syncPlayPauseButtons;
+- (void) enablePlayerButtons;
+- (void) disablePlayerButtons;
+- (void) showPlayButton;
+- (void) showPauseButton;
+*/
+
+@end
+
+static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewControllerStatusObservationContext;
+
+
 @implementation RadioController
 
 @synthesize player = _player;
+@synthesize playerItem = _playerItem;
 @synthesize val = _val;
 @synthesize volumeParentView = _volumeParentView;
+@synthesize mURL = _mURL;
+
 
 - (id) init {
     self = [super init];
     return self;
 }
 
-- (void) createPlayer {
-    NSString *encodedString = (__bridge_transfer NSString *)
-        CFURLCreateStringByAddingPercentEscapes(nil,
-                                               (CFStringRef)@"http://s6.voscast.com:7662/",
-                                               NULL,
-                                               NULL,
-                                               kCFStringEncodingUTF8);
-    NSURL *url = [NSURL URLWithString:encodedString];
+- (void) setURL:(NSURL *)url {
+    if (_mURL != url) {
+    
+        _mURL = [url copy];
+        
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
+        NSArray *requestedKeys = [NSArray arrayWithObject:@"playable"];
+        
+        [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:^{
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               [self prepareToPlayAsset:asset withKeys:requestedKeys];
+                           });
+        }];
+        
+    }
+}
 
-    if (url == nil)
-        NSLog(@"FUUUUU");
-    self.player = [AVPlayer playerWithURL:url];
+- (void) prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys {
+    for (NSString *thisKey in requestedKeys) {
+        NSError *err = nil;
+        AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&err];
+        NSLog(@"%@", thisKey);
+        if (keyStatus == AVKeyValueStatusFailed) {
+            NSLog(@"This stream failed to load.  The key is: %@", thisKey);
+        }
+        
+    }
+
+    if (!asset.playable) {
+        NSLog(@"This asset is not playable");
+    }
+    
+    if (self.playerItem) 
+        [self.playerItem removeObserver:self forKeyPath:@"status"];
+    
+    self.playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    
+    // Observer "status" to determine when player is ready to play
+    [self.playerItem addObserver:self
+                      forKeyPath:@"status"
+                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
+                         context:PlaybackViewControllerStatusObservationContext];
+    
+
+    if (![self player]) {
+        self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    }
+
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context {
+    
+    if (context == PlaybackViewControllerStatusObservationContext) {
+       // [self syncPlayPauseButtons];
+        
+        AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
+        switch (status) {
+            case AVPlayerStatusUnknown:
+            {
+                NSLog(@"The status of the object is unknown.  In observeValueForKeyPath:");
+            }
+                break;
+                
+            case AVPlayerStatusReadyToPlay:
+            {
+                NSLog(@"Object played.  In observeValueForKeyPath:");
+                [self.player play];
+            }
+                break;
+            case AVPlayerStatusFailed:
+            {
+                NSLog(@"The status of the object failed.  In observeValueForKeyPath:");
+            }
+        }
+    }
+    
+    
+}
+/*
+- (void) syncPlayPauseButtons {
+    
+}
+
+- (void) enablePlayerButtons {
+    
 }
 
 - (void) play {
-    [self.player play];
-    AVPlayerStatus test = self.player.status;
-        if (test == AVPlayerStatusFailed) 
-                    NSLog(@"FAIL");
-            else if (test == AVPlayerStatusReadyToPlay)
-                        NSLog(@"YEEE");
-                else NSLog(@"WUT");
 
 }
-
+*/
 - (void) viewDidLoad
 {
     [super viewDidLoad];

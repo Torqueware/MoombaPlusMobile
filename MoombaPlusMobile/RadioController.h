@@ -14,11 +14,13 @@
 
 @interface RadioController : UIViewController
 
+@property (strong, nonatomic) AVPlayerItem *playerItem;
 @property (strong, nonatomic) AVPlayer *player;
 @property float val;
 @property (strong, nonatomic) UIView *volumeParentView;
+@property (strong, nonatomic) NSURL *mURL;
 
-- (void) createPlayer;
-- (void) play;
+- (void) setURL:(NSURL *)url;
+//- (void) play;
 
 @end

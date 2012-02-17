@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C23AD10F14ECDA3D000E132F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AD10E14ECDA3D000E132F /* AudioToolbox.framework */; };
+		C23AD11114ECDAAC000E132F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AD11014ECDAAB000E132F /* MobileCoreServices.framework */; };
+		C23AD11314ECDB65000E132F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AD11214ECDB65000E132F /* CFNetwork.framework */; };
+		C23AD11514ECDB96000E132F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C23AD11414ECDB96000E132F /* QuartzCore.framework */; };
+		C23AD12114ECE32B000E132F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C23AD12014ECE32B000E132F /* main.m */; };
 		C26B62BF14E721B200DA49CF /* MoombaPlusController.m in Sources */ = {isa = PBXBuildFile; fileRef = C26B62BE14E721B200DA49CF /* MoombaPlusController.m */; };
 		C2C3F6FF14E7230600922D72 /* RadioController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F6FE14E7230600922D72 /* RadioController.m */; };
 		C2C3F70B14E726CF00922D72 /* IRCController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70A14E726CF00922D72 /* IRCController.m */; };
@@ -17,7 +22,6 @@
 		DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412714E1BB1300B12A5E /* Foundation.framework */; };
 		DE3F412A14E1BB1300B12A5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */; };
 		DE3F413014E1BB1300B12A5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE3F412E14E1BB1300B12A5E /* InfoPlist.strings */; };
-		DE3F413214E1BB1300B12A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F413114E1BB1300B12A5E /* main.m */; };
 		DE3F413614E1BB1400B12A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F413514E1BB1400B12A5E /* AppDelegate.m */; };
 		DE3F413914E1BB1400B12A5E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3F413714E1BB1400B12A5E /* MainStoryboard.storyboard */; };
 		DE3F413E14E1BB1400B12A5E /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = DE3F413D14E1BB1400B12A5E /* first.png */; };
@@ -28,6 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C23AD10E14ECDA3D000E132F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C23AD11014ECDAAB000E132F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C23AD11214ECDB65000E132F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C23AD11414ECDB96000E132F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C23AD12014ECE32B000E132F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C26B62BD14E721B200DA49CF /* MoombaPlusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoombaPlusController.h; sourceTree = "<group>"; };
 		C26B62BE14E721B200DA49CF /* MoombaPlusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoombaPlusController.m; sourceTree = "<group>"; };
 		C2C3F6FD14E7230600922D72 /* RadioController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioController.h; sourceTree = "<group>"; };
@@ -44,7 +53,6 @@
 		DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DE3F412D14E1BB1300B12A5E /* MoombaPlusMobile-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoombaPlusMobile-Info.plist"; sourceTree = "<group>"; };
 		DE3F412F14E1BB1300B12A5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DE3F413114E1BB1300B12A5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DE3F413314E1BB1400B12A5E /* MoombaPlusMobile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoombaPlusMobile-Prefix.pch"; sourceTree = "<group>"; };
 		DE3F413414E1BB1400B12A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE3F413514E1BB1400B12A5E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,6 +70,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23AD11514ECDB96000E132F /* QuartzCore.framework in Frameworks */,
+				C23AD11314ECDB65000E132F /* CFNetwork.framework in Frameworks */,
+				C23AD11114ECDAAC000E132F /* MobileCoreServices.framework in Frameworks */,
+				C23AD10F14ECDA3D000E132F /* AudioToolbox.framework in Frameworks */,
 				C2C3F71D14E7456B00922D72 /* MediaPlayer.framework in Frameworks */,
 				C2C3F71314E7389E00922D72 /* AVFoundation.framework in Frameworks */,
 				DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */,
@@ -93,6 +105,10 @@
 		DE3F412414E1BB1300B12A5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C23AD11414ECDB96000E132F /* QuartzCore.framework */,
+				C23AD11214ECDB65000E132F /* CFNetwork.framework */,
+				C23AD11014ECDAAB000E132F /* MobileCoreServices.framework */,
+				C23AD10E14ECDA3D000E132F /* AudioToolbox.framework */,
 				C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */,
 				C2C3F71214E7389E00922D72 /* AVFoundation.framework */,
 				DE3F412514E1BB1300B12A5E /* UIKit.framework */,
@@ -132,7 +148,7 @@
 			children = (
 				DE3F412D14E1BB1300B12A5E /* MoombaPlusMobile-Info.plist */,
 				DE3F412E14E1BB1300B12A5E /* InfoPlist.strings */,
-				DE3F413114E1BB1300B12A5E /* main.m */,
+				C23AD12014ECE32B000E132F /* main.m */,
 				DE3F413314E1BB1400B12A5E /* MoombaPlusMobile-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -204,7 +220,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE3F413214E1BB1300B12A5E /* main.m in Sources */,
 				DE3F413614E1BB1400B12A5E /* AppDelegate.m in Sources */,
 				C26B62BF14E721B200DA49CF /* MoombaPlusController.m in Sources */,
 				C2C3F6FF14E7230600922D72 /* RadioController.m in Sources */,
