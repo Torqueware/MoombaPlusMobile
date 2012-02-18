@@ -17,10 +17,14 @@
 @property (strong, nonatomic) AVPlayerItem *playerItem;
 @property (strong, nonatomic) AVPlayer *player;
 @property float val;
-@property (strong, nonatomic) UIView *volumeParentView;
+@property (strong, nonatomic) IBOutlet UIView *volumeParentView;
 @property (strong, nonatomic) NSURL *mURL;
+@property BOOL isPlaying;
 
+- (IBAction)togglePlayPause:(id)sender;
+- (void) play;
+- (void) pause;
 - (void) setURL:(NSURL *)url;
-//- (void) play;
+
 
 @end

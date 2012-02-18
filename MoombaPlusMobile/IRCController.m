@@ -16,10 +16,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nibs
-    
-    self.volumeParentView.backgroundColor = [UIColor clearColor];
-    MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds];
-    [self.volumeParentView addSubview:volumeView];
 }
 
 - (void) viewDidUnload

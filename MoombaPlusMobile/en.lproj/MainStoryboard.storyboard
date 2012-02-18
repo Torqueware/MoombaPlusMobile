@@ -15,6 +15,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Blog" image="first" id="7"/>
+                    <connections>
+                        <outlet property="volumeParentView" destination="CfE-ei-lg4" id="MdS-F4-yrU"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="919" y="-246"/>
@@ -27,7 +30,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="RmT-Nq-dmc">
+                            <view contentMode="scaleToFill" id="Lvb-V1-kQV">
                                 <rect key="frame" x="20" y="384" width="280" height="27"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -37,7 +40,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="second" id="6"/>
                     <connections>
-                        <outlet property="volumeParentView" destination="RmT-Nq-dmc" id="VGW-2q-5MU"/>
+                        <outlet property="volumeParentView" destination="Lvb-V1-kQV" id="5QV-87-euJ"/>
                     </connections>
                 </viewController>
             </objects>

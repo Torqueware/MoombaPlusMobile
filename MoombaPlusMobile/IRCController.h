@@ -10,8 +10,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import "RadioController.h"
 
-@interface IRCController : UIViewController{
+@interface IRCController : RadioController{
 }
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
 
