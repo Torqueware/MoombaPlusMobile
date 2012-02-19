@@ -17,9 +17,7 @@
    self = [super init];
    
    self.blogEngine = [[RSSEngine alloc]init];
-   
-   [self.blogEngine forceRefresh];
-   
+
    return self;
 }
 

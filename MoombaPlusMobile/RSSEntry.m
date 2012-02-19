@@ -11,24 +11,26 @@
 @implementation RSSEntry : NSObject
 
 //image
-@synthesize thumb    = _thumb;
+@synthesize thumb       = _thumb;
+@synthesize cloudLinks  = _cloudLinks;
 
 //indexing data
-@synthesize title    = _header;
-@synthesize date     = _date;
-@synthesize url      = _url;
+@synthesize title       = _header;
+@synthesize date        = _date;
+@synthesize url         = _url;
 
 - (id)initWithArticle:(NSString*)article domain:(NSString*)domain date:(NSDate*)date {
    self = [super init];
    
    if (self) {
       //fetch this
-      self.thumb = nil;
+      self.thumb        = nil;
+      self.cloudLinks   = nil;
       
       //init these
-      self.title     = article;
-      self.url       = domain;
-      self.date      = date;
+      self.title        = article;
+      self.url          = domain;
+      self.date         = date;
    }
    
    return self;

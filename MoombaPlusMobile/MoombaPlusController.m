@@ -16,10 +16,12 @@
 
 - (id) init {
     self = [super init];
-    self.chatController = [[IRCController alloc] init];
-    self.blogController = [[RSSController alloc] init];
-    self.radioController = [[RadioController alloc] init];
-    [self.radioController setURL:[NSURL URLWithString:@"http://qtdevseed.apple.com/addemo/ad.m3u8"]];
+   
+    _chatController  = [[IRCController   alloc] init];
+    _blogController  = [[RSSController   alloc] init];
+    _radioController = [[RadioController alloc] init];
+
+   [self.radioController setURL:[NSURL URLWithString:@"http://s6.voscast.com:7662"]]; //@"http://qtdevseed.apple.com/addemo/ad.m3u8"
     
     
     return self;

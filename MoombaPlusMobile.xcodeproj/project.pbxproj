@@ -30,6 +30,8 @@
 		DE01564D14EFA8A30060CE19 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01564C14EFA8A30060CE19 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DE01564F14EFA9450060CE19 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */; };
 		DE01565114EFA9550060CE19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01565014EFA9550060CE19 /* SystemConfiguration.framework */; };
+		DE242B5014F17E7D00B3F902 /* SingeFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DE242B4F14F17E7D00B3F902 /* SingeFeed.m */; };
+		DE242B5314F17F1A00B3F902 /* ManyFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = DE242B5214F17F1A00B3F902 /* ManyFeeds.m */; };
 		DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412514E1BB1300B12A5E /* UIKit.framework */; };
 		DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412714E1BB1300B12A5E /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DE3F412A14E1BB1300B12A5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */; };
@@ -85,6 +87,10 @@
 		DE01564C14EFA8A30060CE19 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DE01565014EFA9550060CE19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DE242B4E14F17E7D00B3F902 /* SingeFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingeFeed.h; sourceTree = "<group>"; };
+		DE242B4F14F17E7D00B3F902 /* SingeFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingeFeed.m; sourceTree = "<group>"; };
+		DE242B5114F17F1A00B3F902 /* ManyFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManyFeeds.h; sourceTree = "<group>"; };
+		DE242B5214F17F1A00B3F902 /* ManyFeeds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManyFeeds.m; sourceTree = "<group>"; };
 		DE3F412114E1BB1300B12A5E /* Moomba+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moomba+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3F412514E1BB1300B12A5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE3F412714E1BB1300B12A5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -156,11 +162,20 @@
 			name = ASIRequest;
 			sourceTree = "<group>";
 		};
+		DE242B4C14F17E5400B3F902 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE242B4E14F17E7D00B3F902 /* SingeFeed.h */,
+				DE242B4F14F17E7D00B3F902 /* SingeFeed.m */,
+				DE242B5114F17F1A00B3F902 /* ManyFeeds.h */,
+				DE242B5214F17F1A00B3F902 /* ManyFeeds.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		DE3F411614E1BB1300B12A5E = {
 			isa = PBXGroup;
 			children = (
-				DE01565014EFA9550060CE19 /* SystemConfiguration.framework */,
-				DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */,
 				DE3F412B14E1BB1300B12A5E /* MoombaPlusMobile */,
 				DE3F412414E1BB1300B12A5E /* Frameworks */,
 				DE3F412214E1BB1300B12A5E /* Products */,
@@ -178,6 +193,8 @@
 		DE3F412414E1BB1300B12A5E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */,
+				DE01565014EFA9550060CE19 /* SystemConfiguration.framework */,
 				C23AD11414ECDB96000E132F /* QuartzCore.framework */,
 				C23AD11214ECDB65000E132F /* CFNetwork.framework */,
 				C23AD11014ECDAAB000E132F /* MobileCoreServices.framework */,
@@ -197,8 +214,9 @@
 				DE3F413714E1BB1400B12A5E /* MainStoryboard.storyboard */,
 				DE3F413414E1BB1400B12A5E /* AppDelegate.h */,
 				DE3F413514E1BB1400B12A5E /* AppDelegate.m */,
-				DEBEC63E14EDD8B300FD52E8 /* Controllers */,
 				DEBEC63D14EDD89000FD52E8 /* Models */,
+				DE242B4C14F17E5400B3F902 /* Views */,
+				DEBEC63E14EDD8B300FD52E8 /* Controllers */,
 				DE3F413D14E1BB1400B12A5E /* first.png */,
 				DE3F413F14E1BB1400B12A5E /* first@2x.png */,
 				DE3F414414E1BB1400B12A5E /* second.png */,
@@ -332,6 +350,8 @@
 				DE01564914EFA8780060CE19 /* ASIInputStream.m in Sources */,
 				DE01564A14EFA8780060CE19 /* ASINetworkQueue.m in Sources */,
 				DE01564D14EFA8A30060CE19 /* Reachability.m in Sources */,
+				DE242B5014F17E7D00B3F902 /* SingeFeed.m in Sources */,
+				DE242B5314F17F1A00B3F902 /* ManyFeeds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

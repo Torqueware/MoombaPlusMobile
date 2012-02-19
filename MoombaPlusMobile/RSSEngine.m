@@ -25,9 +25,9 @@
 
 - (id) init {
    self = [super init];
-   
+
    [self refresh];
-      
+
    return self;
 }
 
@@ -42,11 +42,12 @@
 }
 
 - (void)refresh {
-      NSURL *url = [NSURL URLWithString:@"moombahplus.com/feed/"];
-      ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-      [request setDelegate:self];
-      [_queue addOperation:request];
+   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL: [NSURL URLWithString:@"http://moombahplus.com/feed/"]];
+
+   [request setDelegate:self];
+   [self.queue addOperation:request];
    
+   [request startAsynchronous];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
