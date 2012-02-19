@@ -6,20 +6,15 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@interface RSSEntry : NSObject
 
-@interface RSSEntry : NSObject {
-   NSData   *_thumb;
-   NSString *_source,
-            *_article;
-   NSDate   *_date;
-   NSURL    *_url;
-}
+@property (copy) UIImage  *thumb;
 
-@property (copy) NSData   *thumb;
-@property (copy) NSString *source;
-@property (copy) NSString *article;
+@property (copy) NSString *title;
 @property (copy) NSDate   *date;
-@property (copy) NSURL    *url;
+@property (copy) NSString *url;
+
+
+- (id)initWithArticle:(NSString*)article domain:(NSString*)domain date:(NSDate*)date;
 
 @end

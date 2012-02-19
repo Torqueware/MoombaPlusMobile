@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "RadioController.h"
-#include "RSSEngine.h"
+#import "RadioController.h"
+#import "RSSEngine.h"
+#import "RSSEntry.h"
 
 @interface RSSController : RadioController {}
 
-@property (strong, nonatomic) RSSEngine *engine;
+@property (strong, nonatomic) RSSEngine        *blogEngine;
+
+@property (strong, nonatomic) IBOutlet UILabel *blogTitle,
+                                               *blogDate,
+                                               *blogMeta;
+
+
 
 @end

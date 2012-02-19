@@ -8,31 +8,27 @@
 
 #import "RSSEntry.h"
 
-@implementation RSSEntry
+@implementation RSSEntry : NSObject
 
 //image
 @synthesize thumb    = _thumb;
 
-//title data
-@synthesize article  = _article;
-@synthesize source   = _source;
+//indexing data
+@synthesize title    = _header;
 @synthesize date     = _date;
-
-//an erl
 @synthesize url      = _url;
 
-- (id) initWithData:(NSData *) img article: (NSString*) art source: (NSString *) src date: (NSDate *) date url: (NSURL *) url  {
-   self = [[RSSEntry alloc] init];
+- (id)initWithArticle:(NSString*)article domain:(NSString*)domain date:(NSDate*)date {
+   self = [super init];
    
    if (self) {
+      //fetch this
+      self.thumb = nil;
       
-      self.thumb     = img;
-      
-      self.article   = art;
-      self.source    = src;
+      //init these
+      self.title     = article;
+      self.url       = domain;
       self.date      = date;
-      
-      self.url       = url;
    }
    
    return self;

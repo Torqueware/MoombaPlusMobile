@@ -12,8 +12,8 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "RadioController.h"
 
-@interface IRCController : RadioController{
-}
+@interface IRCController : RadioController
+
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
 
 @end

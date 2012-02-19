@@ -1,4 +1,4 @@
-//
+	//
 //  RadioController.m
 //  MoombaPlusMobile
 //
@@ -157,6 +157,10 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 - (void) play {
     [self.player play];
     
+}
+
+- (void) pause {
+   
 }
 
 - (void) viewDidLoad

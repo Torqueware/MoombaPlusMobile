@@ -6,55 +6,78 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "RSSEngine.h"
+#import "RSSEngine.h" //Let NOTHING be in this .h file but accessors and method calls
 
-@interface RSSEngine () {
-   __strong NSString *identity;
-}
+@interface RSSEngine ()
 
-@property (readwrite, strong, atomic) RSSEngine             *RSSingleton;
-@property (readwrite, strong, atomic) NSMutableDictionary   *cache;
+@property (strong, nonatomic) NSOperationQueue *queue;
+@property (strong, nonatomic) NSMutableArray *feeds;
+@property (readwrite) int heartbeat;
 
-- (id) startEngine: (NSString *) identifier;
+- (void) refresh;
 
 @end
 
-@implementation RSSEngine : NSObject
+@implementation RSSEngine
 
-@synthesize RSSingleton = _RSSingleton;
-@synthesize cache       = _cache;
+@synthesize queue = _queue, feeds = _feeds, heartbeat = _heartbeat;
+@dynamic valid;
 
-
-
-(id) init: (NSString *) identifier {
-   identity = identifier;
+- (id) init {
+   self = [super init];
    
-   return _RSSingleton = [self init: identifier];
+   [self refresh];
+      
+   return self;
 }
 
-(id) startEngine: (NSString *) identifier {
-   _identity    = identifier;
-   _RSSingleton = [super init];
+- (bool) dynamic {
+   return ([self.feeds count] != 0) ? true : false;
+}
+
+- (void)forceRefresh {
+   NSLog(@"%@", @"Forced refresh");
    
-   if (identifier) {
-      if (self = [super init]) {
-         self.cache 
-      }
-//   raise: hell;
-//   } else if (self = super [init]) {
-//      self.cache
-//   }
-//   }
-//   self = [super init];
-//   
-//   if (self) {
-//       
-//   }
-//   
-//}
+   [self refresh];
+}
 
+- (void)refresh {
+      NSURL *url = [NSURL URLWithString:@"moombahplus.com/feed/"];
+      ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+      [request setDelegate:self];
+      [_queue addOperation:request];
+   
+}
 
+- (void)requestFinished:(ASIHTTPRequest *)request {
+   
+   [self.feeds addObject: [[RSSEntry alloc] initWithArticle:request.url.absoluteString
+                                                      domain:request.url.absoluteString
+                                                       date:[NSDate date]]];
+   NSLog(@"%@", @"hit!\n");
 
+   self.heartbeat++;
+}
 
+- (void)requestFailed:(ASIHTTPRequest *)request {
+   NSError *error = [request error];
+   NSLog(@"Error: %@", error);
+}
+
+- (NSArray *) dumpFeeds {
+   NSArray *feedDump = (NSArray *) self.feeds;
+   
+   if(self.valid) self.feeds = nil;
+   
+   return feedDump;
+}
+
+- (RSSEntry *) dumpOne {
+   RSSEntry *one = (self.valid) ? [self.feeds objectAtIndex:0] : nil;
+   
+   if (one) [self.feeds removeObjectAtIndex:0];
+   
+   return one;
+}
 
 @end
