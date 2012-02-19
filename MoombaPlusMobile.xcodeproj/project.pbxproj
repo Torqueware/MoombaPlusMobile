@@ -18,7 +18,6 @@
 		C2C3F70E14E726E300922D72 /* RSSController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C3F70D14E726E300922D72 /* RSSController.m */; };
 		C2C3F71314E7389E00922D72 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C3F71214E7389E00922D72 /* AVFoundation.framework */; };
 		C2C3F71D14E7456B00922D72 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */; };
-		DE01552514EFA1530060CE19 /* rageface.gif in Resources */ = {isa = PBXBuildFile; fileRef = DE01552414EFA1530060CE19 /* rageface.gif */; };
 		DE01564314EFA8780060CE19 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01562F14EFA8780060CE19 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DE01564414EFA8780060CE19 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01563214EFA8780060CE19 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DE01564514EFA8780060CE19 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01563414EFA8780060CE19 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -31,8 +30,6 @@
 		DE01564F14EFA9450060CE19 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */; };
 		DE01565114EFA9550060CE19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01565014EFA9550060CE19 /* SystemConfiguration.framework */; };
 		DE0514F114F1BDDD00616788 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0514F014F1BDDD00616788 /* icon.png */; };
-		DE0B221914F1BB3A0079A51B /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0B221514F1BB3A0079A51B /* pause.png */; };
-		DE0B221A14F1BB3A0079A51B /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0B221614F1BB3A0079A51B /* play.png */; };
 		DE242B5014F17E7D00B3F902 /* SingeFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DE242B4F14F17E7D00B3F902 /* SingeFeed.m */; };
 		DE242B5314F17F1A00B3F902 /* ManyFeeds.m in Sources */ = {isa = PBXBuildFile; fileRef = DE242B5214F17F1A00B3F902 /* ManyFeeds.m */; };
 		DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412514E1BB1300B12A5E /* UIKit.framework */; };
@@ -68,7 +65,6 @@
 		C2C3F70D14E726E300922D72 /* RSSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSController.m; sourceTree = "<group>"; };
 		C2C3F71214E7389E00922D72 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		DE01552414EFA1530060CE19 /* rageface.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = rageface.gif; sourceTree = "<group>"; };
 		DE01562E14EFA8780060CE19 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		DE01562F14EFA8780060CE19 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		DE01563014EFA8780060CE19 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -94,8 +90,6 @@
 		DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DE01565014EFA9550060CE19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DE0514F014F1BDDD00616788 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		DE0B221514F1BB3A0079A51B /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = ../pause.png; sourceTree = "<group>"; };
-		DE0B221614F1BB3A0079A51B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = play.png; path = ../play.png; sourceTree = "<group>"; };
 		DE242B4E14F17E7D00B3F902 /* SingeFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingeFeed.h; sourceTree = "<group>"; };
 		DE242B4F14F17E7D00B3F902 /* SingeFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingeFeed.m; sourceTree = "<group>"; };
 		DE242B5114F17F1A00B3F902 /* ManyFeeds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManyFeeds.h; sourceTree = "<group>"; };
@@ -181,13 +175,10 @@
 				DEE33B6C14F1BF0B0043C5FA /* Default.png */,
 				DEE33B6A14F1BEF30043C5FA /* icon@2x.png */,
 				DE0514F014F1BDDD00616788 /* icon.png */,
-				DE0B221514F1BB3A0079A51B /* pause.png */,
-				DE0B221614F1BB3A0079A51B /* play.png */,
 				DE3F413D14E1BB1400B12A5E /* first.png */,
 				DE3F413F14E1BB1400B12A5E /* first@2x.png */,
 				DE3F414414E1BB1400B12A5E /* second.png */,
 				DE3F414614E1BB1400B12A5E /* second@2x.png */,
-				DE01552414EFA1530060CE19 /* rageface.gif */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -348,9 +339,6 @@
 				DE3F414014E1BB1400B12A5E /* first@2x.png in Resources */,
 				DE3F414514E1BB1400B12A5E /* second.png in Resources */,
 				DE3F414714E1BB1400B12A5E /* second@2x.png in Resources */,
-				DE01552514EFA1530060CE19 /* rageface.gif in Resources */,
-				DE0B221914F1BB3A0079A51B /* pause.png in Resources */,
-				DE0B221A14F1BB3A0079A51B /* play.png in Resources */,
 				DE0514F114F1BDDD00616788 /* icon.png in Resources */,
 				DEE33B6B14F1BEF30043C5FA /* icon@2x.png in Resources */,
 				DEE33B6D14F1BF0B0043C5FA /* Default.png in Resources */,
