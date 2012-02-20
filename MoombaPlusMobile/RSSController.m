@@ -58,7 +58,7 @@
       [self.blogDate  setText: [entry.date description]];
       [self.blogMeta  setText:  entry.title];
       
-      [self.view set setNeedsDisplay];
+      [self.view setNeedsDisplay];
    }
 }
 
