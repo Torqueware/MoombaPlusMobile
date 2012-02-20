@@ -24,7 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *playButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
-
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *flexButton;
 
 - (IBAction)togglePlayPause:(id)sender;
 - (void)play:(id)sender;

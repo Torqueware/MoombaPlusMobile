@@ -42,6 +42,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 @synthesize toolbar = _toolbar;
 @synthesize playButton = _playButton;
 @synthesize pauseButton = _pauseButton;
+@synthesize flexButton = _flexButton;
 
 
 - (id) init {
@@ -83,7 +84,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                          options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
                          context:PlaybackViewControllerStatusObservationContext];
     
-    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
+    _player = [AVPlayer playerWithPlayerItem:self.playerItem];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath
@@ -112,13 +113,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 
 - (void) showPlayButton {
     NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
-    [items replaceObjectAtIndex:0 withObject:self.playButton];
+    [items replaceObjectAtIndex:1 withObject:self.playButton];
     self.toolbar.items = items;
 }
 
 - (void) showPauseButton {
     NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
-    [items replaceObjectAtIndex:0 withObject:self.pauseButton];
+    [items replaceObjectAtIndex:1 withObject:self.pauseButton];
     self.toolbar.items = items;
 }
 
@@ -143,18 +144,17 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 - (void) play:(id)sender {
     self.isPlaying = YES;
     NSLog(@"in play");
-    if (!self.player)
-        NSLog(@"player nil");
     [self.player play];
-    
+    if (self.pauseButton)
+        [self showPauseButton];    
 }
 
 - (void) pause:(id)sender {
     self.isPlaying = NO;
     NSLog(@"in pause");
-    if (!self.player)
-        NSLog(@"player nil");
     [self.player pause];
+    if (self.playButton)
+        [self showPlayButton];
     
 }
 
@@ -167,13 +167,16 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     
     self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                     target:self
-                                                                    action:@selector(togglePlayPause:)];
+                                                                    action:@selector(play:)];
     self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
                                                                      target:self
-                                                                     action:@selector(togglePlayPause:)];  
+                                                                     action:@selector(pause:)];  
+    self.flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                    target:nil
+                                                                    action:nil];
     
     _toolbar = [[UIToolbar alloc] initWithFrame:self.toolbarParentView.bounds];
-    [self.toolbar setItems:[NSArray arrayWithObjects:self.pauseButton, nil]]; 
+    [self.toolbar setItems:[NSArray arrayWithObjects:self.flexButton, self.pauseButton, self.flexButton, nil]]; 
     self.toolbar.barStyle = UIBarStyleDefault;
     [self.toolbarParentView addSubview:self.toolbar];
     
