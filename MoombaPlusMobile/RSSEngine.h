@@ -6,19 +6,23 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <Foundation/NSXMLParser.h>
 #import "ASIHTTPRequest.h"
+
+#import "GDataXMLNode.h"
+#import "GDataXMLElement-Extras.h"
+
 #import "RSSEntry.h"
 
 @interface RSSEngine : NSObject
 
-@property (readonly) int heartbeat;
-@property (readonly) bool valid;
+@property (readonly) bool     empty;
+@property (readonly) int      heartbeat;
 
-- (NSArray *) dumpFeeds;
+- (id) init:(NSURL *)feed;
 
 - (void) forceRefresh;
+
+- (NSArray *) dumpFeeds;
 
 - (RSSEntry *) dumpOne;
 

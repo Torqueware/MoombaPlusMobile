@@ -46,6 +46,8 @@
 		DEE33B6B14F1BEF30043C5FA /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE33B6A14F1BEF30043C5FA /* icon@2x.png */; };
 		DEE33B6D14F1BF0B0043C5FA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE33B6C14F1BF0B0043C5FA /* Default.png */; };
 		DEE33B6F14F1BF1C0043C5FA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE33B6E14F1BF1C0043C5FA /* Default@2x.png */; };
+		DEE33B7314F1DE380043C5FA /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE33B7214F1DE380043C5FA /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DEE33B7614F1E1A90043C5FA /* GDataXMLElement-Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE33B7514F1E1A90043C5FA /* GDataXMLElement-Extras.m */; };
 		DEF7C6B814ECB926000C068C /* RSSEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C6B714ECB926000C068C /* RSSEngine.m */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +115,10 @@
 		DEE33B6A14F1BEF30043C5FA /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
 		DEE33B6C14F1BF0B0043C5FA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		DEE33B6E14F1BF1C0043C5FA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		DEE33B7114F1DE380043C5FA /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = GDataXML/GDataXMLNode.h; sourceTree = "<group>"; };
+		DEE33B7214F1DE380043C5FA /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = GDataXML/GDataXMLNode.m; sourceTree = "<group>"; };
+		DEE33B7414F1E1A90043C5FA /* GDataXMLElement-Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GDataXMLElement-Extras.h"; path = "GDataXML/GDataXMLElement-Extras.h"; sourceTree = "<group>"; };
+		DEE33B7514F1E1A90043C5FA /* GDataXMLElement-Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GDataXMLElement-Extras.m"; path = "GDataXML/GDataXMLElement-Extras.m"; sourceTree = "<group>"; };
 		DEF7C6B614ECB926000C068C /* RSSEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSEngine.h; sourceTree = "<group>"; };
 		DEF7C6B714ECB926000C068C /* RSSEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSEngine.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,6 +172,7 @@
 				DE01564214EFA8780060CE19 /* ASIProgressDelegate.h */,
 			);
 			name = ASIRequest;
+			path = MoombaPlusMobile;
 			sourceTree = "<group>";
 		};
 		DE0B221214F1B9E60079A51B /* Resources */ = {
@@ -198,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				DE3F412B14E1BB1300B12A5E /* MoombaPlusMobile */,
+				DE01552614EFA7B50060CE19 /* ASIRequest */,
+				DEE33B7014F1D4FB0043C5FA /* GDataXML */,
 				DE3F412414E1BB1300B12A5E /* Frameworks */,
 				DE3F412214E1BB1300B12A5E /* Products */,
 			);
@@ -239,7 +248,6 @@
 				DE242B4C14F17E5400B3F902 /* Views */,
 				DEBEC63E14EDD8B300FD52E8 /* Controllers */,
 				DE0B221214F1B9E60079A51B /* Resources */,
-				DE01552614EFA7B50060CE19 /* ASIRequest */,
 				DE3F412C14E1BB1300B12A5E /* Supporting Files */,
 			);
 			path = MoombaPlusMobile;
@@ -280,6 +288,18 @@
 				C2C3F70A14E726CF00922D72 /* IRCController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DEE33B7014F1D4FB0043C5FA /* GDataXML */ = {
+			isa = PBXGroup;
+			children = (
+				DEE33B7114F1DE380043C5FA /* GDataXMLNode.h */,
+				DEE33B7214F1DE380043C5FA /* GDataXMLNode.m */,
+				DEE33B7414F1E1A90043C5FA /* GDataXMLElement-Extras.h */,
+				DEE33B7514F1E1A90043C5FA /* GDataXMLElement-Extras.m */,
+			);
+			name = GDataXML;
+			path = MoombaPlusMobile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +392,8 @@
 				DE01564D14EFA8A30060CE19 /* Reachability.m in Sources */,
 				DE242B5014F17E7D00B3F902 /* SingeFeed.m in Sources */,
 				DE242B5314F17F1A00B3F902 /* ManyFeeds.m in Sources */,
+				DEE33B7314F1DE380043C5FA /* GDataXMLNode.m in Sources */,
+				DEE33B7614F1E1A90043C5FA /* GDataXMLElement-Extras.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +439,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -435,8 +459,10 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -447,7 +473,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoombaPlusMobile/MoombaPlusMobile-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MoombaPlusMobile/MoombaPlusMobile-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -459,7 +487,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoombaPlusMobile/MoombaPlusMobile-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "MoombaPlusMobile/MoombaPlusMobile-Info.plist";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

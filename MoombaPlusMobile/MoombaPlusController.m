@@ -21,8 +21,8 @@
     _blogController  = [[RSSController   alloc] init];
     _radioController = [[RadioController alloc] init];
 
-   [self.radioController setURL:[NSURL URLWithString:@"http://s6.voscast.com:7662"]]; //@"http://qtdevseed.apple.com/addemo/ad.m3u8"
-    
+   [self.blogController  setURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
+   [self.radioController setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
     
     return self;
 }

@@ -11,25 +11,28 @@
 
 @implementation RSSController
 
-@synthesize blogEngine, blogTitle, blogDate, blogMeta;
+@synthesize blogEngine = _blogEngine, blogTitle, blogDate, blogMeta;
 
 - (id) init {
    self = [super init];
    
-   self.blogEngine = [[RSSEngine alloc]init];
+   _blogEngine = [RSSEngine alloc];
 
    return self;
+}
+
+- (void) setURL:(NSURL *)url {
+   if (url != nil) {
+      self.blogEngine = [self.blogEngine init: url];
+      
+      [self.blogEngine addObserver:self forKeyPath:@"heartbeat" options:NSKeyValueChangeSetting context: nil];
+   }
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-      
-   [self.blogDate setText:@"Fail-O-Clock"];
-   [self.blogTitle setText:@"How-To-Fail"];
-   
-   [self.blogEngine addObserver:self forKeyPath:@"valid" options:NSKeyValueChangeSetting context: nil];
 }
 
 - (void) viewDidUnload
@@ -43,17 +46,19 @@
                      ofObject:(id)object
                        change:(NSDictionary *)change
                       context:(void *)context {
-   
-   if ([keyPath compare: @"heartbeat"] == 0) {
-      RSSEntry *entry = [self.blogEngine dumpOne];
-      
+
+   if (!self.blogEngine.empty) {
+      RSSEntry *entry = [self.blogEngine dumpOne]; 
+    
       //self.blogThumb setImage: entry.thumb;
-      [self.blogTitle setText: entry.title];
-      [self.blogDate setText: [entry.date description]];
-      [self.blogMeta setText: entry.title];
-   }
-   
-   [self.view setNeedsDisplay];
+      [self.blogTitle setText:  entry.title];
+      [self.blogDate  setText: [entry.date description]];
+      [self.blogMeta  setText:  entry.title];
+      
+      [self.view setNeedsDisplay];
+   } else {
+      NSLog(@"%@", @"NOPE");
+      [self.blogEngine forceRefresh]; }
 }
 
 - (void)viewWillAppear:(BOOL)animated
