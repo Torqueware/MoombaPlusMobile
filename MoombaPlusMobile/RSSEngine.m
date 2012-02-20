@@ -22,7 +22,9 @@
 @property (readwrite) int                       heartbeat;
 
 - (void) refresh;
-- (NSArray *)parseFeed: (GDataXMLElement *)root;
++ (NSArray *)parseFeed: (GDataXMLElement *)root;
++ (NSArray *)parseRSS:  (GDataXMLElement *)root;
++ (NSArray *)parseAtom: (GDataXMLElement *)root;
 
 @end
 
@@ -34,7 +36,8 @@
 - (id) init:(NSURL *)feed {
    self = [super init];
 
-   _feed = feed;
+   _cache = [[NSMutableArray alloc] init];
+   _feed  = feed;
    
    [self refresh];
 
@@ -42,11 +45,11 @@
 }
 
 - (bool) empty {
-   if (self.cache == nil) {
-      return true;
+   if (self.cache != nil) {
+      return false;
    }
    
-   return false;
+   return true;
 }
 
 - (void)forceRefresh {   
@@ -63,36 +66,94 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-   
-   [self.queue addOperationWithBlock: ^{
-      NSError *error;
-      GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData: [request responseData]
-                                                             options: 0
-                                                               error: &error];
+   NSError *error;
+   GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData: [request responseData]
+                                                          options: 0
+                                                            error: &error];
+   if(doc) {
+      for(RSSEntry *this in [RSSEngine parseFeed:doc.rootElement]) {
+         [self.cache addObject: this];
       
-      if (doc != nil) {
-         NSMutableArray *entries = [NSMutableArray alloc];         
-         [self parseFeed:doc.rootElement entries:entries];
-         
-         [self.cache addObjectsFromArray:entries];
+         NSLog(@"%@", [this description]);
       }
-   }];
-    
-   self.heartbeat++;
+      
+      self.heartbeat++;
+      
+   } else {
+      NSLog(@"Failed to parse %@", request.url);
+   }
+   
+   NSLog(@"%@", [self.cache description]);
 }
 
-- (void) parseFeed: (GDataXMLElement *)root {
++ (NSArray *) parseFeed: (GDataXMLElement *)root {
     
-    if([root.name compare: @"rss"] == NSOrderedSame) {
-       return [self parseRSS:root];
-    } else if {
-       return [self parseAtom:root];
+    if ([root.name compare: @"rss"] == NSOrderedSame) {
+       return [RSSEngine parseRSS:root];
+    } else if ([root.name compare: @"atom"] == NSOrderedSame) {
+       return [RSSEngine parseAtom:root];
     } else {
        NSLog(@"Unsupported root element: %@", root.name);
     }
        
     return nil;
 }
+
+//The below two functions were pulled almost entirely from the howto article
+
++ (NSArray *)parseRSS:(GDataXMLElement *)root {
+   NSMutableArray *entries = [[NSMutableArray alloc] init];
+   
+   NSArray *channels = [root elementsForName:@"channel"];
+   for (GDataXMLElement *channel in channels) {            
+      
+//      NSString *blogTitle = [channel valueForChild:@"title"];                    
+      
+      NSArray *items = [channel elementsForName:@"item"];
+      for (GDataXMLElement *item in items) {
+         
+         NSString *articleTitle = [item valueForChild:@"title"];
+         NSString *articleUrl = [item valueForChild:@"link"];            
+//         NSString *articleDateString = [item valueForChild:@"pubDate"];        
+         NSDate *articleDate = nil;
+         
+         [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle domain:articleUrl date:articleDate]];   
+      }      
+   }
+   
+   return entries;
+}
+
++ (NSArray *)parseAtom:(GDataXMLElement *)root {
+   NSMutableArray *entries = [[NSMutableArray alloc] init];
+   
+   //   NSString *blogTitle = [rootElement valueForChild:@"title"];                    
+   NSArray *items = [root elementsForName:@"entry"];
+   
+   for (GDataXMLElement *item in items) {
+      NSString *articleTitle = [item valueForChild:@"title"];
+      NSString *articleUrl = nil;
+      NSArray *links = [item elementsForName:@"link"];        
+      
+      for(GDataXMLElement *link in links) {
+         NSString *rel = [[link attributeForName:@"rel"] stringValue];
+         NSString *type = [[link attributeForName:@"type"] stringValue]; 
+         
+         if ([rel compare:@"alternate"] == NSOrderedSame && 
+             [type compare:@"text/html"] == NSOrderedSame) {
+            articleUrl = [[link attributeForName:@"href"] stringValue];
+         }
+      }
+      
+//      NSString *articleDateString = [item valueForChild:@"updated"];        
+      NSDate *articleDate = nil;
+      
+      [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle domain:articleUrl date:articleDate]];
+   }
+   
+   return entries;
+}
+
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
    NSError *error = [request error];
@@ -113,6 +174,15 @@
    if (!self.empty) [self.cache removeObjectAtIndex:0];
    
    return one;
+}
+
+- (void) dealloc {
+   [_queue cancelAllOperations];
+   [_cache removeAllObjects];
+   
+   
+   _cache = nil;
+   _queue = nil;
 }
 
 @end

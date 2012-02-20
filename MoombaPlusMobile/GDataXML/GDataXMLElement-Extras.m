@@ -8,7 +8,7 @@
 
 #import "GDataXMLElement-Extras.h"
 
-@implementation GDataXMLElement(Extras)
+@implementation GDataXMLElement (Extras)
 
 - (GDataXMLElement *) elementForChild:(NSString *)childName {
    NSArray *children = [self elementsForName:childName];
