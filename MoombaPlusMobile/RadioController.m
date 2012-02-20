@@ -95,6 +95,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     if (context == PlaybackViewControllerStatusObservationContext) {
         
         AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
+        
         switch (status) {
             case AVPlayerStatusReadyToPlay:
                 NSLog(@"Object played.  In observeValueForKeyPath:");
@@ -152,10 +153,11 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 - (void) pause:(id)sender {
     self.isPlaying = NO;
     NSLog(@"in pause");
-    [self.player pause];
+   
+   self.player = nil;
+   
     if (self.playButton)
         [self showPlayButton];
-    
 }
 
 - (void) viewDidLoad

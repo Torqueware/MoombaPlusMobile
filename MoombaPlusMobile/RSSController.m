@@ -56,8 +56,9 @@
       //self.blogThumb setImage: entry.thumb;
       [self.blogTitle setText:  entry.title];
       [self.blogDate  setText: [entry.date description]];
-      [self.blogMeta  setText:  entry.title];
+//      [self.blogMeta  setText:  entry.title];
       
+      [self.view setNeedsLayout];
       [self.view setNeedsDisplay];
    }
 }
