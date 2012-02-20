@@ -36,8 +36,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 @synthesize playerItem = _playerItem;
 @synthesize val = _val;
 @synthesize volumeParentView = _volumeParentView;
+@synthesize toolbarParentView = _toolbarParentView;
 @synthesize mURL = _mURL;
 @synthesize isPlaying = _isPlaying;
+@synthesize toolbar = _toolbar;
+@synthesize playButton = _playButton;
+@synthesize pauseButton = _pauseButton;
+@synthesize flexButton = _flexButton;
 
 
 - (id) init {
@@ -49,7 +54,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     if (_mURL != url) {
     
         _mURL = [url copy];
-        
+            
         self.asset = [AVURLAsset URLAssetWithURL:url options:nil];
         NSArray *requestedKeys = [NSArray arrayWithObjects:@"tracks", @"playable", nil];
         [self.asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:^{
@@ -58,56 +63,28 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                                [self prepareToPlayAsset:self.asset withKeys:requestedKeys];
                            });
         }];
-        
     }
 }
 
 - (void) prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys {
     for (NSString *thisKey in requestedKeys) {
         AVKeyValueStatus keyStatus = [self.asset statusOfValueForKey:thisKey error:nil];
-        NSLog(@"%@", thisKey);
         if (keyStatus == AVKeyValueStatusFailed) {
             NSLog(@"This stream failed to load.  The key is: %@", thisKey);
         }
-        if (keyStatus == AVKeyValueStatusUnknown) {
-            NSLog(@"This stream unknown.  The key is: %@", thisKey);
-        }
-        if (keyStatus == AVKeyValueStatusLoading) {
-            NSLog(@"This stream is loading.  The key is: %@", thisKey);
-        }
-        if (keyStatus == AVKeyValueStatusLoaded) {
-            NSLog(@"This stream is loaded.  The key is: %@", thisKey);
-        }
-        if (keyStatus == AVKeyValueStatusCancelled) {
-            NSLog(@"This stream is cancelled.  The key is: %@", thisKey);
-        }
-               
     }
 
     if (!self.asset.playable) {
         NSLog(@"This asset is not playable");
     }
-    
-    /*if (self.playerItem) 
-        [self.playerItem removeObserver:self forKeyPath:@"status"];
-    */
-    
+
     self.playerItem = [AVPlayerItem playerItemWithAsset:self.asset];
     [self.playerItem addObserver:self
                       forKeyPath:@"status"
                          options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
                          context:PlaybackViewControllerStatusObservationContext];
     
-    self.player = [AVPlayer playerWithPlayerItem:self.playerItem];
-    
-    if (self.player.currentItem != self.playerItem) 
-        NSLog(@"playeritems arent correct.");
-    
-
-    
-    // Observer "status" to determine when player is ready to play
-  
-
+    _player = [AVPlayer playerWithPlayerItem:self.playerItem];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath
@@ -121,46 +98,64 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         switch (status) {
             case AVPlayerStatusReadyToPlay:
                 NSLog(@"Object played.  In observeValueForKeyPath:");
-                [self.player play];
+                self.isPlaying = NO;
+                [self play:nil];
                 break;
             case AVPlayerStatusUnknown:
                 NSLog(@"The status of the object is unknown.  In observeValueForKeyPath:");
-                break;
-                
+                break;              
             case AVPlayerStatusFailed:
                 NSLog(@"The status of the object failed.  In observeValueForKeyPath:");
                 break;
         }
     }   
 }
-/*
-- (void) syncPlayPauseButtons {
-    
+
+- (void) showPlayButton {
+    NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
+    [items replaceObjectAtIndex:1 withObject:self.playButton];
+    self.toolbar.items = items;
 }
 
-- (void) enablePlayerButtons {
-    
+- (void) showPauseButton {
+    NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
+    [items replaceObjectAtIndex:1 withObject:self.pauseButton];
+    self.toolbar.items = items;
 }
-*/
+
+- (void) enablePlayPause {
+    self.playButton.enabled = YES;
+    self.pauseButton.enabled = YES;
+}
 
 - (IBAction)togglePlayPause:(id)sender {
     if (self.isPlaying) {
-        [self pause];
+        [self pause:sender];
+        [self showPlayButton];
     }
     
     else {
-        [self play];
+        [self play:sender];
+        [self showPauseButton];
     }
 }
 
 
-- (void) play {
+- (void) play:(id)sender {
+    self.isPlaying = YES;
+    NSLog(@"in play");
     [self.player play];
-    
+    if (self.pauseButton)
+        [self showPauseButton];    
 }
 
-- (void) pause {
-   
+- (void) pause:(id)sender {
+    self.isPlaying = NO;
+    NSLog(@"in pause");
+    [self.player pause];
+    if (self.playButton)
+        [self showPlayButton];
+    
 }
 
 - (void) viewDidLoad
@@ -169,6 +164,21 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     self.volumeParentView.backgroundColor = [UIColor clearColor];
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds];
     [self.volumeParentView addSubview:volumeView];
+    
+    self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                    target:self
+                                                                    action:@selector(play:)];
+    self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
+                                                                     target:self
+                                                                     action:@selector(pause:)];  
+    self.flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                    target:nil
+                                                                    action:nil];
+    
+    _toolbar = [[UIToolbar alloc] initWithFrame:self.toolbarParentView.bounds];
+    [self.toolbar setItems:[NSArray arrayWithObjects:self.flexButton, self.pauseButton, self.flexButton, nil]]; 
+    self.toolbar.barStyle = UIBarStyleDefault;
+    [self.toolbarParentView addSubview:self.toolbar];
     
     // Do any additional setup after loading the view, typically from a nib.
 }
