@@ -14,12 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="7zn-7M-Rbz">
-                                <rect key="frame" x="20" y="274" width="280" height="40"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="6rM-pf-uAX">
-                                <rect key="frame" x="0.0" y="326" width="320" height="36"/>
+                                <rect key="frame" x="20" y="303" width="280" height="32"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -44,12 +39,11 @@
                     <connections>
                         <outlet property="blogDate" destination="t4L-Xi-Dh4" id="kQJ-o8-0pU"/>
                         <outlet property="blogTitle" destination="9sw-4T-KL9" id="n2G-pM-U1u"/>
-                        <outlet property="toolbarParentView" destination="6rM-pf-uAX" id="ODo-wh-Eih"/>
                         <outlet property="volumeParentView" destination="7zn-7M-Rbz" id="4zY-tu-MAD"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="565" y="-241"/>
+            <point key="canvasLocation" x="591" y="-273"/>
         </scene>
         <scene sceneID="13">
             <objects>
@@ -60,9 +54,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Lvb-V1-kQV">
-                                <rect key="frame" x="20" y="232" width="280" height="27"/>
+                                <rect key="frame" x="20" y="268" width="280" height="27"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="7si-EE-K6J">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -71,22 +65,16 @@
                                     <navigationItem title="(Not yet implemented)" id="Ggc-H0-nuF"/>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" id="TeZ-hW-nvT">
-                                <rect key="frame" x="0.0" y="330" width="320" height="36"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="second" id="6"/>
                     <connections>
-                        <outlet property="toolbarParentView" destination="TeZ-hW-nvT" id="bRn-1I-BKj"/>
                         <outlet property="volumeParentView" destination="Lvb-V1-kQV" id="5QV-87-euJ"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="559" y="366"/>
+            <point key="canvasLocation" x="591" y="385"/>
         </scene>
         <scene sceneID="15">
             <objects>
@@ -111,34 +99,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="IRCController" superclassName="RadioController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IRCController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-        <class className="RSSController" superclassName="RadioController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RSSController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="blogDate" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="blogMeta" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="blogTitle" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="RadioController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RadioController.h"/>
-            <relationships>
-                <relationship kind="action" name="togglePlayPause:"/>
-                <relationship kind="outlet" name="flexButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pauseButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="toolbarParentView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

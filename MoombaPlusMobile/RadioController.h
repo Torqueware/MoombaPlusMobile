@@ -19,13 +19,12 @@
 @property (strong, nonatomic) AVURLAsset *asset;
 @property float val;
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
-@property (strong, nonatomic) IBOutlet UIView *toolbarParentView;
 @property (strong, nonatomic) NSURL *mURL;
 @property BOOL isPlaying;
 @property (strong, nonatomic) UIToolbar *toolbar;
 @property (strong, nonatomic) UIBarButtonItem *playButton;
 @property (strong, nonatomic) UIBarButtonItem *pauseButton;
-@property (strong, nonatomic) UIBarButtonItem *flexButton;
+@property (strong, nonatomic) UIBarButtonItem *leftFlexButton, *rightFlexButton;
 
 - (IBAction)togglePlayPause:(id)sender;
 - (void)play:(id)sender;

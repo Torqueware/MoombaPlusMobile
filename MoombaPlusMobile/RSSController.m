@@ -33,8 +33,8 @@
 
 - (void) viewDidLoad
 {
-    [super viewDidLoad];
-    [self syncPlayPauseButtons];
+    [super viewDidLoad];  
+    //[self syncPlayPauseButtons];
     // Do any additional setup after loading the view, typically from a nib.
 }
 

@@ -18,14 +18,14 @@
     // Override point for customization after application launch.
 
     self.radioController = [[RadioController alloc] init];
-    [self.radioController setURL:MOOMBA_PLUS_RADIO];
+    [self.radioController setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
     
     UITabBarController *tabBar = (id)self.window.rootViewController;
     
     [[tabBar.viewControllers objectAtIndex:0] setRadioController:self.radioController];
     [[tabBar.viewControllers objectAtIndex:1] setRadioController:self.radioController];
     
-    [[tabBar.viewControllers objectAtIndex:0] setURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
+    [[tabBar.viewControllers objectAtIndex:0] setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
     
     return YES;
 }

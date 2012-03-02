@@ -33,14 +33,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 @synthesize playerItem = _playerItem;
 @synthesize val = _val;
 @synthesize volumeParentView = _volumeParentView;
-@synthesize toolbarParentView = _toolbarParentView;
 @synthesize mURL = _mURL;
 @synthesize isPlaying = _isPlaying;
 @synthesize toolbar = _toolbar;
 @synthesize playButton = _playButton;
 @synthesize pauseButton = _pauseButton;
-@synthesize flexButton = _flexButton;
-
+@synthesize rightFlexButton = _rightFlexButton;
+@synthesize leftFlexButton = _leftFlexButton;
 
 - (id) init {
     self = [super init];
@@ -51,7 +50,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     if (_mURL != url) {
     
         _mURL = url;
-            
+        
         self.asset = [AVURLAsset URLAssetWithURL:url options:nil];
         NSArray *requestedKeys = [NSArray arrayWithObjects:@"tracks", @"playable", nil];
         [self.asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler:^{
@@ -61,6 +60,8 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                            });
         }];
     }
+    
+
 }
 
 - (void) prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys {
@@ -97,10 +98,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                 
             case AVPlayerStatusReadyToPlay:
                 NSLog(@"Object played.  In observeValueForKeyPath:");
-                self.isPlaying = NO;
                 [self play:nil];
-                if (self.player)
-                    NSLog(@"object still alive observeValue");
                 break;
                 
             case AVPlayerStatusUnknown:
@@ -115,12 +113,14 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 }
 
 - (void) showPlayButton {
+        NSLog(@"Self show play: %@\n", self);
     NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
     [items replaceObjectAtIndex:1 withObject:self.playButton];
     self.toolbar.items = items;
 }
 
 - (void) showPauseButton {
+        NSLog(@"Self show pause: %@\n", self);
     NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
     [items replaceObjectAtIndex:1 withObject:self.pauseButton];
     self.toolbar.items = items;
@@ -159,6 +159,9 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     
     [self.player play];
     
+    if (self.toolbar && self.pauseButton)
+        [self syncPlayPauseButtons];
+    
     /*
     if (self.pauseButton)
         [self showPauseButton];    
@@ -180,6 +183,9 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     NSLog(@"in pause");
    
     [self.player pause];
+    
+    if (self.toolbar && self.playButton)
+        [self syncPlayPauseButtons];
     
     /*
     if (self.playButton)
@@ -204,21 +210,33 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     MPVolumeView *volumeView = [[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds];
     [self.volumeParentView addSubview:volumeView];
     
-    self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                    target:self
-                                                                    action:@selector(togglePlayPause:)];
-    self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
-                                                                     target:self
-                                                                     action:@selector(togglePlayPause:)];  
-    self.flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
-                                                                    target:nil
-                                                                    action:nil];
+    if (!self.playButton) {
+        self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                        target:self
+                                                                        action:@selector(togglePlayPause:)];
+        self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
+                                                                         target:self
+                                                                         action:@selector(togglePlayPause:)];  
+        self.leftFlexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                            target:nil
+                                                                            action:nil];
+        
+        self.rightFlexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                             target:nil
+                                                                             action:nil];
+        
+        
+        _toolbar = [[UIToolbar alloc] init];
+        self.toolbar.barStyle = UIBarStyleDefault;
+		[self.toolbar sizeToFit];
+		self.toolbar.frame = CGRectMake(0, 416, 320, 44);
+        
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlexButton, self.pauseButton, self.rightFlexButton, nil]];
+        [self.view addSubview:self.toolbar];
+        NSLog(@"Target Self: %@\n  Toolbar: %@\n", self, self.toolbar);
+    }
     
-    _toolbar = [[UIToolbar alloc] initWithFrame:self.toolbarParentView.bounds];
-    [self.toolbar setItems:[NSArray arrayWithObjects:self.flexButton, self.pauseButton, self.flexButton, nil]]; 
-    self.toolbar.barStyle = UIBarStyleDefault;
-    [self.toolbarParentView addSubview:self.toolbar];
-    NSLog(@"Target Self: %@\n", self);
+
     
     // Do any additional setup after loading the view, typically from a nib.
 }
