@@ -11,27 +11,30 @@
 
 @implementation RSSController
 
-@synthesize blogEngine = _blogEngine, blogTitle, blogDate, blogMeta;
+@synthesize blogEngine = _blogEngine;
+@synthesize radioController = _radioController;
+@synthesize blogTitle = _blogTitle;
+@synthesize blogDate = _blogDate;
+@synthesize blogMeta = _blogMeta;
 
 - (id) init {
-   self = [super init];
-   
-   _blogEngine = [RSSEngine alloc];
-
-   return self;
+    self = [super init];
+    return self;
 }
 
-- (void) setURL:(NSURL *)url {
-   if (url != nil) {
-      self.blogEngine = [self.blogEngine init: url];
-      
-      [self.blogEngine addObserver:self forKeyPath:@"heartbeat" options:NSKeyValueChangeSetting context: nil];
+- (void) setFeedURL:(NSURL *)url {
+    
+   if (!url) {
+       _blogEngine = [[RSSEngine alloc] initWithUrl: url];
+       [self.blogEngine addObserver:self forKeyPath:@"heartbeat" options:NSKeyValueChangeSetting context: nil];
    }
+    
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    [self syncPlayPauseButtons];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -66,6 +69,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self syncPlayPauseButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated

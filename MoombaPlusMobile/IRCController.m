@@ -11,10 +11,12 @@
 @implementation IRCController
 
 @synthesize volumeParentView = _volumeParentView;
+@synthesize radioController = _radioController;
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    [self syncPlayPauseButtons];
     // Do any additional setup after loading the view, typically from a nibs
 }
 
@@ -28,6 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self syncPlayPauseButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated

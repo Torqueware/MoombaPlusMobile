@@ -15,5 +15,6 @@
 @interface IRCController : RadioController
 
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
+@property (strong, nonatomic) RadioController *radioController;
 
 @end

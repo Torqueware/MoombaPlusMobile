@@ -16,15 +16,16 @@
 
 @property (strong, nonatomic) AVPlayerItem *playerItem;
 @property (strong, nonatomic) AVPlayer *player;
+@property (strong, nonatomic) AVURLAsset *asset;
 @property float val;
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
 @property (strong, nonatomic) IBOutlet UIView *toolbarParentView;
 @property (strong, nonatomic) NSURL *mURL;
 @property BOOL isPlaying;
-@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *playButton;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *pauseButton;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *flexButton;
+@property (strong, nonatomic) UIToolbar *toolbar;
+@property (strong, nonatomic) UIBarButtonItem *playButton;
+@property (strong, nonatomic) UIBarButtonItem *pauseButton;
+@property (strong, nonatomic) UIBarButtonItem *flexButton;
 
 - (IBAction)togglePlayPause:(id)sender;
 - (void)play:(id)sender;
@@ -33,5 +34,9 @@
 - (void) enablePlayPause;
 - (void) showPlayButton;
 - (void) showPauseButton;
+- (void) syncPlayPauseButtons;
 
 @end
+
+
+

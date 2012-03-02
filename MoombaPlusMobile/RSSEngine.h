@@ -18,7 +18,9 @@
 @property (readonly) bool     empty;
 @property (readonly) int      heartbeat;
 
-- (id) init:(NSURL *)feed;
+- (id) init;
+
+- (id) initWithUrl:(NSURL *)feed;
 
 - (void) forceRefresh;
 

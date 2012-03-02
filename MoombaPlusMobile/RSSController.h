@@ -19,6 +19,7 @@
                                                *blogDate,
                                                *blogMeta;
 
+@property (strong, nonatomic) RadioController *radioController;
 
 
 @end

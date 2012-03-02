@@ -33,7 +33,12 @@
 @synthesize feed = _feed, queue = _queue, cache = _cache, heartbeat = _heartbeat;
 @dynamic empty;
 
-- (id) init:(NSURL *)feed {
+- (id) init {
+    self = [super init];
+    return self;
+}
+
+- (id) initWithUrl:(NSURL *)feed {
    self = [super init];
 
    _cache = [[NSMutableArray alloc] init];

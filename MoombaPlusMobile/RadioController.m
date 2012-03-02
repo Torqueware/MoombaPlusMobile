@@ -21,9 +21,6 @@
 - (void) showPlayButton;
 - (void) showPauseButton;
 */
-
-@property (strong, nonatomic) AVURLAsset *asset;
-
 @end
 
 static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewControllerStatusObservationContext;
@@ -53,7 +50,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 - (void) setURL:(NSURL *)url {
     if (_mURL != url) {
     
-        _mURL = [url copy];
+        _mURL = url;
             
         self.asset = [AVURLAsset URLAssetWithURL:url options:nil];
         NSArray *requestedKeys = [NSArray arrayWithObjects:@"tracks", @"playable", nil];
@@ -97,19 +94,24 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
         
         switch (status) {
+                
             case AVPlayerStatusReadyToPlay:
                 NSLog(@"Object played.  In observeValueForKeyPath:");
                 self.isPlaying = NO;
                 [self play:nil];
+                if (self.player)
+                    NSLog(@"object still alive observeValue");
                 break;
+                
             case AVPlayerStatusUnknown:
                 NSLog(@"The status of the object is unknown.  In observeValueForKeyPath:");
-                break;              
+                break;     
+                
             case AVPlayerStatusFailed:
                 NSLog(@"The status of the object failed.  In observeValueForKeyPath:");
                 break;
         }
-    }   
+    }
 }
 
 - (void) showPlayButton {
@@ -130,34 +132,69 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 }
 
 - (IBAction)togglePlayPause:(id)sender {
+    NSLog(@"Self: %@\n", self);
     if (self.isPlaying) {
         [self pause:sender];
-        [self showPlayButton];
+        [self syncPlayPauseButtons];
     }
     
     else {
         [self play:sender];
-        [self showPauseButton];
+        [self syncPlayPauseButtons];
     }
 }
 
+- (void) syncPlayPauseButtons {
+    if (self.isPlaying)
+        [self showPlayButton];
+    else
+        [self showPauseButton];
+    
+}
 
 - (void) play:(id)sender {
     self.isPlaying = YES;
+    NSLog(@"Play Self: %@\n", self);
     NSLog(@"in play");
+    
     [self.player play];
+    
+    /*
     if (self.pauseButton)
         [self showPauseButton];    
+    */
+    
+    if (self.player)
+        NSLog(@"object still alive in play");
+    if (self.playerItem)
+        NSLog(@"item still alive in play");
+    if (self.asset)
+        NSLog(@"asset still alive in play");
+    if (self.mURL)
+        NSLog(@"url still alive in play");
 }
 
 - (void) pause:(id)sender {
     self.isPlaying = NO;
+    NSLog(@"Pause Self: %@\n", self);
     NSLog(@"in pause");
    
-   self.player = nil;
-   
+    [self.player pause];
+    
+    /*
     if (self.playButton)
         [self showPlayButton];
+    */
+    
+    if (self.player)
+        NSLog(@"object still alive in pause");
+    if (self.playerItem)
+        NSLog(@"item still alive in pause");
+    if (self.asset)
+        NSLog(@"asset still alive in pause");
+    if (self.mURL)
+        NSLog(@"url still alive in pause");
+    
 }
 
 - (void) viewDidLoad
@@ -169,10 +206,10 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     
     self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
                                                                     target:self
-                                                                    action:@selector(play:)];
+                                                                    action:@selector(togglePlayPause:)];
     self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
                                                                      target:self
-                                                                     action:@selector(pause:)];  
+                                                                     action:@selector(togglePlayPause:)];  
     self.flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
                                                                     target:nil
                                                                     action:nil];
@@ -181,6 +218,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     [self.toolbar setItems:[NSArray arrayWithObjects:self.flexButton, self.pauseButton, self.flexButton, nil]]; 
     self.toolbar.barStyle = UIBarStyleDefault;
     [self.toolbarParentView addSubview:self.toolbar];
+    NSLog(@"Target Self: %@\n", self);
     
     // Do any additional setup after loading the view, typically from a nib.
 }
