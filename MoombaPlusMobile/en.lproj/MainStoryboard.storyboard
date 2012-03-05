@@ -32,6 +32,11 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="GKD-jX-9IX">
+                                <rect key="frame" x="0.0" y="367" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -39,6 +44,7 @@
                     <connections>
                         <outlet property="blogDate" destination="t4L-Xi-Dh4" id="kQJ-o8-0pU"/>
                         <outlet property="blogTitle" destination="9sw-4T-KL9" id="n2G-pM-U1u"/>
+                        <outlet property="toolbar" destination="GKD-jX-9IX" id="EMs-OP-So8"/>
                         <outlet property="volumeParentView" destination="7zn-7M-Rbz" id="4zY-tu-MAD"/>
                     </connections>
                 </viewController>
@@ -65,11 +71,17 @@
                                     <navigationItem title="(Not yet implemented)" id="Ggc-H0-nuF"/>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="nrY-4a-IFq">
+                                <rect key="frame" x="0.0" y="367" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Chat" image="second" id="6"/>
                     <connections>
+                        <outlet property="toolbar" destination="nrY-4a-IFq" id="bTk-DY-Oun"/>
                         <outlet property="volumeParentView" destination="Lvb-V1-kQV" id="5QV-87-euJ"/>
                     </connections>
                 </viewController>

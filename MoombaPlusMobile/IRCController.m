@@ -13,11 +13,29 @@
 @synthesize volumeParentView = _volumeParentView;
 @synthesize radioController = _radioController;
 
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [self syncPlayPauseButtons];
+    //[self syncPlayPauseButtons];
     // Do any additional setup after loading the view, typically from a nibs
+}
+
+- (IBAction)togglePlayPause:(id)sender {
+    
+    NSLog(@"Toggle Self: %@\n", self);
+    
+    if (self.radioController.isPlaying) {
+        NSLog(@"is playing");
+        [self.radioController pause:sender];
+        [self showPlayButton];
+    }
+    
+    else {
+        NSLog(@"not playing, RC: %@", self.radioController);
+        [self.radioController play:sender];
+        [self showPauseButton];
+    }
 }
 
 - (void) viewDidUnload

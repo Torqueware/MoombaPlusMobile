@@ -12,6 +12,8 @@
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
 
+#define MOOMBA_PLUS_RADIO @"http://s6.voscast.com:7662"
+
 @interface RadioController : UIViewController
 
 @property (strong, nonatomic) AVPlayerItem *playerItem;
@@ -21,10 +23,11 @@
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
 @property (strong, nonatomic) NSURL *mURL;
 @property BOOL isPlaying;
-@property (strong, nonatomic) UIToolbar *toolbar;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (strong, nonatomic) UIBarButtonItem *playButton;
 @property (strong, nonatomic) UIBarButtonItem *pauseButton;
 @property (strong, nonatomic) UIBarButtonItem *leftFlexButton, *rightFlexButton;
+@property (strong, nonatomic) RadioController *radioController;
 
 - (IBAction)togglePlayPause:(id)sender;
 - (void)play:(id)sender;

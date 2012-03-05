@@ -40,6 +40,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 @synthesize pauseButton = _pauseButton;
 @synthesize rightFlexButton = _rightFlexButton;
 @synthesize leftFlexButton = _leftFlexButton;
+@synthesize radioController = _radioController;
 
 - (id) init {
     self = [super init];
@@ -60,8 +61,6 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                            });
         }];
     }
-    
-
 }
 
 - (void) prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys {
@@ -97,12 +96,12 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         switch (status) {
                 
             case AVPlayerStatusReadyToPlay:
-                NSLog(@"Object played.  In observeValueForKeyPath:");
+                self.isPlaying = NO;
                 [self play:nil];
                 break;
                 
             case AVPlayerStatusUnknown:
-                NSLog(@"The status of the object is unknown.  In observeValueForKeyPath:");
+                self.isPlaying = NO;
                 break;     
                 
             case AVPlayerStatusFailed:
@@ -113,94 +112,54 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 }
 
 - (void) showPlayButton {
-        NSLog(@"Self show play: %@\n", self);
+        NSLog(@"Self show play: %@\n RC: %@\n", self, self.radioController);
     NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
     [items replaceObjectAtIndex:1 withObject:self.playButton];
     self.toolbar.items = items;
 }
 
 - (void) showPauseButton {
-        NSLog(@"Self show pause: %@\n", self);
+        NSLog(@"Self show pause: %@\n RC: %@\n", self, self.radioController);
     NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
     [items replaceObjectAtIndex:1 withObject:self.pauseButton];
     self.toolbar.items = items;
 }
 
 - (void) enablePlayPause {
-    self.playButton.enabled = YES;
-    self.pauseButton.enabled = YES;
+    self.radioController.playButton.enabled = YES;
+    self.radioController.pauseButton.enabled = YES;
 }
 
-- (IBAction)togglePlayPause:(id)sender {
-    NSLog(@"Self: %@\n", self);
-    if (self.isPlaying) {
-        [self pause:sender];
-        [self syncPlayPauseButtons];
-    }
-    
-    else {
-        [self play:sender];
-        [self syncPlayPauseButtons];
-    }
-}
 
 - (void) syncPlayPauseButtons {
-    if (self.isPlaying)
-        [self showPlayButton];
-    else
+    
+    NSLog(@"Self sync: %@\n RC: %@\n", self, self.radioController);
+    
+    if (self.radioController.isPlaying)
         [self showPauseButton];
+    else
+        [self showPlayButton];
     
 }
 
 - (void) play:(id)sender {
     self.isPlaying = YES;
-    NSLog(@"Play Self: %@\n", self);
-    NSLog(@"in play");
+    NSLog(@"Play Self: %@\n Toolbar: %@\n Pause Button %@\n", self, self.toolbar, self.pauseButton);
+    
+    if (!self.player)
+        [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
     
     [self.player play];
-    
-    if (self.toolbar && self.pauseButton)
-        [self syncPlayPauseButtons];
-    
-    /*
-    if (self.pauseButton)
-        [self showPauseButton];    
-    */
-    
-    if (self.player)
-        NSLog(@"object still alive in play");
-    if (self.playerItem)
-        NSLog(@"item still alive in play");
-    if (self.asset)
-        NSLog(@"asset still alive in play");
-    if (self.mURL)
-        NSLog(@"url still alive in play");
 }
 
 - (void) pause:(id)sender {
     self.isPlaying = NO;
-    NSLog(@"Pause Self: %@\n", self);
-    NSLog(@"in pause");
+    NSLog(@"Pause Self: %@\n Toolbar: %@\n Play Button %@\n", self, self.toolbar, self.playButton);
    
-    [self.player pause];
+    [self.player pause];  
     
-    if (self.toolbar && self.playButton)
-        [self syncPlayPauseButtons];
-    
-    /*
-    if (self.playButton)
-        [self showPlayButton];
-    */
-    
-    if (self.player)
-        NSLog(@"object still alive in pause");
-    if (self.playerItem)
-        NSLog(@"item still alive in pause");
-    if (self.asset)
-        NSLog(@"asset still alive in pause");
-    if (self.mURL)
-        NSLog(@"url still alive in pause");
-    
+    self.player = nil;
+    _mURL = nil;
 }
 
 - (void) viewDidLoad
@@ -226,19 +185,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
                                                                              action:nil];
         
         
-        _toolbar = [[UIToolbar alloc] init];
         self.toolbar.barStyle = UIBarStyleDefault;
-		[self.toolbar sizeToFit];
-		self.toolbar.frame = CGRectMake(0, 416, 320, 44);
         
         [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlexButton, self.pauseButton, self.rightFlexButton, nil]];
-        [self.view addSubview:self.toolbar];
+
         NSLog(@"Target Self: %@\n  Toolbar: %@\n", self, self.toolbar);
     }
     
-
-    
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void) viewDidUnload

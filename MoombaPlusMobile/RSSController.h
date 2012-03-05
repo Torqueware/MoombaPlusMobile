@@ -19,8 +19,6 @@
                                                *blogDate,
                                                *blogMeta;
 
-@property (strong, nonatomic) RadioController *radioController;
-
 - (void) setFeedURL:(NSURL *)url;
 
 @end

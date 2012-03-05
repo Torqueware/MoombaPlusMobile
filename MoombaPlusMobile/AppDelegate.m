@@ -22,9 +22,12 @@
     
     UITabBarController *tabBar = (id)self.window.rootViewController;
     
+
     [[tabBar.viewControllers objectAtIndex:0] setRadioController:self.radioController];
     [[tabBar.viewControllers objectAtIndex:1] setRadioController:self.radioController];
+
     
+    //[self.radioController setRadioController:self.radioController];
     [[tabBar.viewControllers objectAtIndex:0] setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
     
     return YES;

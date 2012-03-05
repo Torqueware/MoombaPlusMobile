@@ -34,9 +34,25 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];  
-    //[self syncPlayPauseButtons];
+    self.radioController.isPlaying = YES;
+    [self syncPlayPauseButtons];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+
+- (IBAction)togglePlayPause:(id)sender {
+    NSLog(@"Toggle Self: %@\n", self);
+    if (self.radioController.isPlaying) {
+        [self.radioController pause:sender];
+        [self showPlayButton];
+    }
+    
+    else {
+        [self.radioController play:sender];
+        [self showPauseButton];
+    }
+}
+
 
 - (void) viewDidUnload
 {
