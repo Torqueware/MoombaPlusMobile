@@ -29,7 +29,6 @@
 @property (strong, nonatomic) UIBarButtonItem *leftFlexButton, *rightFlexButton;
 @property (strong, nonatomic) RadioController *radioController;
 
-- (IBAction)togglePlayPause:(id)sender;
 - (void)play:(id)sender;
 - (void)pause:(id)sender;
 - (void) setURL:(NSURL *)url;
