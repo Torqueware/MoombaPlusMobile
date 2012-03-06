@@ -13,6 +13,7 @@
 
 #define MOOMBA_PLUS_RADIO @"http://s6.voscast.com:7662"
 #define MOOMBA_PLUS_FEED  @"http://moombahplus.com/feed"
+#define OTHER_RADIO @"http://s6.voscast.com:7644"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

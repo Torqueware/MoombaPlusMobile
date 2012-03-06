@@ -13,6 +13,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 #define MOOMBA_PLUS_RADIO @"http://s6.voscast.com:7662"
+#define OTHER_RADIO @"http://s6.voscast.com:7644"
 
 @interface RadioController : UIViewController
 
