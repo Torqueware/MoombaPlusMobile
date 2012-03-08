@@ -10,6 +10,7 @@
 #import "IRCController.h"
 #import "RSSController.h"
 #import "RadioController.h"
+#import "FBConnect.h"
 
 #define MOOMBA_PLUS_RADIO @"http://s6.voscast.com:7662"
 #define MOOMBA_PLUS_FEED  @"http://moombahplus.com/feed"
