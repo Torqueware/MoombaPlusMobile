@@ -16,6 +16,10 @@
 @synthesize blogTitle = _blogTitle;
 @synthesize blogDate = _blogDate;
 @synthesize blogMeta = _blogMeta;
+@synthesize logoutButton = _logoutButton;
+@synthesize shareButton = _shareButton;
+@synthesize facebookDelegate = _facebookDelegate;
+
 
 - (id) init {
     self = [super init];
@@ -36,9 +40,41 @@
     [super viewDidLoad];  
     self.radioController.isPlaying = YES;
     [self syncPlayPauseButtons];
+    
+    [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
+    [self.logoutButton addTarget:self
+                          action:@selector(logoutButtonClicked:)
+                forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.shareButton setTitle:@"Share Post" forState:UIControlStateNormal];
+    [self.shareButton addTarget:self
+                          action:@selector(shareButtonClicked:) 
+                forControlEvents:UIControlEventTouchUpInside];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void) logoutButtonClicked:(id)sender {
+    NSLog(@"in logout RSS");
+    [self.facebookDelegate.facebook logout];
+}
+
+- (void) shareButtonClicked:(id)sender {
+    
+    NSLog(@"In share button clicked");
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   FACEBOOK_APP_ID, @"app_id",
+                                   @"http://developers.facebook.com/docs/reference/dialogs/", @"link",
+                                   @"http://fbrell.com/f8.jpg", @"picture",
+                                   @"Facebook Dialogs", @"name",
+                                   @"Reference Documentation", @"caption",
+                                   @"Using Dialogs to interact with users.", @"description",
+                                   @"Facebook Dialogs are so easy!",  @"message",
+                                   nil];
+    
+    [self.facebookDelegate.facebook dialog:@"feed" andParams:params andDelegate:self.facebookDelegate];
+}
 
 - (IBAction)togglePlayPause:(id)sender {
     NSLog(@"Toggle Self: %@\n", self);
@@ -52,7 +88,6 @@
         [self showPauseButton];
     }
 }
-
 
 - (void) viewDidUnload
 {

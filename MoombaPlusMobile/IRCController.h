@@ -11,9 +11,16 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "RadioController.h"
+#import "FacebookDelegate.h"
+
+#define FACEBOOK_APP_ID @"332658496785553"
 
 @interface IRCController : RadioController
 
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (strong, nonatomic) FacebookDelegate *facebookDelegate;
+
+- (void) logoutButtonClicked:(id)sender;
 
 @end

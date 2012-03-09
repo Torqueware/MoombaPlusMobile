@@ -20,6 +20,7 @@
 		C2C3F71D14E7456B00922D72 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C3F71C14E7456B00922D72 /* MediaPlayer.framework */; };
 		C2F86DFE150970BE0074DC94 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F86DEF150970BE0074DC94 /* libfacebook_ios_sdk.a */; };
 		C2F86DFF150970BE0074DC94 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C2F86DFD150970BE0074DC94 /* FBDialog.bundle */; };
+		C2F86E02150985E70074DC94 /* FacebookDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F86E01150985E70074DC94 /* FacebookDelegate.m */; };
 		DE01564314EFA8780060CE19 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01562F14EFA8780060CE19 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DE01564414EFA8780060CE19 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01563214EFA8780060CE19 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DE01564514EFA8780060CE19 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = DE01563414EFA8780060CE19 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -84,6 +85,8 @@
 		C2F86DFB150970BE0074DC94 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		C2F86DFC150970BE0074DC94 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		C2F86DFD150970BE0074DC94 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		C2F86E00150985E70074DC94 /* FacebookDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookDelegate.h; sourceTree = "<group>"; };
+		C2F86E01150985E70074DC94 /* FacebookDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookDelegate.m; sourceTree = "<group>"; };
 		DE01562E14EFA8780060CE19 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		DE01562F14EFA8780060CE19 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		DE01563014EFA8780060CE19 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				DEBEC63814EDD83200FD52E8 /* RSSEntry.m */,
 				DEF7C6B614ECB926000C068C /* RSSEngine.h */,
 				DEF7C6B714ECB926000C068C /* RSSEngine.m */,
+				C2F86E00150985E70074DC94 /* FacebookDelegate.h */,
+				C2F86E01150985E70074DC94 /* FacebookDelegate.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -437,6 +442,7 @@
 				DEE33B7314F1DE380043C5FA /* GDataXMLNode.m in Sources */,
 				DEE33B7614F1E1A90043C5FA /* GDataXMLElement-Extras.m in Sources */,
 				C2A3390515004B0500B5DB0D /* MoombaPlusController.m in Sources */,
+				C2F86E02150985E70074DC94 /* FacebookDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

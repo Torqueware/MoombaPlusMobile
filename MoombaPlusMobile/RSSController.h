@@ -10,6 +10,9 @@
 #import "RadioController.h"
 #import "RSSEngine.h"
 #import "RSSEntry.h"
+#import "FacebookDelegate.h"
+
+#define FACEBOOK_APP_ID @"332658496785553"
 
 @interface RSSController : RadioController {}
 
@@ -18,7 +21,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *blogTitle,
                                                *blogDate,
                                                *blogMeta;
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton,
+                                              *shareButton;
+
+@property (strong, nonatomic) FacebookDelegate *facebookDelegate;
 
 - (void) setFeedURL:(NSURL *)url;
+- (void) logoutButtonClicked:(id)sender;
+- (void) shareButtonClicked:(id)sender;
 
 @end

@@ -12,56 +12,31 @@
 
 @synthesize window = _window;
 @synthesize radioController = _radioController;
-@synthesize facebook = _facebook;
+@synthesize facebookDelegate = _facebookDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
 
     self.radioController = [[RadioController alloc] init];
-    [self.radioController setURL:[NSURL URLWithString:OTHER_RADIO]];
+    [self.radioController setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
     
-    // set up Facebook
-    
-    self.facebook = [[Facebook alloc] initWithAppId:FACEBOOK_APP_ID andDelegate:self];
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults objectForKey:@"FBAccessTokenKey"] && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        self.facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        self.facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }
-    
-    if (![self.facebook isSessionValid])
-        [self.facebook authorize:nil];
-    
-    
-
+    // set up FacebookDelegate wrapper class  
+    self.facebookDelegate = [[FacebookDelegate alloc] init];
+  
     
     UITabBarController *tabBar = (id)self.window.rootViewController;
     
-
     [[tabBar.viewControllers objectAtIndex:0] setRadioController:self.radioController];
     [[tabBar.viewControllers objectAtIndex:1] setRadioController:self.radioController];
-
+    
+    [[tabBar.viewControllers objectAtIndex:0] setFacebookDelegate:self.facebookDelegate];
+    [[tabBar.viewControllers objectAtIndex:1] setFacebookDelegate:self.facebookDelegate];
     
     //[self.radioController setRadioController:self.radioController];
     [[tabBar.viewControllers objectAtIndex:0] setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
     
     return YES;
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [self.facebook handleOpenURL:url]; 
-}
-
-- (void)fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[self.facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[self.facebook expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

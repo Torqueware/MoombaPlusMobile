@@ -12,13 +12,24 @@
 
 @synthesize volumeParentView = _volumeParentView;
 @synthesize radioController = _radioController;
+@synthesize logoutButton = _logoutButton;
+@synthesize facebookDelegate = _facebookDelegate;
 
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    //[self syncPlayPauseButtons];
+    
+    [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
+    [self.logoutButton addTarget:self action:@selector(logoutButtonClicked:)
+           forControlEvents:UIControlEventTouchUpInside];
+    
     // Do any additional setup after loading the view, typically from a nibs
+}
+
+- (void) logoutButtonClicked:(id)sender {
+    NSLog(@"in logout IRC");
+    [self.facebookDelegate.facebook logout];
 }
 
 - (IBAction)togglePlayPause:(id)sender {
@@ -33,7 +44,7 @@
     
     else {
         NSLog(@"not playing, RC: %@", self.radioController);
-        [self.radioController play:sender];
+        [self.radioController play: sender];
         [self showPauseButton];
     }
 }
