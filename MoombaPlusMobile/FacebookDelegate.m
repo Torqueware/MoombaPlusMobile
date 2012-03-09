@@ -27,10 +27,10 @@
         self.facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
     
-    if (![self.facebook isSessionValid])
-        [self.facebook authorize:nil];
-    
-    
+    if (![self.facebook isSessionValid]) {
+        NSArray *perms = [NSArray arrayWithObject:@"publish_stream"];
+        [self.facebook authorize:perms];
+    }
     
     return self;
     
