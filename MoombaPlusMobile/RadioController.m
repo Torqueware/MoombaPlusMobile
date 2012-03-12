@@ -147,7 +147,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     NSLog(@"Play Self: %@\n Toolbar: %@\n Pause Button %@\n", self, self.toolbar, self.pauseButton);
     
     if (!self.player)
-        [self setURL:[NSURL URLWithString:OTHER_RADIO]];
+        [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
     
     [self.player play];
 }
@@ -183,9 +183,8 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
         self.rightFlexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
                                                                              target:nil
                                                                              action:nil];
-        
-        
-        self.toolbar.barStyle = UIBarStyleDefault;
+                
+        self.toolbar.barStyle = UIBarStyleBlack;
         
         [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlexButton, self.pauseButton, self.rightFlexButton, nil]];
 

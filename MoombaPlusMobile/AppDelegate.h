@@ -12,10 +12,9 @@
 #import "RadioController.h"
 #import "FacebookDelegate.h"
 
-#define MOOMBA_PLUS_RADIO @"http://s6.voscast.com:7662"
-#define MOOMBA_PLUS_FEED  @"http://moombahplus.com/feed"
-#define OTHER_RADIO @"http://s6.voscast.com:7644"
-#define FACEBOOK_APP_ID @"332658496785553"
+#define STREAM 0
+#define FEED   1
+#define CHAT   2
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

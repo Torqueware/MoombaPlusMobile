@@ -27,14 +27,15 @@
     
     UITabBarController *tabBar = (id)self.window.rootViewController;
     
-    [[tabBar.viewControllers objectAtIndex:0] setRadioController:self.radioController];
-    [[tabBar.viewControllers objectAtIndex:1] setRadioController:self.radioController];
+    [[tabBar.viewControllers objectAtIndex:STREAM] setRadioController:self.radioController];
+    [[tabBar.viewControllers objectAtIndex:FEED] setRadioController:self.radioController];
+    [[tabBar.viewControllers objectAtIndex:CHAT] setRadioController:self.radioController];
     
-    [[tabBar.viewControllers objectAtIndex:0] setFacebookDelegate:self.facebookDelegate];
-    [[tabBar.viewControllers objectAtIndex:1] setFacebookDelegate:self.facebookDelegate];
+    [[tabBar.viewControllers objectAtIndex:FEED] setFacebookDelegate:self.facebookDelegate];
+    [[tabBar.viewControllers objectAtIndex:CHAT] setFacebookDelegate:self.facebookDelegate];
     
     //[self.radioController setRadioController:self.radioController];
-    [[tabBar.viewControllers objectAtIndex:0] setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
+    [[tabBar.viewControllers objectAtIndex:FEED] setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
     
     return YES;
 }

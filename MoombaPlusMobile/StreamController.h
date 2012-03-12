@@ -1,8 +1,8 @@
 //
-//  IRCController.h
+//  StreamController.h
 //  MoombaPlusMobile
 //
-//  Created by Mitchell, DJ on 2/11/12.
+//  Created by  on 3/11/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -11,14 +11,10 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "RadioController.h"
-#import "FacebookDelegate.h"
 
-@interface IRCController : RadioController
+@interface StreamController : RadioController
 
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
-@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
-@property (strong, nonatomic) FacebookDelegate *facebookDelegate;
-
-- (void) logoutButtonClicked:(id)sender;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @end

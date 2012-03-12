@@ -18,20 +18,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="articleTitle" lineBreakMode="tailTruncation" minimumFontSize="10" id="9sw-4T-KL9">
-                                <rect key="frame" x="20" y="20" width="134" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="articleDate" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="t4L-Xi-Dh4">
-                                <rect key="frame" x="16" y="49" width="138" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="GKD-jX-9IX">
                                 <rect key="frame" x="0.0" y="367" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -64,10 +50,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Blog" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Blog" image="rss.png" id="7"/>
                     <connections>
-                        <outlet property="blogDate" destination="t4L-Xi-Dh4" id="kQJ-o8-0pU"/>
-                        <outlet property="blogTitle" destination="9sw-4T-KL9" id="n2G-pM-U1u"/>
                         <outlet property="logoutButton" destination="ZCk-dx-C2g" id="1DG-24-Ms4"/>
                         <outlet property="shareButton" destination="DMb-8J-n8q" id="lwR-qH-8vq"/>
                         <outlet property="toolbar" destination="GKD-jX-9IX" id="EMs-OP-So8"/>
@@ -75,7 +59,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="591" y="-273"/>
+            <point key="canvasLocation" x="586" y="-492"/>
         </scene>
         <scene sceneID="13">
             <objects>
@@ -110,7 +94,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="irc.png" id="6"/>
                     <connections>
                         <outlet property="logoutButton" destination="X6Z-B1-RGs" id="mgR-nx-Amr"/>
                         <outlet property="toolbar" destination="nrY-4a-IFq" id="bTk-DY-Oun"/>
@@ -118,7 +102,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="591" y="385"/>
+            <point key="canvasLocation" x="586" y="86"/>
         </scene>
         <scene sceneID="15">
             <objects>
@@ -131,18 +115,90 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="NHW-va-znI" kind="relationship" relationship="viewControllers" id="4OR-cc-Qjl"/>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="D4h-Q3-Zdr"/>
                         <segue destination="3" kind="relationship" relationship="viewControllers" id="pvM-pv-B74"/>
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="132" y="180"/>
+            <point key="canvasLocation" x="46" y="-1064"/>
+        </scene>
+        <scene sceneID="VTS-4q-dfO">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f8I-Lo-VBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="NHW-va-znI" customClass="StreamController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GYQ-Ox-n3f">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleToFill" image="Default.png" id="SNB-iT-LCX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="e8Q-yH-ce0" userLabel="Volume Toolbar">
+                                <rect key="frame" x="0.0" y="331" width="320" height="42"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" id="wMA-mX-dpZ" userLabel="Playback Toolbar">
+                                <rect key="frame" x="0.0" y="367" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stream" image="stream_play.png" id="xuA-BA-GZD"/>
+                    <connections>
+                        <outlet property="toolbar" destination="wMA-mX-dpZ" id="3Dg-Gs-R8d"/>
+                        <outlet property="view" destination="GYQ-Ox-n3f" id="Ey0-2B-ZLx"/>
+                        <outlet property="volumeParentView" destination="e8Q-yH-ce0" id="XhX-SZ-1e7"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="586" y="-1064"/>
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="16" height="16"/>
-        <image name="second" width="16" height="16"/>
+        <image name="Default.png" width="333" height="720"/>
+        <image name="irc.png" width="30" height="30"/>
+        <image name="rss.png" width="30" height="30"/>
+        <image name="stream_play.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="IRCController" superclassName="RadioController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IRCController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="RSSController" superclassName="RadioController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RSSController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="blogDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="blogMeta" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="blogTitle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="RadioController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RadioController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="StreamController" superclassName="RadioController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StreamController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
