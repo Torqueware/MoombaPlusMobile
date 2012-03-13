@@ -19,8 +19,6 @@
 @property (strong, nonatomic) NSOperationQueue *queue;
 @property (strong, nonatomic) NSMutableArray   *cache;
 
-@property (readwrite) int                       heartbeat;
-
 - (void) refresh;
 
 + (NSArray *)parseFeed: (GDataXMLElement *)root;
@@ -31,11 +29,12 @@
 
 @implementation RSSEngine
 
-@synthesize feed = _feed, queue = _queue, cache = _cache, heartbeat = _heartbeat;
-@dynamic content, empty;
+@synthesize feed = _feed, queue = _queue, cache = _cache;
+@dynamic    allEntries;
 
 - (id) init {
-    self = [super init];
+    self = [[super init] initWithUrl:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
+    
     return self;
 }
 
@@ -50,23 +49,15 @@
    return self;
 }
 
-- (NSArray *) content {
-    return [NSArray arrayWithArray:self.cache];
+- (NSArray *) allEntries {
+    if (self.cache != nil) {
+        return [NSArray arrayWithArray:self.cache];
+    }
+    
+    return nil;
 }
 
-- (bool) empty {
-   if (self.cache != nil) {
-      return false;
-   }
-   
-   return true;
-}
-
-- (void)forceRefresh {   
-   [self refresh];
-}
-
-- (void)refresh {
+- (void) refresh {
    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:self.feed];
 
    [request setDelegate:self];
@@ -75,25 +66,27 @@
    [request startAsynchronous];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request {
+- (void) requestFinished:(ASIHTTPRequest *)request {
    NSError *error;
    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData: [request responseData]
                                                           options: 0
                                                             error: &error];
-   if(doc) {
-      for(RSSEntry *this in [RSSEngine parseFeed:doc.rootElement]) {
-         [self.cache addObject: this];
-      
-         NSLog(@"%@", [this description]);
-      }
-      
-      self.heartbeat++;
-      
-   } else {
+   if(doc) {       
+       for (RSSEntry *this in [RSSEngine parseFeed:doc.rootElement]) {
+           int i = [self.cache indexForInsertingObject:this sortedUsingBlock:^(id this, id that) {
+               return [((RSSEntry *)this).date compare:((RSSEntry *)that).date];
+           }];
+          
+           [self willChangeValueForKey:@"allEntries"];
+           [self.cache insertObject:this atIndex:i];
+           [self didChangeValueForKey:@"allEntries"];
+       }
+   }
+#ifdef __DEBUG__
+   else {
       NSLog(@"Failed to parse %@", request.url);
    }
-   
-   NSLog(@"%@", [self.cache description]);
+#endif
 }
 
 + (NSArray *) parseFeed: (GDataXMLElement *)root {
@@ -102,9 +95,13 @@
        return [RSSEngine parseRSS:root];
     } else if ([root.name compare: @"atom"] == NSOrderedSame) {
        return [RSSEngine parseAtom:root];
-    } else {
+    }
+#ifdef __DEBUG__
+    else {
        NSLog(@"Unsupported root element: %@", root.name);
     }
+#endif
+
        
     return nil;
 }
@@ -124,8 +121,8 @@
          
          NSString *articleTitle = [item valueForChild:@"title"];
          NSString *articleUrl = [item valueForChild:@"link"];            
-//         NSString *articleDateString = [item valueForChild:@"pubDate"];        
-         NSDate *articleDate = nil;
+         NSString *articleDateString = [item valueForChild:@"pubDate"];        
+         NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC822];
          
          [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle domain:articleUrl date:articleDate]];   
       }      
@@ -155,8 +152,8 @@
          }
       }
       
-//      NSString *articleDateString = [item valueForChild:@"updated"];        
-      NSDate *articleDate = nil;
+      NSString *articleDateString = [item valueForChild:@"updated"];        
+      NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
       
       [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle domain:articleUrl date:articleDate]];
    }
@@ -167,15 +164,14 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
    NSError *error = [request error];
+#ifdef __DEBUG__
    NSLog(@"Error: %@", error);
+#endif
 }
 
 - (void) dealloc {
    [_queue cancelAllOperations];
    [_cache removeAllObjects];
-   
-   _cache = nil;
-   _queue = nil;
 }
 
 @end

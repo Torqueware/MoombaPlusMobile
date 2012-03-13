@@ -12,7 +12,6 @@
 
 #import "IRCController.h"
 #import "RSSController.h"
-#import "RadioController.h"
 #import "StreamEngine.h"
 #import "FacebookDelegate.h"
 
@@ -23,7 +22,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow          *window;
+
 @property (strong, nonatomic) StreamEngine      *stream;
+@property (strong, nonatomic) RSSEngine         *blog;
+
 @property (strong, nonatomic) FacebookDelegate  *facebookDelegate;
 
 @end

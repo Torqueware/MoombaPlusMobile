@@ -8,10 +8,18 @@
 
 #import "AppDelegate.h"
 
+@interface AppDelegate ()
+
+- (void) setViewModels;
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize stream = _stream;
+@synthesize blog   = _blog;
+
 @synthesize facebookDelegate = _facebookDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -29,21 +37,33 @@
                             &doChangeDefaultRoute);
     [[AVAudioSession sharedInstance] setActive:true error:&delegateError];
     
-    // set up audio stream controller
+    // set up audio stream engine
     self.stream = [[StreamEngine alloc] init];
+    
+    // set up blog engine
+    self.blog   = [[RSSEngine alloc] init];
     
     // set up FacebookDelegate wrapper class  
     self.facebookDelegate = [[FacebookDelegate alloc] init];
   
-    
+    [self setViewModels];
+            
+    return YES;
+}
+
+- (void)setViewModels {
     UITabBarController *tabBar = (id)self.window.rootViewController;
     
-    [[tabBar.viewControllers objectAtIndex:STREAM] setStream:self.stream];
+    [[tabBar.viewControllers objectAtIndex:STREAM]  setStream:self.stream];
     
-    [[tabBar.viewControllers objectAtIndex:FEED]    setFacebookDelegate:self.facebookDelegate];
-    [[tabBar.viewControllers objectAtIndex:FEED]    setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
+    for (UIViewController *controller in [[tabBar.viewControllers objectAtIndex:FEED] viewControllers]) {
         
-    return YES;
+        if ([controller isMemberOfClass:[RSSController class]]) {
+            [(RSSController *)controller setBlogEngine:self.blog];
+            [(RSSController *)controller setFacebookDelegate:self.facebookDelegate];
+            
+        }
+    }
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

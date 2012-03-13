@@ -10,9 +10,6 @@
 #import "Facebook.h"
 #import "FBConnect.h"
 
-#define FACEBOOK_APP_ID @"332658496785553"
-#define MOOMBA_PLUS_FEED  @"http://moombahplus.com/feed"
-
 @interface FacebookDelegate : NSObject <FBSessionDelegate, FBDialogDelegate>
 
 @property (strong, nonatomic) Facebook *facebook;

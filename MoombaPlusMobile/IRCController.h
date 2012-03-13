@@ -10,7 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "RadioController.h"
 #import "FacebookDelegate.h"
 
 @interface IRCController : UIViewController

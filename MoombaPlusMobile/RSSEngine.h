@@ -7,24 +7,20 @@
 //
 
 #import "ASIHTTPRequest.h"
-
+#import "NSDate+InternetDateTime.h"
 #import "GDataXMLNode.h"
 #import "GDataXMLElement-Extras.h"
+#import "NSArray+Extras.h"
 
 #import "RSSEntry.h"
 
 @interface RSSEngine : NSObject
 
-@property (strong, nonatomic) NSArray *content;
-@property (readonly) bool     empty;
-
-@property (readonly) int      heartbeat;
+@property (readonly, strong, nonatomic) NSArray *allEntries;
 
 - (id) init;
 
 - (id) initWithUrl:(NSURL *)feed;
-
-- (void) forceRefresh;
 
 @end
 

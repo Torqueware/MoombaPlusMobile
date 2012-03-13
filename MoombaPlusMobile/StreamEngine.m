@@ -31,7 +31,9 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 
 - (id) init {
     self    = [super init];
-        
+    
+    [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+    
     return self;
 }
 
