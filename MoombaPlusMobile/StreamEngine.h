@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import <AVFoundation/AVPlayer.h>
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface StreamEngine : NSObject

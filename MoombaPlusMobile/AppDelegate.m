@@ -31,7 +31,6 @@
     
     // set up audio stream controller
     self.stream = [[StreamEngine alloc] init];
-    [self.stream play];
     
     // set up FacebookDelegate wrapper class  
     self.facebookDelegate = [[FacebookDelegate alloc] init];

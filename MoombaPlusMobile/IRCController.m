@@ -11,7 +11,7 @@
 @implementation IRCController
 
 @synthesize volumeParentView = _volumeParentView;
-@synthesize radioController = _radioController;
+//@synthesize radioController = _radioController;
 @synthesize logoutButton = _logoutButton;
 @synthesize facebookDelegate = _facebookDelegate;
 
@@ -32,22 +32,22 @@
     [self.facebookDelegate.facebook logout];
 }
 
-- (IBAction)togglePlayPause:(id)sender {
-    
-    NSLog(@"Toggle Self: %@\n", self);
-    
-    if (self.radioController.isPlaying) {
-        NSLog(@"is playing");
-        [self.radioController pause:sender];
-        [self showPlayButton];
-    }
-    
-    else {
-        NSLog(@"not playing, RC: %@", self.radioController);
-        [self.radioController play: sender];
-        [self showPauseButton];
-    }
-}
+//- (IBAction)togglePlayPause:(id)sender {
+//    
+//    NSLog(@"Toggle Self: %@\n", self);
+//    
+//    if (self.radioController.isPlaying) {
+//        NSLog(@"is playing");
+//        [self.radioController pause:sender];
+//        [self showPlayButton];
+//    }
+//    
+//    else {
+//        NSLog(@"not playing, RC: %@", self.radioController);
+//        [self.radioController play: sender];
+//        [self showPauseButton];
+//    }
+//}
 
 - (void) viewDidUnload
 {
@@ -59,7 +59,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self syncPlayPauseButtons];
+//    [self syncPlayPauseButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated

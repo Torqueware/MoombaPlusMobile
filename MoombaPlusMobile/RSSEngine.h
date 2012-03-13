@@ -15,7 +15,9 @@
 
 @interface RSSEngine : NSObject
 
+@property (strong, nonatomic) NSArray *content;
 @property (readonly) bool     empty;
+
 @property (readonly) int      heartbeat;
 
 - (id) init;
@@ -23,10 +25,6 @@
 - (id) initWithUrl:(NSURL *)feed;
 
 - (void) forceRefresh;
-
-- (NSArray *) dumpFeeds;
-
-- (RSSEntry *) dumpOne;
 
 @end
 

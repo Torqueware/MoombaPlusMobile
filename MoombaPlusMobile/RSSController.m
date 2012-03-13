@@ -12,7 +12,6 @@
 @implementation RSSController
 
 @synthesize blogEngine = _blogEngine;
-@synthesize radioController = _radioController;
 @synthesize blogTitle = _blogTitle;
 @synthesize blogDate = _blogDate;
 @synthesize blogMeta = _blogMeta;
@@ -38,8 +37,8 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];  
-    self.radioController.isPlaying = YES;
-    [self syncPlayPauseButtons];
+//    self.radioController.isPlaying = YES;
+//    [self syncPlayPauseButtons];
     
     [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
     [self.logoutButton addTarget:self
@@ -75,19 +74,19 @@
     
     [self.facebookDelegate.facebook dialog:@"feed" andParams:params andDelegate:self.facebookDelegate];
 }
-
-- (IBAction)togglePlayPause:(id)sender {
-    NSLog(@"Toggle Self: %@\n", self);
-    if (self.radioController.isPlaying) {
-        [self.radioController pause:sender];
-        [self showPlayButton];
-    }
-    
-    else {
-        [self.radioController play:sender];
-        [self showPauseButton];
-    }
-}
+//
+//- (IBAction)togglePlayPause:(id)sender {
+//    NSLog(@"Toggle Self: %@\n", self);
+//    if (self.radioController.isPlaying) {
+//        [self.radioController pause:sender];
+//        [self showPlayButton];
+//    }
+//    
+//    else {
+//        [self.radioController play:sender];
+//        [self showPauseButton];
+//    }
+//}
 
 - (void) viewDidUnload
 {
@@ -120,7 +119,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self syncPlayPauseButtons];
+//    [self syncPlayPauseButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -144,6 +143,8 @@
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+
 
 @end
 

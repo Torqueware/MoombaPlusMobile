@@ -22,6 +22,7 @@
 @property (readwrite) int                       heartbeat;
 
 - (void) refresh;
+
 + (NSArray *)parseFeed: (GDataXMLElement *)root;
 + (NSArray *)parseRSS:  (GDataXMLElement *)root;
 + (NSArray *)parseAtom: (GDataXMLElement *)root;
@@ -31,7 +32,7 @@
 @implementation RSSEngine
 
 @synthesize feed = _feed, queue = _queue, cache = _cache, heartbeat = _heartbeat;
-@dynamic empty;
+@dynamic content, empty;
 
 - (id) init {
     self = [super init];
@@ -47,6 +48,10 @@
    [self refresh];
 
    return self;
+}
+
+- (NSArray *) content {
+    return [NSArray arrayWithArray:self.cache];
 }
 
 - (bool) empty {
@@ -165,26 +170,9 @@
    NSLog(@"Error: %@", error);
 }
 
-- (NSArray *) dumpFeeds {
-   NSArray *feedDump = (NSArray *) self.cache;
-   
-   if(!self.empty) self.cache = nil;
-   
-   return feedDump;
-}
-
-- (RSSEntry *) dumpOne {
-   RSSEntry *one = (self.empty) ? nil : [self.cache objectAtIndex:0];
-   
-   if (!self.empty) [self.cache removeObjectAtIndex:0];
-   
-   return one;
-}
-
 - (void) dealloc {
    [_queue cancelAllOperations];
    [_cache removeAllObjects];
-   
    
    _cache = nil;
    _queue = nil;

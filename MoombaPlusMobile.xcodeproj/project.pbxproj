@@ -33,6 +33,10 @@
 		DE01565114EFA9550060CE19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01565014EFA9550060CE19 /* SystemConfiguration.framework */; };
 		DE0514F114F1BDDD00616788 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0514F014F1BDDD00616788 /* icon.png */; };
 		DE0CBFA1150EF78A007A41B0 /* StreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */; };
+		DE0CBFA5150F4A9F007A41B0 /* NewRSSController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0CBFA4150F4A9F007A41B0 /* NewRSSController.m */; };
+		DE0CBFA7150F4D75007A41B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0CBFA6150F4D75007A41B0 /* Security.framework */; };
+		DE0CBFA9150F4E29007A41B0 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0CBFA8150F4E29007A41B0 /* CoreFoundation.framework */; };
+		DE0CBFAB150F4EAA007A41B0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0CBFAA150F4EAA007A41B0 /* CoreAudio.framework */; };
 		DE1D766A150DA91800ACC4B9 /* irc.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7662150DA91700ACC4B9 /* irc.png */; };
 		DE1D766B150DA91800ACC4B9 /* irc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7663150DA91700ACC4B9 /* irc@2x.png */; };
 		DE1D766C150DA91800ACC4B9 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7664150DA91800ACC4B9 /* rss.png */; };
@@ -116,6 +120,11 @@
 		DE0514F014F1BDDD00616788 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		DE0CBF9F150EF78A007A41B0 /* StreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamEngine.h; sourceTree = "<group>"; };
 		DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamEngine.m; sourceTree = "<group>"; };
+		DE0CBFA3150F4A9F007A41B0 /* NewRSSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRSSController.h; sourceTree = "<group>"; };
+		DE0CBFA4150F4A9F007A41B0 /* NewRSSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRSSController.m; sourceTree = "<group>"; };
+		DE0CBFA6150F4D75007A41B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		DE0CBFA8150F4E29007A41B0 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		DE0CBFAA150F4EAA007A41B0 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		DE1D7662150DA91700ACC4B9 /* irc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irc.png; sourceTree = "<group>"; };
 		DE1D7663150DA91700ACC4B9 /* irc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irc@2x.png"; sourceTree = "<group>"; };
 		DE1D7664150DA91800ACC4B9 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
@@ -157,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE01564F14EFA9450060CE19 /* libz.1.2.5.dylib in Frameworks */,
+				DE0CBFA7150F4D75007A41B0 /* Security.framework in Frameworks */,
 				DE01565114EFA9550060CE19 /* SystemConfiguration.framework in Frameworks */,
 				C23AD11514ECDB96000E132F /* QuartzCore.framework in Frameworks */,
 				C23AD11314ECDB65000E132F /* CFNetwork.framework in Frameworks */,
@@ -165,8 +175,10 @@
 				C2C3F71D14E7456B00922D72 /* MediaPlayer.framework in Frameworks */,
 				C2C3F71314E7389E00922D72 /* AVFoundation.framework in Frameworks */,
 				DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */,
-				DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */,
+				DE0CBFAB150F4EAA007A41B0 /* CoreAudio.framework in Frameworks */,
 				DE3F412A14E1BB1300B12A5E /* CoreGraphics.framework in Frameworks */,
+				DE0CBFA9150F4E29007A41B0 /* CoreFoundation.framework in Frameworks */,
+				DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */,
 				C2F86DFE150970BE0074DC94 /* libfacebook_ios_sdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +291,9 @@
 			isa = PBXGroup;
 			children = (
 				DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */,
+				DE0CBFAA150F4EAA007A41B0 /* CoreAudio.framework */,
+				DE0CBFA8150F4E29007A41B0 /* CoreFoundation.framework */,
+				DE0CBFA6150F4D75007A41B0 /* Security.framework */,
 				DE01565014EFA9550060CE19 /* SystemConfiguration.framework */,
 				C23AD11414ECDB96000E132F /* QuartzCore.framework */,
 				C23AD11214ECDB65000E132F /* CFNetwork.framework */,
@@ -345,6 +360,8 @@
 				C2C3F70A14E726CF00922D72 /* IRCController.m */,
 				DE1D7676150DAAB400ACC4B9 /* StreamController.h */,
 				DE1D7677150DAAB400ACC4B9 /* StreamController.m */,
+				DE0CBFA3150F4A9F007A41B0 /* NewRSSController.h */,
+				DE0CBFA4150F4A9F007A41B0 /* NewRSSController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -459,6 +476,7 @@
 				DE1D7679150DAAB400ACC4B9 /* StreamController.m in Sources */,
 				DE1D767D150DAB8300ACC4B9 /* SingleFeed.m in Sources */,
 				DE0CBFA1150EF78A007A41B0 /* StreamEngine.m in Sources */,
+				DE0CBFA5150F4A9F007A41B0 /* NewRSSController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +564,7 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -564,6 +583,7 @@
 				);
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -11,20 +11,78 @@
 @interface StreamEngine ()
 
 @property (strong, nonatomic) AVPlayer      *player;
+@property (strong, nonatomic) AVURLAsset    *asset;
+@property (strong, nonatomic) AVPlayerItem  *item;
+
+- (void) setURL:(NSURL *)url;
+- (void) prepareAsset:(AVURLAsset *)asset;  
 
 @end
 
 @implementation StreamEngine
 
+static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewControllerStatusObservationContext;
+
 @synthesize player = _player;
+@synthesize asset = _asset;
+@synthesize item = _item;
 
 @dynamic isPlaying;
 
 - (id) init {
     self    = [super init];
-
+        
     return self;
 }
+
+- (void) setURL:(NSURL *)url {
+    NSArray *keys = [NSArray arrayWithObjects:@"tracks", @"playable", nil];
+    
+    self.asset = [AVURLAsset URLAssetWithURL:url options:nil];
+    
+    [self.asset loadValuesAsynchronouslyForKeys:keys completionHandler:^{
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           [self prepareAsset:self.asset];
+                       });
+    }];
+}
+
+- (void) prepareAsset:(AVURLAsset *)asset {    
+    self.item = [AVPlayerItem playerItemWithAsset:self.asset];
+    
+    [self.item       addObserver:self
+                      forKeyPath:@"status"
+                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial
+                         context:PlaybackViewControllerStatusObservationContext];
+    
+    _player = [AVPlayer playerWithPlayerItem:self.item];
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context {
+    
+    if (context == PlaybackViewControllerStatusObservationContext) {
+        
+        AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
+        
+        switch (status) {
+            case AVPlayerStatusReadyToPlay:
+                [self play];
+                break;
+                
+            case AVPlayerStatusUnknown:
+                break;     
+                
+            case AVPlayerStatusFailed:
+                NSLog(@"The status of the object failed.  In observeValueForKeyPath:");
+                break;
+        }
+    }
+}
+
 
 // variable overrides
 
@@ -46,7 +104,9 @@
 }
 
 - (void) play {
-    self.player = [AVPlayer playerWithURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+    if (!self.player)
+        [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+    
     [self.player play];
 }
 
