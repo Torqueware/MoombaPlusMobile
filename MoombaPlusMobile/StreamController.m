@@ -23,7 +23,7 @@
 
 @implementation StreamController
 
-@synthesize stream           = _stream;
+@synthesize streamEngine           = _streamEngine;
 
 @synthesize volumeParentView = _volumeParentView;
 
@@ -31,8 +31,8 @@
 @synthesize playButton       = _playButton;
 @synthesize pauseButton      = _pauseButton;
 
-- (void) setStreamEngine:(StreamEngine *)stream {
-    self.stream = stream;
+- (void) setEngine:(StreamEngine *)stream {
+    self.streamEngine = stream;
 }
 
 - (void) viewDidLoad
@@ -56,7 +56,7 @@
                                                                                    target:nil
                                                                                    action:nil];
     
-    if (self.stream.isPlaying) {
+    if (self.streamEngine.isPlaying) {
         [self.toolbar setItems:[NSArray arrayWithObjects:left, self.pauseButton, right, nil]];
     } else {
         [self.toolbar setItems:[NSArray arrayWithObjects:left, self.playButton, right, nil]];
@@ -70,8 +70,8 @@
 - (IBAction)play:(id)sender {
     NSLog(@"play");
 
-    if (!self.stream.isPlaying) {
-        [self.stream play];
+    if (!self.streamEngine.isPlaying) {
+        [self.streamEngine play];
         
         NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
         [items replaceObjectAtIndex:1 withObject:self.pauseButton];
@@ -82,8 +82,8 @@
 - (IBAction)pause:(id)sender {
     NSLog(@"paused");
 
-    if (self.stream.isPlaying) {
-        [self.stream pause];
+    if (self.streamEngine.isPlaying) {
+        [self.streamEngine pause];
         
         NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
         [items replaceObjectAtIndex:1 withObject:self.playButton];

@@ -9,17 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "RSSEngine.h"
 #import "FacebookDelegate.h"
+#import "WebViewController.h"
 
 @interface RSSController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) RSSEngine        *blogEngine;
+@property (weak, nonatomic) RSSEngine          *blogEngine;
 
 @property (weak, nonatomic) IBOutlet UIButton  *logoutButton;
-@property (weak, nonatomic) IBOutlet UIButton  *shareButton;
 
 @property (strong, nonatomic) FacebookDelegate *facebookDelegate;
 
 - (void) logoutButtonClicked:(id)sender;
-- (void) shareButtonClicked:(id)sender;
+
+- (void) setEngine:(RSSEngine *)blogEngine;
 
 @end

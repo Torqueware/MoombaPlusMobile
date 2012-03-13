@@ -32,23 +32,6 @@
     [self.facebookDelegate.facebook logout];
 }
 
-//- (IBAction)togglePlayPause:(id)sender {
-//    
-//    NSLog(@"Toggle Self: %@\n", self);
-//    
-//    if (self.radioController.isPlaying) {
-//        NSLog(@"is playing");
-//        [self.radioController pause:sender];
-//        [self showPlayButton];
-//    }
-//    
-//    else {
-//        NSLog(@"not playing, RC: %@", self.radioController);
-//        [self.radioController play: sender];
-//        [self showPauseButton];
-//    }
-//}
-
 - (void) viewDidUnload
 {
     [super viewDidUnload];

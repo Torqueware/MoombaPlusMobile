@@ -8,10 +8,8 @@
 
 @interface RSSEntry : NSObject
 
-@property (copy) UIImage  *thumb;
-@property (copy) NSArray  *cloudLinks;
-
 @property (copy) NSString *title;
+@property (copy) NSString *thumb;
 @property (copy) NSDate   *date;
 @property (copy) NSString *url;
 

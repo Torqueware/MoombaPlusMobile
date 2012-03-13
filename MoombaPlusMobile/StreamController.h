@@ -13,8 +13,8 @@
 
 @interface StreamController : UIViewController
 
-@property (weak, nonatomic) StreamEngine *stream;
+@property (weak, nonatomic) StreamEngine *streamEngine;
 
-- (void) setStreamEngine:(StreamEngine *)stream;
+- (void) setEngine:(StreamEngine *)stream;
 
 @end

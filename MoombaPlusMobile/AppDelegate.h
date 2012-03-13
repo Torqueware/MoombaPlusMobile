@@ -10,9 +10,13 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
-#import "IRCController.h"
+#import "StreamController.h"
 #import "RSSController.h"
+#import "IRCController.h"
+
 #import "StreamEngine.h"
+#import "RSSEngine.h"
+
 #import "FacebookDelegate.h"
 
 #define STREAM 0

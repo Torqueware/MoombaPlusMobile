@@ -49,31 +49,45 @@
                                 </view>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="htc-Fu-cfi" kind="push" id="jmI-vl-1Kb"/>
+                                    <segue destination="htc-Fu-cfi" kind="push" identifier="webSegue" id="jmI-vl-1Kb"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Blog" image="rss.png" id="7"/>
-                    <navigationItem key="navigationItem" title="Latest Articles" id="nWI-ld-qqi"/>
+                    <navigationItem key="navigationItem" title="Latest Articles" id="nWI-ld-qqi">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="SnT-S8-E38">
+                            <connections>
+                                <action selector="reload" destination="10" id="tSu-ud-pEu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="998" y="-491"/>
+            <point key="canvasLocation" x="126" y="-1061"/>
         </scene>
         <scene sceneID="dAI-V3-Gha">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9aQ-ro-T8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="htc-Fu-cfi" sceneMemberID="viewController">
+                <viewController id="htc-Fu-cfi" customClass="WebViewController" sceneMemberID="viewController">
                     <webView key="view" contentMode="scaleToFill" id="xr1-9i-zMv">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <dataDetectorType key="dataDetectorTypes"/>
+                        <connections>
+                            <outlet property="delegate" destination="htc-Fu-cfi" id="JbY-jU-pG0"/>
+                        </connections>
                     </webView>
-                    <navigationItem key="navigationItem" id="dVq-Oe-Zvq"/>
+                    <navigationItem key="navigationItem" id="dVq-Oe-Zvq">
+                        <barButtonItem key="rightBarButtonItem" title="Facebook" style="plain" id="Lrf-h6-HUY"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="xr1-9i-zMv" id="gvX-RN-FWL"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1401" y="-491"/>
+            <point key="canvasLocation" x="529" y="-1061"/>
         </scene>
         <scene sceneID="sNz-t3-AXz">
             <objects>
@@ -88,7 +102,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="586" y="-491"/>
+            <point key="canvasLocation" x="-286" y="-1061"/>
         </scene>
         <scene sceneID="13">
             <objects>
@@ -102,7 +116,7 @@
                     <tabBarItem key="tabBarItem" title="Chat" image="irc_plus.png" id="6"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="586" y="86"/>
+            <point key="canvasLocation" x="-286" y="-484"/>
         </scene>
         <scene sceneID="15">
             <objects>
@@ -121,7 +135,7 @@
                     </connections>
                 </tabBarController>
             </objects>
-            <point key="canvasLocation" x="46" y="-1064"/>
+            <point key="canvasLocation" x="-826" y="-1634"/>
         </scene>
         <scene sceneID="VTS-4q-dfO">
             <objects>
@@ -160,7 +174,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="586" y="-1064"/>
+            <point key="canvasLocation" x="-286" y="-1634"/>
         </scene>
     </scenes>
     <resources>
@@ -177,6 +191,12 @@
                 <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
             </relationships>
         </class>
+        <class className="RSSController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RSSController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="logoutButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
         <class className="SingleFeed" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleFeed.h"/>
         </class>
@@ -187,6 +207,13 @@
                 <relationship kind="action" name="play:"/>
                 <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
             </relationships>
         </class>
     </classes>

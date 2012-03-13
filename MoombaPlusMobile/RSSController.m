@@ -22,7 +22,6 @@
 @synthesize blogEngine = _blogEngine;
 
 @synthesize logoutButton;
-@synthesize shareButton;
 @synthesize facebookDelegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -33,24 +32,26 @@
         // Custom initialization
         [[self tableView] setDelegate:self];
         [[self tableView] setDataSource:self];
-        
-        self.blogEngine = [[RSSEngine alloc] init];
-        
-        [self.blogEngine addObserver:self forKeyPath:@"allEntries"
-                             options:(NSKeyValueObservingOptionInitial | NSKeyValueChangeSetting)
-                             context:nil];
     }
+    
     return self;
 }
 
+- (void) setEngine:(RSSEngine *)engine {
+    if (self.blogEngine)
+        [self.blogEngine removeObserver:self forKeyPath:@"allEntries"];
+
+    self.blogEngine = engine;
+    [self.blogEngine addObserver:self
+                      forKeyPath:@"allEntries" 
+                         options:(NSKeyValueChangeInsertion | NSKeyValueChangeReplacement | NSKeyValueChangeRemoval) 
+                         context:nil];
+}
+
 - (void) logoutButtonClicked:(id)sender {
-    
+    NSLog(@"in logout IRC");
+    [self.facebookDelegate.facebook logout];
 }
-
-- (void) shareButtonClicked:(id)sender {
-    
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -65,11 +66,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    self.title = @"Articles";
-    
-    [self.tableView reloadData];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -81,9 +77,12 @@
                        ofObject:(id)object
                          change:(NSDictionary *)change
                         context:(void *)context {
-    
-    NSLog(@"Notified!");
-    [self.tableView reloadData];
+
+    if ([keyPath isEqualToString:@"allEntries"]) {
+        [self.tableView reloadData];        
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 - (void)viewDidUnload
@@ -147,7 +146,7 @@
     RSSEntry *current = [self.blogEngine.allEntries objectAtIndex:indexPath.row];
     
     cell.textLabel.text = current.title;
-    cell.detailTextLabel.text = [current.url description];
+    cell.detailTextLabel.text = [current.date description];
     
     // Configure the cell...
     
@@ -155,16 +154,27 @@
 }
 
 #pragma mark - Table view delegate
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
+    
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+     
+} */
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
+    
+    if ([[segue identifier] isEqualToString:@"webSegue"]) {
+        WebViewController *destination = [segue destinationViewController];
+        
+        destination.facebookDelegate = self.facebookDelegate;
+        destination.feed             = (RSSEntry *)[self.blogEngine.allEntries objectAtIndex:selectedIndex.row];    
+    }
 }
 
 @end

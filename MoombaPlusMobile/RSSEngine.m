@@ -49,6 +49,13 @@
    return self;
 }
 
++ (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key {    
+    if (![key isEqualToString:@"allEntries"])
+        return [super automaticallyNotifiesObserversForKey:key];
+    
+    return NO;
+}
+
 - (NSArray *) allEntries {
     if (self.cache != nil) {
         return [NSArray arrayWithArray:self.cache];
@@ -77,9 +84,9 @@
                return [((RSSEntry *)this).date compare:((RSSEntry *)that).date];
            }];
           
-           [self willChangeValueForKey:@"allEntries"];
+           [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:[NSIndexSet indexSetWithIndex:i] forKey:@"allEntries"];
            [self.cache insertObject:this atIndex:i];
-           [self didChangeValueForKey:@"allEntries"];
+           [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:[NSIndexSet indexSetWithIndex:i] forKey:@"allEntries"];
        }
    }
 #ifdef __DEBUG__

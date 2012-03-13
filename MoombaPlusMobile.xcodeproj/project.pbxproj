@@ -30,6 +30,7 @@
 		DE01564F14EFA9450060CE19 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */; };
 		DE01565114EFA9550060CE19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01565014EFA9550060CE19 /* SystemConfiguration.framework */; };
 		DE0514F114F1BDDD00616788 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0514F014F1BDDD00616788 /* icon.png */; };
+		DE0B7B88150FD7CA00CE56B7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B7B87150FD7CA00CE56B7 /* WebViewController.m */; };
 		DE0CBFA1150EF78A007A41B0 /* StreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */; };
 		DE0CBFA5150F4A9F007A41B0 /* RSSController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0CBFA4150F4A9F007A41B0 /* RSSController.m */; };
 		DE0CBFA7150F4D75007A41B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0CBFA6150F4D75007A41B0 /* Security.framework */; };
@@ -120,6 +121,8 @@
 		DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DE01565014EFA9550060CE19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DE0514F014F1BDDD00616788 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		DE0B7B86150FD7CA00CE56B7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		DE0B7B87150FD7CA00CE56B7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		DE0CBF9F150EF78A007A41B0 /* StreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamEngine.h; sourceTree = "<group>"; };
 		DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamEngine.m; sourceTree = "<group>"; };
 		DE0CBFA3150F4A9F007A41B0 /* RSSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSController.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				DE0CBFA4150F4A9F007A41B0 /* RSSController.m */,
 				C2C3F70914E726CE00922D72 /* IRCController.h */,
 				C2C3F70A14E726CF00922D72 /* IRCController.m */,
+				DE0B7B86150FD7CA00CE56B7 /* WebViewController.h */,
+				DE0B7B87150FD7CA00CE56B7 /* WebViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				DE0CBFA5150F4A9F007A41B0 /* RSSController.m in Sources */,
 				DEF5D76D150F98EA00E28D5E /* NSDate+InternetDateTime.m in Sources */,
 				DEF5D770150F9A9B00E28D5E /* NSArray+Extras.m in Sources */,
+				DE0B7B88150FD7CA00CE56B7 /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
