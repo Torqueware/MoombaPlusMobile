@@ -14,7 +14,7 @@
 
 #define FACEBOOK_APP_ID @"332658496785553"
 
-@interface RSSController : RadioController {}
+@interface RSSController : UIViewController {}
 
 @property (strong, nonatomic) RSSEngine        *blogEngine;
 

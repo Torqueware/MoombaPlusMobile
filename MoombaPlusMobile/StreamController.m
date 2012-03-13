@@ -10,52 +10,84 @@
 
 @interface StreamController ()
 
-- (void) observeValueForKeyPath:(NSString *)keyPath
-                       ofObject:(id)object
-                         change:(NSDictionary *)change
-                        context:(void *)context;
+@property (strong, nonatomic) IBOutlet UIView       *volumeParentView;
+
+@property (strong, nonatomic) IBOutlet UIToolbar    *toolbar;
+@property (strong, nonatomic) UIBarButtonItem       *playButton;
+@property (strong, nonatomic) UIBarButtonItem       *pauseButton;
+
+- (IBAction)play:(id)sender;
+- (IBAction)pause:(id)sender;
 
 @end
 
 @implementation StreamController
 
+@synthesize stream           = _stream;
+
 @synthesize volumeParentView = _volumeParentView;
-@synthesize toolbar = _toolbar;
+
+@synthesize toolbar          = _toolbar;
+@synthesize playButton       = _playButton;
+@synthesize pauseButton      = _pauseButton;
+
+- (void) setStreamEngine:(StreamEngine *)stream {
+    self.stream = stream;
+}
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [self addObserver:self forKeyPath:@"isPlayings" options:nil context:nil];
-
+    
+    self.volumeParentView.backgroundColor = [UIColor clearColor];
+    [self.volumeParentView addSubview:[[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds]];
+    
+    self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
+                                                                    target:self
+                                                                    action:@selector(play:)];
+    self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
+                                                                     target:self
+                                                                     action:@selector(pause:)];
+    self.toolbar.barStyle = UIBarStyleBlack;
+    UIBarButtonItem *left  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                                   target:nil
+                                                                                   action:nil];
+    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                                   target:nil
+                                                                                   action:nil];
+    
+    if (self.stream.isPlaying) {
+        [self.toolbar setItems:[NSArray arrayWithObjects:left, self.pauseButton, right, nil]];
+    } else {
+        [self.toolbar setItems:[NSArray arrayWithObjects:left, self.playButton, right, nil]];
+    }
+        
+    NSLog(@"Target Self: %@\n  Toolbar: %@\n", self, self.toolbar);
     
     // Do any additional setup after loading the view, typically from a nibs
 }
 
-- (IBAction)togglePlayPause:(id)sender {
-    
-    NSLog(@"Toggle Self: %@\n", self);
-    
-    if (self.radioController.isPlaying) {
-        NSLog(@"is playing");
-        [self.radioController pause:sender];
-        [self showPlayButton];
-    }
-    
-    else {
-        NSLog(@"not playing, RC: %@", self.radioController);
-        [self.radioController play: sender];
-        [self showPauseButton];
+- (IBAction)play:(id)sender {
+    NSLog(@"play");
+
+    if (!self.stream.isPlaying) {
+        [self.stream play];
+        
+        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
+        [items replaceObjectAtIndex:1 withObject:self.pauseButton];
+        self.toolbar.items = items;
     }
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath
-                       ofObject:(id)object
-                         change:(NSDictionary *)change
-                        context:(void *)context {
-    if (self.isPlaying) {
-        NSLog(@"Playing");    
-    } else {
-        NSLog(@"NotPlaying");
+- (IBAction)pause:(id)sender {
+    NSLog(@"paused");
+
+    if (self.stream.isPlaying) {
+        [self.stream pause];
+        
+        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
+        [items replaceObjectAtIndex:1 withObject:self.playButton];
+        self.toolbar.items = items;
     }
 }
 
@@ -69,7 +101,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self syncPlayPauseButtons];
 }
 
 - (void)viewDidAppear:(BOOL)animated

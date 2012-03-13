@@ -11,15 +11,27 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize radioController = _radioController;
+@synthesize stream = _stream;
 @synthesize facebookDelegate = _facebookDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
+{ // Override point for customization after application launch.
+    NSError *delegateError = nil;
+    UInt32 doChangeDefaultRoute = 1;
+    
+    // Setup background execution for the radio object
+    [[AVAudioSession sharedInstance] setDelegate:self];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback
+                                           error:&delegateError];
 
-    self.radioController = [[RadioController alloc] init];
-    [self.radioController setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+    AudioSessionSetProperty(kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,
+                            sizeof(doChangeDefaultRoute),
+                            &doChangeDefaultRoute);
+    [[AVAudioSession sharedInstance] setActive:true error:&delegateError];
+    
+    // set up audio stream controller
+    self.stream = [[StreamEngine alloc] init];
+    [self.stream play];
     
     // set up FacebookDelegate wrapper class  
     self.facebookDelegate = [[FacebookDelegate alloc] init];
@@ -27,16 +39,11 @@
     
     UITabBarController *tabBar = (id)self.window.rootViewController;
     
-    [[tabBar.viewControllers objectAtIndex:STREAM] setRadioController:self.radioController];
-    [[tabBar.viewControllers objectAtIndex:FEED] setRadioController:self.radioController];
-    [[tabBar.viewControllers objectAtIndex:CHAT] setRadioController:self.radioController];
+    [[tabBar.viewControllers objectAtIndex:STREAM] setStream:self.stream];
     
-    [[tabBar.viewControllers objectAtIndex:FEED] setFacebookDelegate:self.facebookDelegate];
-    [[tabBar.viewControllers objectAtIndex:CHAT] setFacebookDelegate:self.facebookDelegate];
-    
-    //[self.radioController setRadioController:self.radioController];
-    [[tabBar.viewControllers objectAtIndex:FEED] setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
-    
+    [[tabBar.viewControllers objectAtIndex:FEED]    setFacebookDelegate:self.facebookDelegate];
+    [[tabBar.viewControllers objectAtIndex:FEED]    setFeedURL:[NSURL URLWithString:MOOMBA_PLUS_FEED]];
+        
     return YES;
 }
 							

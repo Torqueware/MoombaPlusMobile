@@ -13,7 +13,7 @@
 #import "RadioController.h"
 #import "FacebookDelegate.h"
 
-@interface IRCController : RadioController
+@interface IRCController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UIView *volumeParentView;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;

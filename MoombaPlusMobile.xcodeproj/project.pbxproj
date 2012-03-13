@@ -32,6 +32,7 @@
 		DE01564F14EFA9450060CE19 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */; };
 		DE01565114EFA9550060CE19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE01565014EFA9550060CE19 /* SystemConfiguration.framework */; };
 		DE0514F114F1BDDD00616788 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DE0514F014F1BDDD00616788 /* icon.png */; };
+		DE0CBFA1150EF78A007A41B0 /* StreamEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */; };
 		DE1D766A150DA91800ACC4B9 /* irc.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7662150DA91700ACC4B9 /* irc.png */; };
 		DE1D766B150DA91800ACC4B9 /* irc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7663150DA91700ACC4B9 /* irc@2x.png */; };
 		DE1D766C150DA91800ACC4B9 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7664150DA91800ACC4B9 /* rss.png */; };
@@ -113,6 +114,8 @@
 		DE01564E14EFA9450060CE19 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		DE01565014EFA9550060CE19 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DE0514F014F1BDDD00616788 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		DE0CBF9F150EF78A007A41B0 /* StreamEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamEngine.h; sourceTree = "<group>"; };
+		DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamEngine.m; sourceTree = "<group>"; };
 		DE1D7662150DA91700ACC4B9 /* irc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irc.png; sourceTree = "<group>"; };
 		DE1D7663150DA91700ACC4B9 /* irc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "irc@2x.png"; sourceTree = "<group>"; };
 		DE1D7664150DA91800ACC4B9 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 				DEBEC63814EDD83200FD52E8 /* RSSEntry.m */,
 				DEF7C6B614ECB926000C068C /* RSSEngine.h */,
 				DEF7C6B714ECB926000C068C /* RSSEngine.m */,
+				DE0CBF9F150EF78A007A41B0 /* StreamEngine.h */,
+				DE0CBFA0150EF78A007A41B0 /* StreamEngine.m */,
 				C2F86E00150985E70074DC94 /* FacebookDelegate.h */,
 				C2F86E01150985E70074DC94 /* FacebookDelegate.m */,
 			);
@@ -453,6 +458,7 @@
 				C2F86E02150985E70074DC94 /* FacebookDelegate.m in Sources */,
 				DE1D7679150DAAB400ACC4B9 /* StreamController.m in Sources */,
 				DE1D767D150DAB8300ACC4B9 /* SingleFeed.m in Sources */,
+				DE0CBFA1150EF78A007A41B0 /* StreamEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

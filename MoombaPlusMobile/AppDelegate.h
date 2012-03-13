@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "IRCController.h"
 #import "RSSController.h"
 #import "RadioController.h"
+#import "StreamEngine.h"
 #import "FacebookDelegate.h"
 
 #define STREAM 0
@@ -18,8 +22,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) RadioController *radioController;
-@property (strong, nonatomic) FacebookDelegate *facebookDelegate;
+@property (strong, nonatomic) UIWindow          *window;
+@property (strong, nonatomic) StreamEngine      *stream;
+@property (strong, nonatomic) FacebookDelegate  *facebookDelegate;
 
 @end

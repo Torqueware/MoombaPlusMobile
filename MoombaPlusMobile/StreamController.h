@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "RadioController.h"
 
-@interface StreamController : RadioController
+#import "StreamEngine.h"
 
-@property (strong, nonatomic) IBOutlet UIView *volumeParentView;
-@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
+@interface StreamController : UIViewController
+
+@property (weak, nonatomic) StreamEngine *stream;
+
+- (void) setStreamEngine:(StreamEngine *)stream;
 
 @end
