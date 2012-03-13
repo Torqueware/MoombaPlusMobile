@@ -101,16 +101,7 @@
                       context:(void *)context {
 
    if (!self.blogEngine.empty) {
-      
-      RSSEntry *entry = [self.blogEngine dumpOne]; 
-    
-      NSLog(@"%@", entry.title);
-      
-      //self.blogThumb setImage: entry.thumb;
-      [self.blogTitle setText:  entry.title];
-      [self.blogDate  setText: [entry.date description]];
-//      [self.blogMeta  setText:  entry.title];
-      
+            
       [self.view setNeedsLayout];
       [self.view setNeedsDisplay];
    }
