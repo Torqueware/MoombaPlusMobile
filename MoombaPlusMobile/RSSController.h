@@ -15,11 +15,7 @@
 
 @property (weak, nonatomic) RSSEngine          *blogEngine;
 
-@property (weak, nonatomic) IBOutlet UIButton  *logoutButton;
-
 @property (strong, nonatomic) FacebookDelegate *facebookDelegate;
-
-- (void) logoutButtonClicked:(id)sender;
 
 - (void) setEngine:(RSSEngine *)blogEngine;
 

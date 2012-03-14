@@ -18,6 +18,4 @@
 
 @property (strong, nonatomic) FacebookDelegate *facebookDelegate;
 
-- (void) logoutButtonClicked:(id)sender;
-
 @end

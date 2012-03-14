@@ -21,7 +21,6 @@
 
 @synthesize blogEngine = _blogEngine;
 
-@synthesize logoutButton;
 @synthesize facebookDelegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,11 +45,6 @@
                       forKeyPath:@"allEntries" 
                          options:(NSKeyValueChangeInsertion | NSKeyValueChangeReplacement | NSKeyValueChangeRemoval) 
                          context:nil];
-}
-
-- (void) logoutButtonClicked:(id)sender {
-    NSLog(@"in logout RSS");
-    [self.facebookDelegate.facebook logout];
 }
 
 - (void)didReceiveMemoryWarning
