@@ -19,6 +19,8 @@
 
 #import "FacebookDelegate.h"
 
+#import "MemoryHound.h"
+
 #define STREAM 0
 #define FEED   1
 #define CHAT   2

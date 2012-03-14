@@ -45,6 +45,8 @@
     self.facebookDelegate = [[FacebookDelegate alloc] init];
   
     [self setViewModels];
+    
+    [MemoryHound startLowMemoryHound];
             
     return YES;
 }
