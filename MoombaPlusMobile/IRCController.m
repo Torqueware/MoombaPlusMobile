@@ -11,7 +11,6 @@
 @implementation IRCController
 
 @synthesize volumeParentView = _volumeParentView;
-//@synthesize radioController = _radioController;
 @synthesize logoutButton = _logoutButton;
 @synthesize facebookDelegate = _facebookDelegate;
 
