@@ -49,7 +49,7 @@
                                 </view>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="htc-Fu-cfi" kind="push" identifier="webSegue" id="jmI-vl-1Kb"/>
+                                    <segue destination="htc-Fu-cfi" kind="push" identifier="webSegue" id="ZQc-oR-cpp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
