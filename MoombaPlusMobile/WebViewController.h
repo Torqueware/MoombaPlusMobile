@@ -10,7 +10,7 @@
 #import "RSSEntry.h"
 #import "FacebookDelegate.h"
 
-@interface WebViewController : UINavigationController
+@interface WebViewController : UIViewController
 
 
 //@property (strong, nonatomic) UIWebView          *webView;

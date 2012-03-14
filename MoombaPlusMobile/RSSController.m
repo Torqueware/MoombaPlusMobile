@@ -172,8 +172,8 @@
     if ([[segue identifier] isEqualToString:@"webSegue"]) {
         WebViewController *destination = [segue destinationViewController];
         
-        destination.facebookDelegate = self.facebookDelegate;
-        destination.feed             = (RSSEntry *)[self.blogEngine.allEntries objectAtIndex:selectedIndex.row];    
+        destination.facebookDelegate   = self.facebookDelegate;
+        destination.feed               = (RSSEntry *)[self.blogEngine.allEntries objectAtIndex:selectedIndex.row];    
     }
 }
 
