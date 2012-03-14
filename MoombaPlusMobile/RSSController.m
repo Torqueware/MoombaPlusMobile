@@ -30,8 +30,8 @@
     
     if (self) {
         // Custom initialization
-        [[self tableView] setDelegate:self];
-        [[self tableView] setDataSource:self];
+//        [[self tableView] setDelegate:self];
+//        [[self tableView] setDataSource:self];
     }
     
     return self;
@@ -49,7 +49,7 @@
 }
 
 - (void) logoutButtonClicked:(id)sender {
-    NSLog(@"in logout IRC");
+    NSLog(@"in logout RSS");
     [self.facebookDelegate.facebook logout];
 }
 

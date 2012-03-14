@@ -18,22 +18,14 @@
 
 @synthesize feed             = _feed;
 @synthesize webView          = _webView;
+@synthesize scrollView       = _scrollView;
 @synthesize shareButton      = _shareButton;
 @synthesize facebookDelegate = _facebookDelegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        NSURL           *domain = [NSURL URLWithString:self.feed.url];
-        NSURLRequest    *please = [NSURLRequest requestWithURL:domain];
-        
-        _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-        [self.view      addSubview:self.webView];
-        [self.webView   loadRequest:please];
-        
-//        self.view
-        
+    if (self) {               
         // Custom initialization
     }
     return self;
@@ -41,6 +33,11 @@
 
 - (void) shareButtonClicked:(id)sender {
     
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.webView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,13 +60,17 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [self.view layoutSubviews];
-    NSLog(@"Testing");
+    [super viewDidLoad];
     
+    NSURL           *domain = [NSURL URLWithString:self.feed.url];
+    NSURLRequest    *please = [NSURLRequest requestWithURL:domain];
     
-    //Finally, load the damn thing
+    [self.webView   loadRequest:please];   
     
-    [super        viewDidLoad];
+    self.scrollView.minimumZoomScale=0.5;
+    self.scrollView.maximumZoomScale=6.0;
+    self.scrollView.delegate=self;
+   
 }
 
 

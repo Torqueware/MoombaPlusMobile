@@ -12,10 +12,10 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "FacebookDelegate.h"
 
-@interface IRCController : UIViewController
+#define IRC_STRING @"http://wbe003.mibbit.com/?settings=aae45fe8521c86ccfaa515437fe80193&server=irc.Mibbit.Net&channel=%23MoombaPlus_test_channel"
 
-@property (strong, nonatomic) IBOutlet UIView *volumeParentView;
-@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@interface IRCController : UIViewController <UIScrollViewDelegate>
+
 @property (strong, nonatomic) FacebookDelegate *facebookDelegate;
 
 - (void) logoutButtonClicked:(id)sender;

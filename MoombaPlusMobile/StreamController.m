@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UIToolbar    *toolbar;
 @property (strong, nonatomic) UIBarButtonItem       *playButton;
 @property (strong, nonatomic) UIBarButtonItem       *pauseButton;
+@property (strong, nonatomic) UIBarButtonItem       *leftFlex;
+@property (strong, nonatomic) UIBarButtonItem       *rightFlex;
 
 - (IBAction)play:(id)sender;
 - (IBAction)pause:(id)sender;
@@ -30,6 +32,9 @@
 @synthesize toolbar          = _toolbar;
 @synthesize playButton       = _playButton;
 @synthesize pauseButton      = _pauseButton;
+@synthesize leftFlex         = _leftFlex;
+@synthesize rightFlex        = _rightFlex;
+
 
 - (void) setEngine:(StreamEngine *)stream {
     self.streamEngine = stream;
@@ -49,20 +54,15 @@
                                                                      target:self
                                                                      action:@selector(pause:)];
     self.toolbar.barStyle = UIBarStyleBlack;
-    UIBarButtonItem *left  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+    
+    self.leftFlex  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
                                                                                    target:nil
                                                                                    action:nil];
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+    self.rightFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
                                                                                    target:nil
                                                                                    action:nil];
     
-    if (self.streamEngine.isPlaying) {
-        [self.toolbar setItems:[NSArray arrayWithObjects:left, self.pauseButton, right, nil]];
-    } else {
-        [self.toolbar setItems:[NSArray arrayWithObjects:left, self.playButton, right, nil]];
-    }
-        
-    NSLog(@"Target Self: %@\n  Toolbar: %@\n", self, self.toolbar);
+    [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
     
     // Do any additional setup after loading the view, typically from a nibs
 }
@@ -101,11 +101,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.streamEngine.isPlaying)
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+    else
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (self.streamEngine.isPlaying)
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+    else
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

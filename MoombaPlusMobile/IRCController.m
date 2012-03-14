@@ -8,12 +8,25 @@
 
 #import "IRCController.h"
 
+@interface IRCController() 
+@property (weak, nonatomic) IBOutlet UIButton *logoutButton;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@end
+
 @implementation IRCController
 
-@synthesize volumeParentView = _volumeParentView;
+
 @synthesize logoutButton = _logoutButton;
 @synthesize facebookDelegate = _facebookDelegate;
+@synthesize webView = _webView;
+@synthesize scrollView = _scrollView;
 
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.webView;
+}
 
 - (void) viewDidLoad
 {
@@ -22,6 +35,12 @@
     [self.logoutButton setTitle:@"Log Out" forState:UIControlStateNormal];
     [self.logoutButton addTarget:self action:@selector(logoutButtonClicked:)
            forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:IRC_STRING]]];   
+    
+    self.scrollView.minimumZoomScale=0.5;
+    self.scrollView.maximumZoomScale=6.0;
+    self.scrollView.delegate=self;
     
     // Do any additional setup after loading the view, typically from a nibs
 }
