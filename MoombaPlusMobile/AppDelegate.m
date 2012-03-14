@@ -46,7 +46,7 @@
   
     [self setViewModels];
     
-    [MemoryHound startLowMemoryHound];
+    [MemoryHound startRotateHound];
             
     return YES;
 }
