@@ -12,13 +12,13 @@
 
 @interface WebViewController : UIViewController <UIScrollViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIWebView *webView;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIButton  *shareButton;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 @property (weak, nonatomic) FacebookDelegate     *facebookDelegate;
 @property (weak, nonatomic) RSSEntry             *feed;
 
-- (void) shareButtonClicked:(id)sender;
+- (IBAction) shareButtonClicked:(id)sender;
 
 @end

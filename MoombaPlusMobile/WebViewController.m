@@ -31,8 +31,18 @@
     return self;
 }
 
-- (void) shareButtonClicked:(id)sender {
+- (IBAction) shareButtonClicked:(id)sender {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   FACEBOOK_APP_ID, @"app_id",
+                                   self.feed.url, @"link",
+                                   @"http://moombaplus.com/wp-content/uploads/2012/02/moomba-logo-yellow_smallBLACK-copy.jpg", @"picture",
+                                   @"Moomba Plus", @"name",
+                                   @"Blog post", @"caption",
+                                   @"All the newest and best moombahton, moombahsoul and moombahcore.", @"description",
+                                   @"Check out this song!",  @"message",
+                                   nil];
     
+    [self.facebookDelegate.facebook dialog:@"feed" andParams:params andDelegate:self];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
