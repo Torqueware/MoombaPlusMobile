@@ -13,9 +13,8 @@
 
 @interface RSSController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) RSSEngine          *blogEngine;
-
-@property (strong, nonatomic) FacebookDelegate *facebookDelegate;
+@property (weak, nonatomic) RSSEngine        *blogEngine;
+@property (weak, nonatomic) FacebookDelegate *facebookDelegate;
 
 - (void) setEngine:(RSSEngine *)blogEngine;
 

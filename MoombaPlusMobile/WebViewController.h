@@ -10,15 +10,9 @@
 #import "RSSEntry.h"
 #import "FacebookDelegate.h"
 
-@interface WebViewController : UIViewController <UIScrollViewDelegate, FBDialogDelegate>
+@interface WebViewController : UIViewController <UIScrollViewDelegate, FBDialogDelegate, UIWebViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
-
-@property (weak, nonatomic) FacebookDelegate     *facebookDelegate;
-@property (weak, nonatomic) RSSEntry             *feed;
-
-- (IBAction) shareButtonClicked:(id)sender;
+@property (weak, nonatomic) FacebookDelegate *facebookDelegate;
+@property (weak, nonatomic) RSSEntry         *feed;
 
 @end

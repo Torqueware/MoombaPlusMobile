@@ -10,13 +10,15 @@
 
 @interface StreamController ()
 
-@property (strong, nonatomic) IBOutlet UIView       *volumeParentView;
+@property (strong, nonatomic) IBOutlet UIView    *volumeParentView;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 
-@property (strong, nonatomic) IBOutlet UIToolbar    *toolbar;
-@property (strong, nonatomic) UIBarButtonItem       *playButton;
-@property (strong, nonatomic) UIBarButtonItem       *pauseButton;
-@property (strong, nonatomic) UIBarButtonItem       *leftFlex;
-@property (strong, nonatomic) UIBarButtonItem       *rightFlex;
+@property (strong, nonatomic) UIBarButtonItem    *playButton;
+@property (strong, nonatomic) UIBarButtonItem    *pauseButton;
+@property (strong, nonatomic) UIBarButtonItem    *leftFlex;
+@property (strong, nonatomic) UIBarButtonItem    *rightFlex;
+
+- (void) updateToolbar;
 
 - (IBAction)play:(id)sender;
 - (IBAction)pause:(id)sender;
@@ -25,75 +27,97 @@
 
 @implementation StreamController
 
-@synthesize streamEngine           = _streamEngine;
+@synthesize streamEngine     = _streamEngine;
 
 @synthesize volumeParentView = _volumeParentView;
-
 @synthesize toolbar          = _toolbar;
+
 @synthesize playButton       = _playButton;
 @synthesize pauseButton      = _pauseButton;
 @synthesize leftFlex         = _leftFlex;
 @synthesize rightFlex        = _rightFlex;
 
-
 - (void) setEngine:(StreamEngine *)stream {
+    if (self.streamEngine != nil) {
+        [self.streamEngine removeObserver:self forKeyPath:@"isPlaying"];
+    }
+    
     self.streamEngine = stream;
+    
+    [self.streamEngine addObserver:self
+                        forKeyPath:@"isPlaying"
+                           options:NSKeyValueChangeSetting
+                           context:nil];
 }
 
-- (void) viewDidLoad
-{
+- (void) observeValueForKeyPath:(NSString *)keyPath
+                       ofObject:(id)object
+                         change:(NSDictionary *)change
+                        context:(void *)context {
+    
+    if ([keyPath isEqualToString:@"isPlaying"])
+        [self updateToolbar];
+    
+    else
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+}
+
+- (void) viewDidLoad {
     [super viewDidLoad];
     
-    self.volumeParentView.backgroundColor = [UIColor clearColor];
-    [self.volumeParentView addSubview:[[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds]];
-    
     self.playButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay
-                                                                    target:self
-                                                                    action:@selector(play:)];
+                                                                     target:self
+                                                                     action:@selector(play:)];
     self.pauseButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause
                                                                      target:self
-                                                                     action:@selector(pause:)];
-    self.toolbar.barStyle = UIBarStyleBlack;
+                                                                     action:@selector(pause:)];    
+    self.leftFlex    = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                     target:nil
+                                                                     action:nil];
+    self.rightFlex   = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
+                                                                     target:nil
+                                                                     action:nil];
     
-    self.leftFlex  = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
-                                                                                   target:nil
-                                                                                   action:nil];
-    self.rightFlex = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace 
-                                                                                   target:nil
-                                                                                   action:nil];
-    
+    [self.volumeParentView addSubview:[[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds]];
     [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
-    
-    // Do any additional setup after loading the view, typically from a nibs
+}
+
+- (void) updateToolbar {
+    if (self.streamEngine.isPlaying) {
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+    } else {
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+    }
 }
 
 - (IBAction)play:(id)sender {
+#ifdef __DEBUG__
     NSLog(@"play");
-
+#endif
+    
     if (!self.streamEngine.isPlaying) {
         [self.streamEngine play];
-        
-        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
-        [items replaceObjectAtIndex:1 withObject:self.pauseButton];
-        self.toolbar.items = items;
     }
 }
 
 - (IBAction)pause:(id)sender {
+#ifdef __DEBUG__
     NSLog(@"paused");
-
+#endif
+    
     if (self.streamEngine.isPlaying) {
         [self.streamEngine pause];
-        
-        NSMutableArray *items = [NSMutableArray arrayWithArray:self.toolbar.items];
-        [items replaceObjectAtIndex:1 withObject:self.playButton];
-        self.toolbar.items = items;
     }
 }
 
 - (void) viewDidUnload
 {
     [super viewDidUnload];
+    
+    [self.streamEngine removeObserver:self forKeyPath:@"isPlaying"];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -101,21 +125,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (self.streamEngine.isPlaying)
-        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
-    else
-        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+    [self updateToolbar];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    if (self.streamEngine.isPlaying)
-        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
-    else
-        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -132,6 +147,10 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void) dealloc {
+    [self viewDidUnload];
 }
 
 @end

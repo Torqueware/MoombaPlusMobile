@@ -106,14 +106,19 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 }
 
 - (void) play {
-    if (!self.player)
+    if (!self.player) {
+//        [self willChangeValueForKey:@"isPlaying"];
+        
         [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
-    
+     
+//        [self didChangeValueForKey:@"isPlaying"];
+    }
+        
     [self.player play];
 }
 
 - (void) pause {
-    [self.player pause];
+//    [self.player pause];
     self.player = nil;
 }
 

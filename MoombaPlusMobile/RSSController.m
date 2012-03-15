@@ -10,10 +10,7 @@
 
 @interface RSSController ()
 
-- (void) observeValueForKeyPath:(NSString *)keyPath
-                       ofObject:(id)object
-                         change:(NSDictionary *)change
-                        context:(void *)context;
+- (IBAction)forcedRefresh:(id)sender;
 
 @end
 
@@ -21,30 +18,30 @@
 
 @synthesize blogEngine = _blogEngine;
 
-@synthesize facebookDelegate;
+@synthesize facebookDelegate = _facebookDelegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    
-    if (self) {
-        // Custom initialization
-//        [[self tableView] setDelegate:self];
-//        [[self tableView] setDataSource:self];
-    }
     
     return self;
 }
 
 - (void) setEngine:(RSSEngine *)engine {
     if (self.blogEngine)
-        [self.blogEngine removeObserver:self forKeyPath:@"allEntries"];
+        [self.blogEngine removeObserver:self
+                             forKeyPath:@"allEntries"];
 
     self.blogEngine = engine;
+    
     [self.blogEngine addObserver:self
                       forKeyPath:@"allEntries" 
-                         options:(NSKeyValueChangeInsertion | NSKeyValueChangeReplacement | NSKeyValueChangeRemoval) 
+                         options:(NSKeyValueChangeInsertion | NSKeyValueChangeReplacement) 
                          context:nil];
+}
+
+- (IBAction) forcedRefresh:(id)sender {
+    [self.blogEngine forceRefresh];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +54,7 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     // Uncomment the following line to preserve selection between presentations.
@@ -75,7 +72,10 @@
     if ([keyPath isEqualToString:@"allEntries"]) {
         [self.tableView reloadData];        
     } else {
-        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        [super observeValueForKeyPath:keyPath 
+                             ofObject:object
+                               change:change
+                              context:context];
     }
 }
 
@@ -134,12 +134,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                      reuseIdentifier:CellIdentifier];
     }
     
     RSSEntry *current = [self.blogEngine.allEntries objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = current.title;
+    cell.textLabel.text       =  current.title;
     cell.detailTextLabel.text = [current.date description];
     
     // Configure the cell...
@@ -148,26 +149,16 @@
 }
 
 #pragma mark - Table view delegate
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     
-} */
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
-    
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {     
     if ([[segue identifier] isEqualToString:@"webSegue"]) {
+        NSIndexPath *selectedIndex = [self.tableView indexPathForSelectedRow];
+
         WebViewController *destination = [segue destinationViewController];
         
         destination.facebookDelegate   = self.facebookDelegate;
         destination.feed               = (RSSEntry *)[self.blogEngine.allEntries objectAtIndex:selectedIndex.row];    
+ 
     }
 }
 

@@ -52,7 +52,6 @@
 		DE1D7670150DA91800ACC4B9 /* stream_play.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7668150DA91800ACC4B9 /* stream_play.png */; };
 		DE1D7671150DA91800ACC4B9 /* stream_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DE1D7669150DA91800ACC4B9 /* stream_play@2x.png */; };
 		DE1D7679150DAAB400ACC4B9 /* StreamController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1D7677150DAAB400ACC4B9 /* StreamController.m */; };
-		DE1D767D150DAB8300ACC4B9 /* SingleFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1D767C150DAB8300ACC4B9 /* SingleFeed.m */; };
 		DE3F412614E1BB1300B12A5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412514E1BB1300B12A5E /* UIKit.framework */; };
 		DE3F412814E1BB1300B12A5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412714E1BB1300B12A5E /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		DE3F412A14E1BB1300B12A5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE3F412914E1BB1300B12A5E /* CoreGraphics.framework */; };
@@ -149,8 +148,6 @@
 		DE1D7669150DA91800ACC4B9 /* stream_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stream_play@2x.png"; sourceTree = "<group>"; };
 		DE1D7676150DAAB400ACC4B9 /* StreamController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamController.h; sourceTree = "<group>"; };
 		DE1D7677150DAAB400ACC4B9 /* StreamController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamController.m; sourceTree = "<group>"; };
-		DE1D767B150DAB8300ACC4B9 /* SingleFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleFeed.h; sourceTree = "<group>"; };
-		DE1D767C150DAB8300ACC4B9 /* SingleFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleFeed.m; sourceTree = "<group>"; };
 		DE3F412114E1BB1300B12A5E /* Moomba+.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moomba+.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE3F412514E1BB1300B12A5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DE3F412714E1BB1300B12A5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -285,8 +282,6 @@
 		DE242B4C14F17E5400B3F902 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DE1D767B150DAB8300ACC4B9 /* SingleFeed.h */,
-				DE1D767C150DAB8300ACC4B9 /* SingleFeed.m */,
 				DEF5D76E150F9A8400E28D5E /* NSArray+Extras.h */,
 				DEF5D76F150F9A9B00E28D5E /* NSArray+Extras.m */,
 			);
@@ -296,9 +291,8 @@
 		DE3F411614E1BB1300B12A5E = {
 			isa = PBXGroup;
 			children = (
-				C2C9FA671511644600265629 /* MemoryHound.h */,
-				C2C9FA681511644600265629 /* MemoryHound.m */,
 				DE3F412B14E1BB1300B12A5E /* MoombaPlusMobile */,
+				DEF4B7CA1511CEC800A30816 /* MemoryHound */,
 				DEF5D764150F985200E28D5E /* MWFeedParser */,
 				C2F86DEE150970BE0074DC94 /* Facebook */,
 				DE01552614EFA7B50060CE19 /* ASIRequest */,
@@ -403,6 +397,15 @@
 			);
 			name = GDataXML;
 			path = MoombaPlusMobile;
+			sourceTree = "<group>";
+		};
+		DEF4B7CA1511CEC800A30816 /* MemoryHound */ = {
+			isa = PBXGroup;
+			children = (
+				C2C9FA671511644600265629 /* MemoryHound.h */,
+				C2C9FA681511644600265629 /* MemoryHound.m */,
+			);
+			name = MemoryHound;
 			sourceTree = "<group>";
 		};
 		DEF5D764150F985200E28D5E /* MWFeedParser */ = {
@@ -515,7 +518,6 @@
 				DEE33B7614F1E1A90043C5FA /* GDataXMLElement-Extras.m in Sources */,
 				C2F86E02150985E70074DC94 /* FacebookDelegate.m in Sources */,
 				DE1D7679150DAAB400ACC4B9 /* StreamController.m in Sources */,
-				DE1D767D150DAB8300ACC4B9 /* SingleFeed.m in Sources */,
 				DE0CBFA1150EF78A007A41B0 /* StreamEngine.m in Sources */,
 				DE0CBFA5150F4A9F007A41B0 /* RSSController.m in Sources */,
 				DEF5D76D150F98EA00E28D5E /* NSDate+InternetDateTime.m in Sources */,

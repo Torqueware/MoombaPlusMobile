@@ -15,7 +15,7 @@
 
 #define MOOMBA_PLUS_RADIO   @"http://s6.voscast.com:7662"
 #define MOOMBA_PLUS_FEED    @"http://moombaplus.com/feed"
-#define MOOMBA_PLUS_IRC     @""
+#define MOOMBA_PLUS_IRC     @"http://wbe003.mibbit.com/?settings=aae45fe8521c86ccfaa515437fe80193&server=irc.Mibbit.Net&channel=%23MoombaPlus_test_channel"
 
 #define FACEBOOK_APP_ID     @"332658496785553"
 

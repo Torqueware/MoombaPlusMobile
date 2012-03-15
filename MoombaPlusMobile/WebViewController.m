@@ -10,24 +10,32 @@
 
 @interface WebViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView    *loadingView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
+- (IBAction) shareButtonClicked:(id)sender;
 
 @end
 
 @implementation WebViewController
 
-@synthesize feed             = _feed;
-@synthesize webView          = _webView;
-@synthesize scrollView       = _scrollView;
-@synthesize shareButton      = _shareButton;
-@synthesize facebookDelegate = _facebookDelegate;
+@synthesize feed              = _feed;
+@synthesize facebookDelegate  = _facebookDelegate;
+
+@synthesize webView           = _webView;
+@synthesize scrollView        = _scrollView;
+@synthesize loadingView       = _loadingView;
+@synthesize loadingIcon       = _loadingIcon;
+@synthesize shareButton       = _shareButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {               
-        // Custom initialization
-    }
+    self = [super initWithNibName:nibNameOrNil 
+                           bundle:nibBundleOrNil];
+
     return self;
 }
 
@@ -42,7 +50,9 @@
                                    @"Check out this song!",  @"message",
                                    nil];
     
-    [self.facebookDelegate.facebook dialog:@"feed" andParams:params andDelegate:self];
+    [self.facebookDelegate.facebook dialog:@"feed" 
+                                 andParams:params 
+                               andDelegate:self];
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -72,20 +82,30 @@
 {
     [super viewDidLoad];
     
-    NSURL           *domain = [NSURL URLWithString:self.feed.url];
-    NSURLRequest    *please = [NSURLRequest requestWithURL:domain];
+    NSURL        *domain = [NSURL URLWithString:self.feed.url];
+    NSURLRequest *please = [NSURLRequest requestWithURL:domain];
     
-    [self.webView   loadRequest:please];   
+    [self.loadingIcon setNeedsDisplay];
     
+    [self.webView setDelegate:self];
+    [self.webView loadRequest:please];
+
     self.scrollView.minimumZoomScale=0.5;
     self.scrollView.maximumZoomScale=6.0;
     self.scrollView.delegate=self;
    
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+
+    [self.loadingIcon removeFromSuperview];
+    [self.webView setHidden:NO];
+    
+    [self.scrollView layoutSubviews];
+}
 
 - (void)viewDidUnload
-{
+{    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -95,6 +115,10 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc {
+    [self viewDidUnload];
 }
 
 @end

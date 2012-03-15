@@ -22,5 +22,7 @@
 
 - (id) initWithUrl:(NSURL *)feed;
 
+- (void) forceRefresh;
+
 @end
 

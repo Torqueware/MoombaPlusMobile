@@ -8,14 +8,14 @@
         <scene sceneID="11">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
-                <viewController title="Blog" id="2" customClass="RSSController" sceneMemberID="viewController">
+                <viewController title="Blog" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="2" customClass="RSSController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U5I-tG-9Ob">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Cell" textLabel="F3r-RQ-a5b" detailTextLabel="ncz-YD-Np6" imageView="Gab-h8-GNe" style="IBUITableViewCellStyleSubtitle" id="AOG-xl-h9R" customClass="SingleFeed">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Cell" textLabel="F3r-RQ-a5b" detailTextLabel="ncz-YD-Np6" imageView="Gab-h8-GNe" style="IBUITableViewCellStyleSubtitle" id="AOG-xl-h9R">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -73,18 +73,24 @@
         <scene sceneID="dAI-V3-Gha">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9aQ-ro-T8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="htc-Fu-cfi" customClass="WebViewController" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="fHF-6k-98a">
+                <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="htc-Fu-cfi" customClass="WebViewController" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" id="fHF-6k-98a">
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView autoresizesSubviews="NO" contentMode="scaleToFill" scalesPageToFit="YES" id="Z1p-f0-bWR">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="ekN-EM-Woh">
+                                <rect key="frame" x="142" y="165" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="contentStretch" x="1" y="1" width="1" height="1"/>
+                            </activityIndicatorView>
+                            <webView hidden="YES" autoresizesSubviews="NO" contentMode="scaleToFill" scalesPageToFit="YES" id="Z1p-f0-bWR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                             </webView>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </scrollView>
                     <navigationItem key="navigationItem" id="dVq-Oe-Zvq">
                         <barButtonItem key="rightBarButtonItem" title="Share" id="eVD-Je-fIH">
@@ -100,12 +106,12 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="529" y="-1061"/>
+            <point key="canvasLocation" x="546" y="-1061"/>
         </scene>
         <scene sceneID="sNz-t3-AXz">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GGG-Uj-Mvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController definesPresentationContext="YES" id="mKl-0d-6H3" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="mKl-0d-6H3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="nY5-MZ-slh"/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="blackOpaque" id="hhn-UB-x9V">
                         <autoresizingMask key="autoresizingMask"/>
@@ -120,7 +126,7 @@
         <scene sceneID="13">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
-                <viewController title="Chat" id="3" customClass="IRCController" sceneMemberID="viewController">
+                <viewController title="Chat" definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" modalTransitionStyle="flipHorizontal" id="3" customClass="IRCController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="17">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +161,7 @@
         <scene sceneID="15">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
-                <tabBarController modalTransitionStyle="crossDissolve" id="4" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="4" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
@@ -174,7 +180,7 @@
         <scene sceneID="VTS-4q-dfO">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8I-Lo-VBk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="NHW-va-znI" customClass="StreamController" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" providesPresentationContextTransitionStyle="YES" id="NHW-va-znI" customClass="StreamController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GYQ-Ox-n3f">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -217,6 +223,41 @@
         <image name="rotated_icon@2x.png" width="60" height="60"/>
         <image name="rss.png" width="30" height="30"/>
     </resources>
+    <classes>
+        <class className="IRCController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IRCController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="RSSController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RSSController.h"/>
+            <relationships>
+                <relationship kind="action" name="forcedRefresh:"/>
+            </relationships>
+        </class>
+        <class className="StreamController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StreamController.h"/>
+            <relationships>
+                <relationship kind="action" name="pause:"/>
+                <relationship kind="action" name="play:"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="volumeParentView" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="WebViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareButtonClicked:"/>
+                <relationship kind="outlet" name="loadingIcon" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="loadingView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="shareButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

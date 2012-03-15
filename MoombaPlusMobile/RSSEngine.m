@@ -68,25 +68,49 @@
    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:self.feed];
 
    [request setDelegate:self];
+   [request setNumberOfTimesToRetryOnTimeout:3];
+   [request setQueuePriority:NSOperationQueuePriorityLow];
+    
    [self.queue addOperation:request];
    
    [request startAsynchronous];
 }
 
+- (void) forceRefresh {
+    [self.queue cancelAllOperations];
+    [self.queue waitUntilAllOperationsAreFinished];
+    
+    [self refresh];
+}
+
 - (void) requestFinished:(ASIHTTPRequest *)request {
-   NSError *error;
+   NSError          *error;
    GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData: [request responseData]
                                                           options: 0
                                                             error: &error];
    if(doc) {       
        for (RSSEntry *this in [RSSEngine parseFeed:doc.rootElement]) {
-           int i = [self.cache indexForInsertingObject:this sortedUsingBlock:^(id this, id that) {
+           int i = [self.cache indexForInsertingObject:this 
+                                      sortedUsingBlock:^(id this, id that) {
                return [((RSSEntry *)this).date compare:((RSSEntry *)that).date];
            }];
+           
+           if (i < [self.cache count]) {
+               if ([this.title isEqualToString:((RSSEntry *)[self.cache objectAtIndex:i]).title]) {
+                   continue;
+               }
+           }
           
-           [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:[NSIndexSet indexSetWithIndex:i] forKey:@"allEntries"];
-           [self.cache insertObject:this atIndex:i];
-           [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:[NSIndexSet indexSetWithIndex:i] forKey:@"allEntries"];
+           [self willChange:NSKeyValueChangeInsertion 
+            valuesAtIndexes:[NSIndexSet indexSetWithIndex:i]
+                     forKey:@"allEntries"];
+           
+           [self.cache insertObject:this
+                            atIndex:i];
+           
+           [self didChange:NSKeyValueChangeInsertion 
+           valuesAtIndexes:[NSIndexSet indexSetWithIndex:i]
+                    forKey:@"allEntries"];
        }
    }
 #ifdef __DEBUG__
@@ -126,12 +150,15 @@
       NSArray *items = [channel elementsForName:@"item"];
       for (GDataXMLElement *item in items) {
          
-         NSString *articleTitle = [item valueForChild:@"title"];
-         NSString *articleUrl = [item valueForChild:@"link"];            
-         NSString *articleDateString = [item valueForChild:@"pubDate"];        
-         NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC822];
+         NSString *articleTitle         = [item valueForChild:@"title"];
+         NSString *articleUrl           = [item valueForChild:@"link"];            
+         NSString *articleDateString    = [item valueForChild:@"pubDate"];        
+         NSDate *articleDate            = [NSDate dateFromInternetDateTimeString:articleDateString
+                                                                      formatHint:DateFormatHintRFC822];
          
-         [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle domain:articleUrl date:articleDate]];   
+         [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle
+                                                       domain:articleUrl
+                                                         date:articleDate]];   
       }      
    }
    
@@ -160,9 +187,12 @@
       }
       
       NSString *articleDateString = [item valueForChild:@"updated"];        
-      NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString formatHint:DateFormatHintRFC3339];
+      NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString 
+                                                        formatHint:DateFormatHintRFC3339];
       
-      [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle domain:articleUrl date:articleDate]];
+      [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle
+                                                    domain:articleUrl
+                                                      date:articleDate]];
    }
    
    return entries;
@@ -179,6 +209,8 @@
 - (void) dealloc {
    [_queue cancelAllOperations];
    [_cache removeAllObjects];
+   [_queue waitUntilAllOperationsAreFinished];
+
 }
 
 @end
