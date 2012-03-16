@@ -10,8 +10,8 @@
 
 @interface StreamController ()
 
-@property (strong, nonatomic) IBOutlet UIView    *volumeParentView;
-@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIView    *volumeParentView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (strong, nonatomic) UIBarButtonItem    *playButton;
 @property (strong, nonatomic) UIBarButtonItem    *pauseButton;
@@ -40,6 +40,7 @@
 - (void) setEngine:(StreamEngine *)stream {
     if (self.streamEngine != nil) {
         [self.streamEngine removeObserver:self forKeyPath:@"isPlaying"];
+        _streamEngine = nil;
     }
     
     self.streamEngine = stream;
@@ -81,6 +82,7 @@
                                                                      target:nil
                                                                      action:nil];
     
+    
     [self.volumeParentView addSubview:[[MPVolumeView alloc] initWithFrame: self.volumeParentView.bounds]];
     [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
 }
@@ -111,6 +113,10 @@
     if (self.streamEngine.isPlaying) {
         [self.streamEngine pause];
     }
+}
+
+- (IBAction)changeStream:(id)sender {
+    [self setEngine:[[StreamEngine alloc] initWithSecondStream]];
 }
 
 - (void) viewDidUnload
@@ -150,7 +156,12 @@
 }
 
 - (void) dealloc {
-    [self viewDidUnload];
+    [self.streamEngine removeObserver:self forKeyPath:@"isPlaying"];
+    _streamEngine = nil;
+    _playButton = nil;
+    _pauseButton = nil;
+    _leftFlex = nil;
+    _rightFlex = nil;
 }
 
 @end

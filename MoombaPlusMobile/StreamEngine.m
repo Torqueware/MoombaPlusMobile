@@ -13,6 +13,7 @@
 @property (strong, nonatomic) AVPlayer      *player;
 @property (strong, nonatomic) AVURLAsset    *asset;
 @property (strong, nonatomic) AVPlayerItem  *item;
+@property BOOL secondStream;
 
 - (void) setURL:(NSURL *)url;
 - (void) prepareAsset:(AVURLAsset *)asset;  
@@ -26,6 +27,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 @synthesize player = _player;
 @synthesize asset = _asset;
 @synthesize item = _item;
+@synthesize secondStream = _secondStream;
 
 @dynamic isPlaying;
 
@@ -33,6 +35,14 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     self    = [super init];
     
     [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+    
+    return self;
+}
+
+- (id) initWithSecondStream {
+    self = [super init];
+    
+    [self setURL:[NSURL URLWithString:ALTERNATE_STREAM]];
     
     return self;
 }
@@ -107,11 +117,10 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 
 - (void) play {
     if (!self.player) {
-//        [self willChangeValueForKey:@"isPlaying"];
-        
-        [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
-     
-//        [self didChangeValueForKey:@"isPlaying"];
+        if (!self.secondStream)
+            [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+        else
+            [self setURL:[NSURL URLWithString:ALTERNATE_STREAM]];     
     }
         
     [self.player play];
@@ -120,6 +129,12 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 - (void) pause {
 //    [self.player pause];
     self.player = nil;
+}
+
+- (void) dealloc {
+    _player = nil;
+    _asset = nil;
+    _item = nil;
 }
 
 @end

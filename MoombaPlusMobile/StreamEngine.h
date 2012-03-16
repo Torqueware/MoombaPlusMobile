@@ -11,11 +11,14 @@
 #import <AVFoundation/AVPlayer.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+#define ALTERNATE_STREAM @"http://s6.voscast.com:7644"
+
 @interface StreamEngine : NSObject
 
 @property BOOL isPlaying;
 
 - (id)          init;
+- (id)          initWithSecondStream;
 
 - (NSArray *)   currentMetadata;
 

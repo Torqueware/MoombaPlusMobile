@@ -59,4 +59,8 @@
     }
 }
 
+- (void) dealloc {
+    _facebook = nil;
+}
+
 @end
