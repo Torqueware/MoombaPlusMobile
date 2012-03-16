@@ -111,10 +111,8 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
        
         if (!self.secondStream)
             [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
-        else {
-             NSLog(@"in streamengine play second");
+        else 
             [self setURL:[NSURL URLWithString:ALTERNATE_STREAM]];     
-        }
 
     }
         

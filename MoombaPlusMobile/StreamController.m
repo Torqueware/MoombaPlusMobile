@@ -104,19 +104,11 @@
 }
 
 - (IBAction)play:(id)sender {
-#ifdef __DEBUG__
-    NSLog(@"play");
-#endif
-    if (!self.streamEngine)
-        NSLog(@"wut");
     [self.streamEngine play];
     [self showPauseButton];
 }
 
 - (IBAction)pause:(id)sender {
-#ifdef __DEBUG__
-    NSLog(@"paused");
-#endif
     
     if (self.streamEngine.isPlaying) {
         [self.streamEngine pause];
