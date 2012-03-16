@@ -58,7 +58,6 @@
 		DE3F413014E1BB1300B12A5E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DE3F412E14E1BB1300B12A5E /* InfoPlist.strings */; };
 		DE3F413614E1BB1400B12A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F413514E1BB1400B12A5E /* AppDelegate.m */; };
 		DE3F413914E1BB1400B12A5E /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE3F413714E1BB1400B12A5E /* MainStoryboard.storyboard */; };
-		DE40427D1512F1BE00E5DAA0 /* MarqueeLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DE40427C1512F1BE00E5DAA0 /* MarqueeLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DEBEC63914EDD83200FD52E8 /* RSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBEC63814EDD83200FD52E8 /* RSSEntry.m */; };
 		DEE33B6B14F1BEF30043C5FA /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE33B6A14F1BEF30043C5FA /* icon@2x.png */; };
 		DEE33B6D14F1BF0B0043C5FA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = DEE33B6C14F1BF0B0043C5FA /* Default.png */; };
@@ -159,8 +158,6 @@
 		DE3F413414E1BB1400B12A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DE3F413514E1BB1400B12A5E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DE3F413814E1BB1400B12A5E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		DE40427B1512F1BE00E5DAA0 /* MarqueeLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarqueeLabel.h; sourceTree = "<group>"; };
-		DE40427C1512F1BE00E5DAA0 /* MarqueeLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarqueeLabel.m; sourceTree = "<group>"; };
 		DEBEC63714EDD83200FD52E8 /* RSSEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSEntry.h; sourceTree = "<group>"; };
 		DEBEC63814EDD83200FD52E8 /* RSSEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSEntry.m; sourceTree = "<group>"; };
 		DEE33B6A14F1BEF30043C5FA /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "../icon@2x.png"; sourceTree = "<group>"; };
@@ -295,7 +292,6 @@
 			isa = PBXGroup;
 			children = (
 				DE3F412B14E1BB1300B12A5E /* MoombaPlusMobile */,
-				DE4042791512F19F00E5DAA0 /* MarqueeLabel */,
 				DEF4B7CA1511CEC800A30816 /* MemoryHound */,
 				DEF5D764150F985200E28D5E /* MWFeedParser */,
 				C2F86DEE150970BE0074DC94 /* Facebook */,
@@ -359,16 +355,6 @@
 				DE3F413314E1BB1400B12A5E /* MoombaPlusMobile-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DE4042791512F19F00E5DAA0 /* MarqueeLabel */ = {
-			isa = PBXGroup;
-			children = (
-				DE40427B1512F1BE00E5DAA0 /* MarqueeLabel.h */,
-				DE40427C1512F1BE00E5DAA0 /* MarqueeLabel.m */,
-			);
-			name = MarqueeLabel;
-			path = MoombaPlusMobile;
 			sourceTree = "<group>";
 		};
 		DEBEC63D14EDD89000FD52E8 /* Models */ = {
@@ -538,7 +524,6 @@
 				DEF5D770150F9A9B00E28D5E /* NSArray+Extras.m in Sources */,
 				DE0B7B88150FD7CA00CE56B7 /* WebViewController.m in Sources */,
 				C2C9FA691511644600265629 /* MemoryHound.m in Sources */,
-				DE40427D1512F1BE00E5DAA0 /* MarqueeLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
