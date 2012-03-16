@@ -10,6 +10,7 @@
 
 @interface StreamController ()
 
+@property (strong, nonatomic) IBOutlet UILabel   *trackLabel;
 @property (strong, nonatomic) IBOutlet UIView    *volumeParentView;
 @property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
 

@@ -144,20 +144,20 @@
    
    NSArray *channels = [root elementsForName:@"channel"];
    for (GDataXMLElement *channel in channels) {            
-      
-//      NSString *blogTitle = [channel valueForChild:@"title"];                    
-      
+            
       NSArray *items = [channel elementsForName:@"item"];
       for (GDataXMLElement *item in items) {
          
          NSString *articleTitle         = [item valueForChild:@"title"];
+         NSString *articleAuthor        = [item valueForChild:@"dc:creator"];
          NSString *articleUrl           = [item valueForChild:@"link"];            
          NSString *articleDateString    = [item valueForChild:@"pubDate"];        
          NSDate *articleDate            = [NSDate dateFromInternetDateTimeString:articleDateString
                                                                       formatHint:DateFormatHintRFC822];
          
          [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle
-                                                       domain:articleUrl
+                                                       author:articleAuthor
+                                                         link:articleUrl
                                                          date:articleDate]];   
       }      
    }
@@ -168,11 +168,11 @@
 + (NSArray *)parseAtom:(GDataXMLElement *)root {
    NSMutableArray *entries = [[NSMutableArray alloc] init];
    
-   //   NSString *blogTitle = [rootElement valueForChild:@"title"];                    
    NSArray *items = [root elementsForName:@"entry"];
    
    for (GDataXMLElement *item in items) {
-      NSString *articleTitle = [item valueForChild:@"title"];
+      NSString *articleTitle  = [item valueForChild:@"title"];
+      NSString *articleAuthor = [item valueForChild:@"dc:creator"]; 
       NSString *articleUrl = nil;
       NSArray *links = [item elementsForName:@"link"];        
       
@@ -187,11 +187,12 @@
       }
       
       NSString *articleDateString = [item valueForChild:@"updated"];        
-      NSDate *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString 
+      NSDate   *articleDate = [NSDate dateFromInternetDateTimeString:articleDateString 
                                                         formatHint:DateFormatHintRFC3339];
       
       [entries addObject:[[RSSEntry alloc] initWithArticle:articleTitle
-                                                    domain:articleUrl
+                                                    author:articleAuthor
+                                                      link:articleUrl
                                                       date:articleDate]];
    }
    

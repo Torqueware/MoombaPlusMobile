@@ -12,13 +12,16 @@
 
 @property (weak, nonatomic) IBOutlet UIWebView    *webView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
 
 @end
 
 @implementation IRCController
 
-@synthesize webView = _webView;
-@synthesize scrollView = _scrollView;
+@synthesize webView             = _webView;
+@synthesize scrollView          = _scrollView;
+
+@synthesize loadingIcon         = loadingIcon;
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
@@ -29,30 +32,35 @@
 {
     [super viewDidLoad];
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:MOOMBA_PLUS_IRC]]];   
+    NSURL        *domain = [NSURL URLWithString:MOOMBA_PLUS_IRC];
+    NSURLRequest *please = [NSURLRequest requestWithURL:domain];
     
-    [self.webView addObserver:self forKeyPath:@"isLoading" options:NSKeyValueChangeSetting context:nil];
+    [loadingIcon setNeedsDisplay];
     
+    [self.webView setDelegate:self];
+    [self.webView loadRequest:please];   
+        
+    [self.scrollView setDelegate:self];
     self.scrollView.minimumZoomScale=0.5;
     self.scrollView.maximumZoomScale=6.0;
-    self.scrollView.delegate=self;
     
     // Do any additional setup after loading the view, typically from a nibs
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath
-                       ofObject:(id)object
-                         change:(NSDictionary *)change
-                        context:(void *)context {
-    if ([keyPath isEqualToString:@"isLoading"] && !self.webView.isLoading) {
-        int i = 0; //noop
-    }
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
+    [self.loadingIcon   removeFromSuperview];
+    [self.webView       setHidden:NO];
+    
+    [self.scrollView    layoutSubviews];
 }
 
 - (void) viewDidUnload
-{
-    [_webView removeObserver:self forKeyPath:@"isLoading"];
-    
+{    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

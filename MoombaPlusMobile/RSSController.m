@@ -139,9 +139,9 @@
     }
     
     RSSEntry *current = [self.blogEngine.allEntries objectAtIndex:indexPath.row];
-    
-    cell.textLabel.text       =  current.title;
-    cell.detailTextLabel.text = [current.date description];
+
+    cell.textLabel.text       = current.title;
+    cell.detailTextLabel.text = current.subTitle;
     
     // Configure the cell...
     

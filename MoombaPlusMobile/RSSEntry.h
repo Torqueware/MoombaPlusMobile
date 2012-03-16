@@ -9,11 +9,15 @@
 @interface RSSEntry : NSObject
 
 @property (copy) NSString *title;
-@property (copy) NSString *thumb;
+@property (copy) NSString *author;
 @property (copy) NSDate   *date;
 @property (copy) NSString *url;
 
+@property (copy) NSString *tree;
 
-- (id)initWithArticle:(NSString*)article domain:(NSString*)domain date:(NSDate*)date;
+@property (readonly) NSString *humanTime;
+@property (readonly) NSString *subTitle;
+
+- (id)initWithArticle:(NSString*)article author:(NSString*)author link:(NSString*)URL date:(NSDate*)date;
 
 @end

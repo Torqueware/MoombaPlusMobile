@@ -11,26 +11,65 @@
 @implementation RSSEntry : NSObject
 
 //indexing data
-@synthesize title       = _header;
+@synthesize title       = _title;
+@synthesize author      = _author;
 @synthesize date        = _date;
-@synthesize thumb       = _thumb;
+@synthesize tree        = _tree;
 @synthesize url         = _url;
 
-- (id)initWithArticle:(NSString*)article domain:(NSString*)domain date:(NSDate*)date {
-   self = [super init];
-   
-   if (self) {
-      //fetch this
-      self.thumb        = nil;
-      
-      //init these
-      self.title        = article;
-      self.url          = domain;
-      self.date         = date;
-      
-   }
-   
-   return self;
+@dynamic humanTime, subTitle;
+
+- (id)initWithArticle:(NSString*)article author:(NSString*)author link:(NSString*)url date:(NSDate*)date {
+    self = [super init];
+    
+    if (self) {
+        //fetch this
+        self.tree         = nil;
+        
+        //init these
+        self.title        = article;
+        self.author       = author;
+        self.url          = url;
+        self.date         = date;
+        
+    }
+    
+    return self;
+}
+
+- (NSString *) humanTime {
+    NSString        *time = nil;
+    
+    if (self.date != nil) {
+        NSDateFormatter *formatter  = [[NSDateFormatter alloc] init];
+        NSLocale        *locale     = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+        
+        time = [[NSString alloc] init];
+        
+        [formatter setLocale:locale];
+        [formatter setTimeStyle:NSDateFormatterNoStyle];
+        [formatter setDateStyle:NSDateFormatterShortStyle];
+        
+        time = [formatter stringFromDate:self.date];
+        
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        [formatter setDateStyle:NSDateFormatterNoStyle];
+        
+        
+        time = [time stringByAppendingString: @" at "]; 
+        time = [time stringByAppendingString:[formatter stringFromDate:self.date]];
+    }
+
+    return time;
+}
+
+- (NSString *) subTitle {
+    NSString *sub = self.humanTime;
+    
+    sub = [sub stringByAppendingString:@" - "];
+    sub = [sub stringByAppendingString:self.author];
+    
+    return sub;
 }
 
 @end

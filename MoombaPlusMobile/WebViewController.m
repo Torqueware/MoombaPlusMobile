@@ -10,10 +10,10 @@
 
 @interface WebViewController ()
 
-@property (weak, nonatomic) IBOutlet UIView    *loadingView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareButton;
 
 - (IBAction) shareButtonClicked:(id)sender;
@@ -27,7 +27,6 @@
 
 @synthesize webView           = _webView;
 @synthesize scrollView        = _scrollView;
-@synthesize loadingView       = _loadingView;
 @synthesize loadingIcon       = _loadingIcon;
 @synthesize shareButton       = _shareButton;
 
@@ -90,10 +89,9 @@
     [self.webView setDelegate:self];
     [self.webView loadRequest:please];
 
+    [self.scrollView setDelegate:self];
     self.scrollView.minimumZoomScale=0.5;
     self.scrollView.maximumZoomScale=6.0;
-    self.scrollView.delegate=self;
-   
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {

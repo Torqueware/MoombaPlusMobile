@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IRCController : UIViewController <UIScrollViewDelegate>
+@interface IRCController : UIViewController <UIScrollViewDelegate, UIWebViewDelegate>
+ 
+- (void) webViewDidStartLoad:(UIWebView *)webView;
+
+- (void) webViewDidFinishLoad:(UIWebView *)webView;
 
 @end
