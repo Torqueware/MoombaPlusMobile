@@ -87,11 +87,19 @@
     [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
 }
 
+- (void) showPlayButton {
+    [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.playButton, self.rightFlex, nil]];
+}
+
+- (void) showPauseButton {
+    [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+}
+
 - (void) updateToolbar {
     if (self.streamEngine.isPlaying) {
         [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
     } else {
-        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.pauseButton, self.rightFlex, nil]];
+        [self.toolbar setItems:[NSArray arrayWithObjects:self.leftFlex, self.playButton, self.rightFlex, nil]];
     }
 }
 
@@ -99,10 +107,10 @@
 #ifdef __DEBUG__
     NSLog(@"play");
 #endif
-    
-    if (!self.streamEngine.isPlaying) {
-        [self.streamEngine play];
-    }
+    if (!self.streamEngine)
+        NSLog(@"wut");
+    [self.streamEngine play];
+    [self showPauseButton];
 }
 
 - (IBAction)pause:(id)sender {
@@ -113,6 +121,7 @@
     if (self.streamEngine.isPlaying) {
         [self.streamEngine pause];
     }
+    [self showPlayButton];
 }
 
 - (IBAction)changeStream:(id)sender {
@@ -131,7 +140,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self updateToolbar];
 }
 
 - (void)viewDidAppear:(BOOL)animated

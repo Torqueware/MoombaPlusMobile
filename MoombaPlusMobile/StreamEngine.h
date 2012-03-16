@@ -15,7 +15,7 @@
 
 @interface StreamEngine : NSObject
 
-@property BOOL isPlaying;
+@property (nonatomic) BOOL isPlaying;
 
 - (id)          init;
 - (id)          initWithSecondStream;

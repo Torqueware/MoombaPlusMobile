@@ -28,13 +28,13 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 @synthesize asset = _asset;
 @synthesize item = _item;
 @synthesize secondStream = _secondStream;
-
-@dynamic isPlaying;
+@synthesize isPlaying = _isPlaying;
 
 - (id) init {
     self    = [super init];
     
     [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
+    self.secondStream = NO;
     
     return self;
 }
@@ -43,6 +43,7 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     self = [super init];
     
     [self setURL:[NSURL URLWithString:ALTERNATE_STREAM]];
+    self.secondStream = YES;
     
     return self;
 }
@@ -95,16 +96,6 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
     }
 }
 
-
-// variable overrides
-
-- (BOOL) isPlaying {
-    if (self.player != nil && self.player.rate > 0.0)
-        return true;
-    
-    return false;
-}
-
 // control functions
 
 - (NSArray *)   currentMetadata {
@@ -117,18 +108,24 @@ static void *PlaybackViewControllerStatusObservationContext = &PlaybackViewContr
 
 - (void) play {
     if (!self.player) {
+       
         if (!self.secondStream)
             [self setURL:[NSURL URLWithString:MOOMBA_PLUS_RADIO]];
-        else
+        else {
+             NSLog(@"in streamengine play second");
             [self setURL:[NSURL URLWithString:ALTERNATE_STREAM]];     
+        }
+
     }
         
     [self.player play];
+    self.isPlaying = YES;
 }
 
 - (void) pause {
-//    [self.player pause];
+    [self.player pause];
     self.player = nil;
+    self.isPlaying = NO;
 }
 
 - (void) dealloc {
